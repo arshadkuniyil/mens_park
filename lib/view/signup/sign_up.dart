@@ -1,14 +1,19 @@
+import 'dart:collection';
 import 'package:flutter/material.dart';
-import 'package:mens_park/view/constants/colors.dart';
-import 'package:mens_park/view/constants/screen_size.dart';
+import 'package:mens_park/constants/colors.dart';
+import 'package:mens_park/constants/screen_size.dart';
+import '../../core/service/auth_service.dart';
+import '../widgets/text_field_outer_widget.dart';
 
 class SignUp extends StatelessWidget {
-  const SignUp({Key? key}) : super(key: key);
+  SignUp({Key? key}) : super(key: key);
 
+  final AuthService userService = AuthService();
+  final HashMap userData = HashMap<String, String>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade200,
+      backgroundColor: kGrey,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(getScreenWidth(context) * 0.025),
@@ -18,22 +23,49 @@ class SignUp extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                   // Logo 1 3rd of height 
-                  const CustomTextField(
-                      prefixIcon: Icon(Icons.person), hintText: 'Full Name'),
-                  const CustomTextField(
-                      prefixIcon: Icon(Icons.email_rounded), hintText: 'Email'),
-                  const CustomTextField(
-                      prefixIcon: Icon(Icons.phone_rounded),
-                      hintText: 'Mobile Number'),
-                  const CustomTextField(
-                      prefixIcon: Icon(Icons.key), hintText: 'Password'),
+                  // logo
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Image(
+                      width: 150,
+                      image: AssetImage('assets/images/logo_sample.png'),
+                    ),
+                  ),
+                  TextFieldOuter(
+                      child: TextField(
+                    decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.person_rounded),
+                        hintText: "Full Name",
+                        border: InputBorder.none),
+                    onChanged: (value) => userData['fullName'] = value,
+                  )),
+
+                  TextFieldOuter(
+                    child: TextField(
+                      decoration: const InputDecoration(
+                          prefixIcon: Icon(Icons.phone_rounded),
+                          hintText: "Mobile Number",
+                          border: InputBorder.none),
+                      onChanged: (value) => userData['mobileNumber'] = value,
+                    ),
+                  ),
+                  TextFieldOuter(
+                    child: TextField(
+                        decoration: const InputDecoration(
+                            prefixIcon: Icon(Icons.key_rounded),
+                            hintText: "Password",
+                            border: InputBorder.none),
+                        onChanged: (value) => userData['password'] = value),
+                  ),
+
                   Align(
                     alignment: Alignment.centerRight,
                     child: Padding(
                       padding: EdgeInsets.all(getScreenWidth(context) * 0.05),
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          userService.signUp(userData);
+                        },
                         child: const Text('Sign Up'),
                       ),
                     ),
@@ -41,48 +73,13 @@ class SignUp extends StatelessWidget {
                   const Spacer(),
                   const Text(" Already have an account?"),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      userService.addDetails();
+                    },
                     child: const Text('Sign In'),
                   ),
                 ],
               )),
-        ),
-      ),
-    );
-  }
-}
-
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({
-    Key? key,
-    required this.prefixIcon,
-    required this.hintText,
-  }) : super(key: key);
-
-  final Icon prefixIcon;
-  final String hintText;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(getScreenWidth(context) * 0.025),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          color: kWhite,
-        ),
-        width: double.infinity,
-        child: Row(
-          children: [
-            Expanded(
-              child: TextField(
-                decoration: InputDecoration(
-                    prefixIcon: prefixIcon,
-                    hintText: hintText,
-                    border: InputBorder.none),
-              ),
-            )
-          ],
         ),
       ),
     );
