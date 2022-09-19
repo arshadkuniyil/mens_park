@@ -8,7 +8,7 @@ import '../../constants/screen_size.dart';
 
 
 class TextFieldOuter extends StatelessWidget {
-  final TextField child;
+  final Widget child;
 
   const TextFieldOuter({Key? key, required this.child}) : super(key: key);
  

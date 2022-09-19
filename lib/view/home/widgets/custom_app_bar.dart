@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:mens_park/constants/constant.dart';
+import 'package:mens_park/core/service/auth_service.dart';
 
 import '../../../constants/colors.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({
+  CustomAppBar({
     Key? key,
     required this.screenWidth,
   }) : super(key: key);
 
   final double screenWidth;
+  final AuthService authService = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +25,11 @@ class CustomAppBar extends StatelessWidget {
           color: kGrey,
           child: Row(
             children: [
+              //profile icon
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/signUp');
+                },
                 icon: AspectRatio(
                   aspectRatio: 1,
                   child: ClipRRect(
@@ -35,7 +40,12 @@ class CustomAppBar extends StatelessWidget {
                     ),
                   ),
                 ),
-              )
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    AuthService().login();
+                  },
+                  child: const Text('tetet'))
             ],
           ),
         ),
