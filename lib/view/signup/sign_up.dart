@@ -3,7 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:mens_park/constants/colors.dart';
 import 'package:mens_park/constants/screen_size.dart';
-import '../../core/service/auth_service.dart';
+import 'package:mens_park/viewmodel/service/auth_service.dart';
+
 import '../widgets/text_field_outer_widget.dart';
 
 class SignUp extends StatelessWidget {

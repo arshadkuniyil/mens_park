@@ -4,16 +4,19 @@ import 'package:mens_park/view/home/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:mens_park/view/signup/sign_up.dart';
 
+import 'view/splash/splash_screen.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+
+  
+  runApp(const Main());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class Main extends StatelessWidget {
+  const Main({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,8 +28,9 @@ class MyApp extends StatelessWidget {
         ),
       ),
       routes: {
-        '/': (context) => const Home(),
-        '/signUp': (context) =>  SignUp(),
+        '/':(context) => const SplashScreen(),
+        '/home': (context) => const Home(),
+        '/signUp': (context) => SignUp(),
       },
       initialRoute: '/',
     );

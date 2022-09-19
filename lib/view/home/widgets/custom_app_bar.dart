@@ -1,6 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:mens_park/constants/constant.dart';
-import 'package:mens_park/core/service/auth_service.dart';
+import 'package:mens_park/viewmodel/service/auth_service.dart';
 
 import '../../../constants/colors.dart';
 
@@ -43,9 +45,15 @@ class CustomAppBar extends StatelessWidget {
               ),
               ElevatedButton(
                   onPressed: () {
-                    AuthService().login();
+                    log('${AuthService().getUser()}');
                   },
-                  child: const Text('tetet'))
+                  child: const Text('test')),
+                  const Spacer(),
+              ElevatedButton(
+                  onPressed: () {
+                    AuthService().signOut();
+                  },
+                  child: const Text('logout'))
             ],
           ),
         ),
