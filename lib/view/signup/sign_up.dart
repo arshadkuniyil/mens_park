@@ -1,5 +1,4 @@
 import 'dart:collection';
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:mens_park/constants/colors.dart';
 import 'package:mens_park/constants/screen_size.dart';
@@ -91,7 +90,7 @@ class SignUp extends StatelessWidget {
                       padding: EdgeInsets.all(getScreenWidth(context) * 0.05),
                       child: ElevatedButton(
                         onLongPress: () {
-                          log('${userService.getUser()}');
+                          print('${userService.getUser()}');
                         },
                         onPressed: () async {
                           userService.signUpWithPhone(userData, context);

@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:mens_park/constants/colors.dart';
+import 'package:mens_park/model/product_model/product_model.dart';
+import 'package:mens_park/viewmodel/service/fetch_image_url.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard(
       {Key? key,
       required this.paddingProductCard,
       required this.screenWidth,
-      required this.index})
+      required this.index,
+      required this.productData})
       : super(key: key);
 
+  final ProductModel productData;
   final double paddingProductCard;
   final double screenWidth;
   final int index;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,18 +36,35 @@ class ProductCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(18),
-                  child: Image.asset(
-                    "assets/images/image_${index % 5 + 1}.png",
-                    fit: BoxFit.cover,
+                Expanded(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(18),
+                    child: FutureBuilder<String>(
+                        //TODO class
+                        future: getImageUrl(
+                            fullSizeImgPath: productData.fullSizeImgPath!),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            return Image.network(
+                              snapshot.data!,
+                              fit: BoxFit.cover,
+                            );
+                          } else if (snapshot.hasError) {
+                            //TODO
+                          }
+                          return const SizedBox(
+                            height: double.infinity,
+                            child: Center(child: CircularProgressIndicator()),
+                          );
+                        }),
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 8.0),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
                   child: Text(
-                    "Louis Philippe Sport",
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                    productData.productName ?? '',
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w600, fontSize: 16),
                   ),
                 ),
                 const Padding(
@@ -52,11 +74,11 @@ class ProductCard extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.w300, fontSize: 12),
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 8.0),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
                   child: Text(
-                    "\$29.99",
-                    style: TextStyle(
+                    " ₹ ${productData.price}",
+                    style: const TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 16,
                     ),

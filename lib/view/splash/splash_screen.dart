@@ -10,12 +10,10 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //
-   
 
     return BlocProvider(
-      create: (context) =>  SplashBloc(),
-   
-      child: const SplashWidget() ,
+      create: (context) => SplashBloc()..add(CheckUserEvent(context: context)),
+      child: const SplashWidget(),
     );
   }
 }

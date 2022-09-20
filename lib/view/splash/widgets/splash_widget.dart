@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,18 +9,13 @@ class SplashWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      BlocProvider.of<SplashBloc>(context)
-          .add(CheckUserEvent(context: context));
-      log("message");
-    });
-
+  
     return Scaffold(
       body: BlocBuilder<SplashBloc, SplashState>(
         //
         builder: (context, state) {
           if (state.errorEnum == ErrorEnum.networkError) {
-            //todo error screen with refresh button
+            //TODO error screen with refresh button
             return SafeArea(
               child: IconButton(
                 onPressed: () {
@@ -34,11 +28,11 @@ class SplashWidget extends StatelessWidget {
             );
             //
           } else if (state.errorEnum == ErrorEnum.unknownError) {
-            //todo error spalsh
-            return const Text("error");
+            //TODO error spalsh
+            return const Text("unknown error");
             //
           } else if (state.isLoading) {
-            //
+            // TODO Loading splash
             return SafeArea(
               child: Column(
                 children: const [Text('Loading'), CircularProgressIndicator()],
@@ -46,9 +40,7 @@ class SplashWidget extends StatelessWidget {
             );
           }
 
-          return const Scaffold(
-            body: SizedBox(),
-          );
+          return const Text("splash");
         },
       ),
     );

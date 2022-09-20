@@ -1,5 +1,4 @@
 import 'dart:collection';
-import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +13,7 @@ class AuthService {
 
   Future<void> signUpWithPhone(HashMap userData, BuildContext context) async {
     try {
-      await FirebaseAuth.instance.verifyPhoneNumber(
+      await auth.verifyPhoneNumber(
         //
         timeout: const Duration(seconds: 60),
         phoneNumber: '+91${userData['mobileNumber']}',
@@ -35,7 +34,7 @@ class AuthService {
         codeAutoRetrievalTimeout: (verificationId) {},
       );
     } catch (e) {
-      log("on Catch: $e");
+      print("on Catch: $e");
     }
   }
 
@@ -51,13 +50,13 @@ class AuthService {
         );
         await auth.signInWithCredential(credential).then((userCredential) {
           if (userCredential.user != null) {
-            log('success');
+            print('success');
           } else {
-            log('failed');
+            print('failed');
           }
         });
       } catch (e) {
-        log('onLoginCatch:: $e');
+        print('onLoginCatch:: $e');
       }
     }
   }
@@ -65,6 +64,7 @@ class AuthService {
   anonymousSignIn() async {
     try {
       await auth.signInAnonymously();
+
       return ErrorEnum.noError;
     } on FirebaseAuthException catch (e) {
       switch (e.code) {
@@ -84,5 +84,4 @@ class AuthService {
   signOut() {
     auth.signOut();
   }
-
 }

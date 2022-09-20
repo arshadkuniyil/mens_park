@@ -3,14 +3,15 @@ import 'package:mens_park/constants/colors.dart';
 import 'package:mens_park/view/home/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:mens_park/view/signup/sign_up.dart';
-
 import 'view/splash/splash_screen.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
-  
   runApp(const Main());
 }
 
@@ -28,7 +29,7 @@ class Main extends StatelessWidget {
         ),
       ),
       routes: {
-        '/':(context) => const SplashScreen(),
+        '/': (context) => const SplashScreen(),
         '/home': (context) => const Home(),
         '/signUp': (context) => SignUp(),
       },

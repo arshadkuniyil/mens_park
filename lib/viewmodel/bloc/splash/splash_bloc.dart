@@ -12,7 +12,9 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
 
     on<CheckUserEvent>((event, emit) async {
       //
-      final navigateHome = Navigator.pushReplacementNamed(event.context, '/home');
+
+      final navigateHome =
+          Navigator.pushReplacementNamed(event.context, '/home');
       emit(
         SplashState(errorEnum: ErrorEnum.noError, isLoading: true),
       );
@@ -23,7 +25,10 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
         if (signInStatus == ErrorEnum.networkError) {
           //
           emit(
-            SplashState(errorEnum: ErrorEnum.networkError, isLoading: false),
+            SplashState(
+              errorEnum: ErrorEnum.networkError,
+              isLoading: false,
+            ),
           );
         } else if (signInStatus == ErrorEnum.unknownError) {
           emit(

@@ -5,5 +5,5 @@ class SplashEvent {}
 class CheckUserEvent extends SplashEvent {
   final BuildContext context;
 
-  CheckUserEvent({ required this.context});
+  CheckUserEvent({required this.context});
 }
