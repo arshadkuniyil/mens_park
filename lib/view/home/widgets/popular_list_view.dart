@@ -54,14 +54,15 @@ class PopularListView extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                           child: FutureBuilder<String>(
                               future: getImageUrl(
-                                  fullSizeImgPath:
-                                      productData.fullSizeImgPath!),
+                                  fullSizeImgPath: productData.imgPath1!),
                               builder: (context, snapshot) {
                                 if (snapshot.hasData) {
                                   //TODO ERRO RBUILDER
-                                  return CachedNetworkImage(
-                                    imageUrl: snapshot.data!,
-                                    fit: BoxFit.cover,
+                                  return Image(
+                                    image: CachedNetworkImageProvider(
+                                        snapshot.data!,
+                                        scale: .5),
+                                    fit: BoxFit.fitHeight,
                                   );
                                 } else if (snapshot.hasError) {
                                   //TODO HANDLE ERROR

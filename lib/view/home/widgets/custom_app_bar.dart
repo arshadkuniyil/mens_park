@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mens_park/constants/constant.dart';
@@ -20,8 +19,6 @@ class CustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
-
     return BlocBuilder<HomeCategoryBloc, HomeCategoryState>(
       builder: (context, state) {
         return AppBar(
@@ -56,17 +53,15 @@ class CustomAppBar extends StatelessWidget {
                       },
                       child: const Text('test')),
                   const Spacer(),
-                  ElevatedButton(
-                      onPressed: () {
-                        AuthService().signOut();
-                      },
-                      child: const Text('logout'))
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.local_mall_outlined),
+                  )
                 ],
               ),
             ),
           ),
           bottom: TabBar(
-            
             labelPadding: EdgeInsets.symmetric(horizontal: screenWidth * 0.06),
             isScrollable: true,
             labelColor: kBlack,
