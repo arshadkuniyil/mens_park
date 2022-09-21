@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mens_park/constants/colors.dart';
 import 'package:mens_park/model/product_model/product_model.dart';
@@ -9,13 +10,15 @@ class ProductCard extends StatelessWidget {
       required this.paddingProductCard,
       required this.screenWidth,
       required this.index,
-      required this.productData})
+      required this.productData,
+      required this.isLast})
       : super(key: key);
 
   final ProductModel productData;
   final double paddingProductCard;
   final double screenWidth;
   final int index;
+  final bool isLast;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +26,7 @@ class ProductCard extends StatelessWidget {
       margin: EdgeInsets.fromLTRB(
         paddingProductCard,
         paddingProductCard,
-        0,
+        isLast ? paddingProductCard : 0,
         paddingProductCard,
       ),
       width: screenWidth * 0.54,
@@ -45,8 +48,9 @@ class ProductCard extends StatelessWidget {
                             fullSizeImgPath: productData.fullSizeImgPath!),
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
-                            return Image.network(
-                              snapshot.data!,
+                            //TODO ERRO RBUILDER
+                            return CachedNetworkImage(
+                              imageUrl: snapshot.data!,
                               fit: BoxFit.cover,
                             );
                           } else if (snapshot.hasError) {

@@ -17,16 +17,16 @@ class CategoryTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double screenWidth = getScreenWidth(context);
-    final double paddingProductCard = screenWidth * 0.065;
+    final double paddingProductCard = screenWidth * 0.06;
 
     return BlocProvider(
-      create: (context) => HomeProductBloc()..add(GetHomeProductsEvent(categoryName: categoryName)),
+      create: (context) => HomeProductBloc()
+        ..add(GetHomeProductsEvent(categoryName: categoryName)),
       child: BlocBuilder<HomeProductBloc, HomeProductState>(
         builder: (context, state) {
           if (state.isLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state.productList.isNotEmpty) {
-            log("onuiHome");
             final productList = state.productList;
             return Container(
               color: kGrey,
@@ -40,20 +40,22 @@ class CategoryTab extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       itemCount: productList.length,
                       itemBuilder: (context, index) {
+                        final bool isLast = index == productList.length - 1;
                         return ProductCard(
                             paddingProductCard: paddingProductCard,
                             screenWidth: screenWidth,
                             index: index,
-                            productData: productList[index]);
+                            productData: productList[index],
+                            isLast:isLast);
                       },
                     ),
                   ),
                   Expanded(
                     flex: 2,
                     child: PopularListView(
-                      paddingProductCard: paddingProductCard,
-                      screenWidth: screenWidth,
-                    ),
+                        paddingProductCard: paddingProductCard,
+                        screenWidth: screenWidth,
+                        popularProductList: productList),
                   )
                 ],
               ),

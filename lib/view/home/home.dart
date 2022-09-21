@@ -39,7 +39,7 @@ class Home extends StatelessWidget {
                     categoriesLength ?? 3,
                     (index) {
                       return
-                      categoriesLength ==null?  const CircularProgressIndicator():
+                      categoriesLength ==null?  const Center(child: CircularProgressIndicator()):
                        CategoryTab(categoryName: categoryNameList[index]);
                     },
                   ),
