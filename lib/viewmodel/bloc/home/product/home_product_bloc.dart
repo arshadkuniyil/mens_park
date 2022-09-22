@@ -1,3 +1,4 @@
+import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -22,10 +23,10 @@ class HomeProductBloc extends Bloc<HomeProductEvent, HomeProductState> {
       List<QueryDocumentSnapshot> productSnaphot = await HomeScreenService()
           .getProductsFromFirestore(event.categoryName);
 
-      productList = productSnaphot
-          .map((doc) =>
-              ProductModel.fromJson(doc.data() as Map<String, dynamic>))
-          .toList();
+      productList = productSnaphot.map((doc) {
+        
+        return ProductModel.fromJson(doc.data() as Map<String, dynamic>);
+      }).toList();
 
       emit(HomeProductState(
         isLoading: false,

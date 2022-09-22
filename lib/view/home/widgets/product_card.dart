@@ -1,24 +1,26 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mens_park/constants/colors.dart';
 import 'package:mens_park/model/product_model/product_model.dart';
+import 'package:mens_park/viewmodel/bloc/home/app_bar/home_app_bar_bloc.dart';
 import 'package:mens_park/viewmodel/service/fetch_image_url.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard(
-      {Key? key,
-      required this.paddingProductCard,
-      required this.screenWidth,
-      required this.index,
-      required this.productData,
-      required this.isLast})
-      : super(key: key);
-
   final ProductModel productData;
   final double paddingProductCard;
   final double screenWidth;
   final int index;
   final bool isLast;
+
+  const ProductCard({
+    Key? key,
+    required this.paddingProductCard,
+    required this.screenWidth,
+    required this.index,
+    required this.productData,
+    required this.isLast,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +50,7 @@ class ProductCard extends StatelessWidget {
                             fullSizeImgPath: productData.fullSizeImgPath!),
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
-                            //TODO ERRO RBUILDER
+                            //TODO ERROR BUILDER
                             return CachedNetworkImage(
                               imageUrl: snapshot.data!,
                               fit: BoxFit.cover,
@@ -74,7 +76,7 @@ class ProductCard extends StatelessWidget {
                 const Padding(
                   padding: EdgeInsets.only(top: 4.0),
                   child: Text(
-                    "Designed for comfort and style",
+                    "Designed for comfort ",
                     style: TextStyle(fontWeight: FontWeight.w300, fontSize: 12),
                   ),
                 ),
@@ -91,18 +93,24 @@ class ProductCard extends StatelessWidget {
               ],
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 0, 8, 8),
             child: Align(
               alignment: Alignment.bottomRight,
-              child: CircleAvatar(
-                  minRadius: 16,
-                  maxRadius: 20,
-                  backgroundColor: kBlack,
-                  child: Icon(
-                    Icons.local_mall_outlined,
-                    color: kWhite,
-                  )),
+              child: IconButton(
+                iconSize:  screenWidth * .1,
+                onPressed: () {
+                  context.read<HomeAppBarBloc>().add(CartEvent());
+                },
+                icon: const CircleAvatar(
+                    minRadius: 16,
+                    maxRadius: 20,
+                    backgroundColor: kBlack,
+                    child: Icon(
+                      Icons.local_mall_outlined,
+                      color: kWhite,
+                    )),
+              ),
             ),
           )
         ],

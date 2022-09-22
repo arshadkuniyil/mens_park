@@ -57,7 +57,7 @@ class PopularListView extends StatelessWidget {
                                   fullSizeImgPath: productData.imgPath1!),
                               builder: (context, snapshot) {
                                 if (snapshot.hasData) {
-                                  //TODO ERRO RBUILDER
+                                  //TODO ERROR BUILDER
                                   return Image(
                                     image: CachedNetworkImageProvider(
                                         snapshot.data!,

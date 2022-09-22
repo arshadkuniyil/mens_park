@@ -4,6 +4,7 @@ part 'product_model.g.dart';
 
 @JsonSerializable()
 class ProductModel {
+  String? id;
   String? category;
   String? color;
   String? fullSizeImgPath;
@@ -16,6 +17,7 @@ class ProductModel {
   List<String>? size;
 
   ProductModel({
+    this.id,
     this.category,
     this.color,
     this.fullSizeImgPath,

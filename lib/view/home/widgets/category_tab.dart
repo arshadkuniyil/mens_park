@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,8 +10,10 @@ import 'product_card.dart';
 
 class CategoryTab extends StatelessWidget {
   final String categoryName;
+  
 
-  const CategoryTab({Key? key, required this.categoryName}) : super(key: key);
+
+   const CategoryTab({Key? key, required this.categoryName,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,8 @@ class CategoryTab extends StatelessWidget {
                             screenWidth: screenWidth,
                             index: index,
                             productData: productList[index],
-                            isLast:isLast);
+                            isLast:isLast,
+                      );
                       },
                     ),
                   ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mens_park/constants/colors.dart';
 import 'package:mens_park/constants/screen_size.dart';
-import 'package:mens_park/viewmodel/bloc/home/category/home_category_bloc.dart';
+import 'package:mens_park/viewmodel/bloc/home/app_bar/home_app_bar_bloc.dart';
 import 'widgets/category_tab.dart';
 import 'widgets/custom_app_bar.dart';
 
@@ -14,8 +14,8 @@ class Home extends StatelessWidget {
     final double screenWidth = getScreenWidth(context);
 
     return BlocProvider(
-      create: (context) => HomeCategoryBloc()..add(LoadCategoriesEvent()),
-      child: BlocBuilder<HomeCategoryBloc, HomeCategoryState>(
+      create: (context) => HomeAppBarBloc()..add(LoadCategoriesEvent()),
+      child: BlocBuilder<HomeAppBarBloc, HomeAppBarState>(
         builder: (context, state) {
           int? categoriesLength;
           List<String> categoryNameList = ['   ', '   ', '   '];
