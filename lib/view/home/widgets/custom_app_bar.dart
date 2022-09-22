@@ -49,8 +49,9 @@ class CustomAppBar extends StatelessWidget {
                   ),
                   ElevatedButton(
                       onPressed: () async {
-                      context.read<HomeAppBarBloc>().add(CartEvent());
-                      }, child: const Text('test')),
+                        AuthService().signOut();
+                      },
+                      child: const Text('test')),
                   const Spacer(),
                   //bag icon
                   Stack(
@@ -87,9 +88,10 @@ class CustomAppBar extends StatelessWidget {
                               color: kBlack,
                             ),
                             child: Text(
-                              '${state.cartItemCount??''}',
+                              '${state.cartItemCount ?? ''}',
                               textAlign: TextAlign.center,
-                              style: const TextStyle(color: kWhite, fontSize: 8),
+                              style:
+                                  const TextStyle(color: kWhite, fontSize: 8),
                             ),
                           ),
                         ),

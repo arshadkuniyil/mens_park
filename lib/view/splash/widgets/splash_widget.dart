@@ -1,6 +1,8 @@
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mens_park/constants/colors.dart';
+import 'package:mens_park/view/splash/widgets/splash_error_widget.dart';
 import 'package:mens_park/viewmodel/bloc/splash/splash_bloc.dart';
 import 'package:mens_park/viewmodel/core/error_enum.dart';
 
@@ -9,38 +11,32 @@ class SplashWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  
     return Scaffold(
+      backgroundColor: kGrey,
       body: BlocBuilder<SplashBloc, SplashState>(
         //
         builder: (context, state) {
           if (state.errorEnum == ErrorEnum.networkError) {
-            //TODO error screen with refresh button
-            return SafeArea(
-              child: IconButton(
-                onPressed: () {
-                  context
-                      .read<SplashBloc>()
-                      .add(CheckUserEvent(context: context));
-                },
-                icon: const Icon(Icons.refresh_rounded),
-              ),
-            );
+            return const SafeArea(
+                child: SplashErrorWidget(
+              errorName: 'No internet connection',
+              errorDetails:
+                  'Please connect your internet connection.\n      it looks like you\'re not connected to\n                          the internet',
+            ));
             //
           } else if (state.errorEnum == ErrorEnum.unknownError) {
-            //TODO error spalsh
-            return const Text("unknown error");
+            return const SplashErrorWidget(
+                errorName: 'Unknown Error', errorDetails: '');
             //
-          } else if (state.isLoading) {
-            // TODO Loading splash
-            return SafeArea(
-              child: Column(
-                children: const [Text('Loading'), CircularProgressIndicator()],
-              ),
-            );
+          } else if (state.isLoading && state.errorEnum == ErrorEnum.noError) {
+            return Center(child: Image.asset('assets/images/logo_sample.png'));
+          } else if (!state.isLoading && state.errorEnum == ErrorEnum.noError) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              Navigator.pushReplacementNamed(context, '/home');
+            });
           }
 
-          return const Text("splash");
+          return Center(child: Image.asset('assets/images/logo_sample.png'));
         },
       ),
     );
