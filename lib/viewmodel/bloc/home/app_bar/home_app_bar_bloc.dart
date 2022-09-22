@@ -15,7 +15,7 @@ class HomeAppBarBloc extends Bloc<HomeAppBarEvent, HomeAppBarState> {
     int? cartItemCount;
     on<LoadCategoriesEvent>(
       (event, emit) async {
-      
+        log('categories bloc');
         emit(
           HomeAppBarState(
               isLoading: true,
@@ -42,9 +42,8 @@ class HomeAppBarBloc extends Bloc<HomeAppBarEvent, HomeAppBarState> {
       },
     );
     on<CartEvent>((event, emit) {
-      
       cartItemCount = cartItemCount == null ? 1 : cartItemCount! + 1;
-  
+
       emit(
         HomeAppBarState(
             isLoading: true,

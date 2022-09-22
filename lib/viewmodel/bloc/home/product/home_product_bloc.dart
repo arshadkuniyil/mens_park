@@ -13,6 +13,7 @@ class HomeProductBloc extends Bloc<HomeProductEvent, HomeProductState> {
     List<ProductModel> productList = [];
 
     on<GetHomeProductsEvent>((event, emit) async {
+      log('gethome bloc');
       emit(HomeProductState(
         isLoading: true,
         errorEnum: ErrorEnum.noError,

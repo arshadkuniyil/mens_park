@@ -13,42 +13,39 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     final double screenWidth = getScreenWidth(context);
 
-    return BlocProvider(
-      create: (context) => HomeAppBarBloc()..add(LoadCategoriesEvent()),
-      child: BlocBuilder<HomeAppBarBloc, HomeAppBarState>(
-        builder: (context, state) {
-          int? categoriesLength;
-          List<String> categoryNameList = ['   ', '   ', '   '];
-          if (state.categoryList.isNotEmpty) {
-            categoryNameList = state.categoryList[0].categoryNames!;
-            categoriesLength = categoryNameList.length;
-          }
+    return BlocBuilder<HomeAppBarBloc, HomeAppBarState>(
+      builder: (context, state) {
+        int? categoriesLength;
+        List<String> categoryNameList = ['   ', '   ', '   '];
+        if (state.categoryList.isNotEmpty) {
+          categoryNameList = state.categoryList[0].categoryNames!;
+          categoriesLength = categoryNameList.length;
+        }
 
-          return DefaultTabController(
-            length: categoriesLength ?? 3,
-            child: Scaffold(
-              backgroundColor: kGrey,
-              appBar: PreferredSize(
-                preferredSize: const Size(double.infinity, 136),
-                child: CustomAppBar(
-                    screenWidth: screenWidth, categoryList: categoryNameList),
-              ),
-              body: SafeArea(
-                child: TabBarView(
-                  children: List.generate(
-                    categoriesLength ?? 3,
-                    (index) {
-                      return
-                      categoriesLength ==null?  const Center(child: CircularProgressIndicator()):
-                       CategoryTab(categoryName: categoryNameList[index]);
-                    },
-                  ),
+        return DefaultTabController(
+          length: categoriesLength ?? 3,
+          child: Scaffold(
+            backgroundColor: kGrey,
+            appBar: PreferredSize(
+              preferredSize: const Size(double.infinity, 136),
+              child: CustomAppBar(
+                  screenWidth: screenWidth, categoryList: categoryNameList),
+            ),
+            body: SafeArea(
+              child: TabBarView(
+                children: List.generate(
+                  categoriesLength ?? 3,
+                  (index) {
+                    return
+                    categoriesLength ==null?  const Center(child: CircularProgressIndicator()):
+                     CategoryTab(categoryName: categoryNameList[index]);
+                  },
                 ),
               ),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

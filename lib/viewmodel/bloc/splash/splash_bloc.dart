@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mens_park/viewmodel/core/error_enum.dart';
@@ -12,7 +14,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
 
     on<CheckUserEvent>((event, emit) async {
       //
-
+log('spalsh');
      
       emit(
         SplashState(errorEnum: ErrorEnum.noError, isLoading: true),

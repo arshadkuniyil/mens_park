@@ -11,7 +11,7 @@ class AuthService {
 
   static final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  Future<void> signUpWithPhone(HashMap userData, BuildContext context) async {
+  signUpWithPhone(HashMap userData, BuildContext context) async {
     try {
       await auth.verifyPhoneNumber(
         //
@@ -33,8 +33,10 @@ class AuthService {
 
         codeAutoRetrievalTimeout: (verificationId) {},
       );
+       return SignUpWithPhoneError.noError;
     } catch (e) {
       print("on Catch: $e");
+      return SignUpWithPhoneError.noError;
     }
   }
 
