@@ -1,4 +1,3 @@
-
 import 'package:firebase_storage/firebase_storage.dart';
 
 Future<String> getImageUrl({required String fullSizeImgPath}) async {

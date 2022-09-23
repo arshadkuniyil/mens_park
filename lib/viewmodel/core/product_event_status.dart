@@ -1,3 +1,1 @@
- enum ProductEventStatus {
-  notStarted,started,completed
-}
+enum ProductEventStatus { notStarted, started, completed }

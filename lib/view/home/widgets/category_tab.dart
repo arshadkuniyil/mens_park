@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mens_park/constants/colors.dart';
@@ -10,10 +9,11 @@ import 'product_card.dart';
 
 class CategoryTab extends StatelessWidget {
   final String categoryName;
-  
 
-
-   const CategoryTab({Key? key, required this.categoryName,}) : super(key: key);
+  const CategoryTab({
+    Key? key,
+    required this.categoryName,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,12 +43,12 @@ class CategoryTab extends StatelessWidget {
                       itemBuilder: (context, index) {
                         final bool isLast = index == productList.length - 1;
                         return ProductCard(
-                            paddingProductCard: paddingProductCard,
-                            screenWidth: screenWidth,
-                            index: index,
-                            productData: productList[index],
-                            isLast:isLast,
-                      );
+                          paddingProductCard: paddingProductCard,
+                          screenWidth: screenWidth,
+                          index: index,
+                          productData: productList[index],
+                          isLast: isLast,
+                        );
                       },
                     ),
                   ),

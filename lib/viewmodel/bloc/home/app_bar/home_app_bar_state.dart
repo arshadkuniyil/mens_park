@@ -16,9 +16,8 @@ class HomeAppBarState {
 class HomeAppBarInitial extends HomeAppBarState {
   HomeAppBarInitial()
       : super(
-          errorEnum: ErrorEnum.noError,
-          isLoading: false,
-          categoryList: [],
-          cartItemCount: null
-        );
+            errorEnum: ErrorEnum.noError,
+            isLoading: false,
+            categoryList: [],
+            cartItemCount: null);
 }

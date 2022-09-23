@@ -14,7 +14,9 @@ class SignUp extends StatelessWidget {
 
   final AuthService userService = AuthService();
   final HashMap userData = HashMap<String, String>();
+
   static final GlobalKey<FormState> _key = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     final kPadding = getScreenWidth(context) * 0.025;
@@ -38,7 +40,8 @@ class SignUp extends StatelessWidget {
                       userService: userService);
                 } else {
                   WidgetsBinding.instance.addPostFrameCallback((_) {
-                    Navigator.pushReplacementNamed(context, '/otpVerificationScreen');
+                    Navigator.pushReplacementNamed(
+                        context, '/otpVerificationScreen');
                   });
                 }
                 return const SizedBox();

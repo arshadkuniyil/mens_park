@@ -25,7 +25,6 @@ class HomeProductBloc extends Bloc<HomeProductEvent, HomeProductState> {
           .getProductsFromFirestore(event.categoryName);
 
       productList = productSnaphot.map((doc) {
-        
         return ProductModel.fromJson(doc.data() as Map<String, dynamic>);
       }).toList();
 

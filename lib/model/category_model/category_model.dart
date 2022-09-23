@@ -6,7 +6,7 @@ part 'category_model.g.dart';
 class CategoryModel {
   List<String>? categoryNames;
 
-  CategoryModel({ this.categoryNames});
+  CategoryModel({this.categoryNames});
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) {
     return _$CategoryModelFromJson(json);

@@ -33,7 +33,7 @@ class AuthService {
 
         codeAutoRetrievalTimeout: (verificationId) {},
       );
-       return SignUpWithPhoneError.noError;
+      return SignUpWithPhoneError.noError;
     } catch (e) {
       print("on Catch: $e");
       return SignUpWithPhoneError.noError;
@@ -79,7 +79,7 @@ class AuthService {
     }
   }
 
-  getUser() {
+ User? getUser() {
     return auth.currentUser;
   }
 

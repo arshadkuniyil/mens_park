@@ -22,6 +22,7 @@ class CustomAppBar extends StatelessWidget {
     return BlocBuilder<HomeAppBarBloc, HomeAppBarState>(
       builder: (context, state) {
         return AppBar(
+           automaticallyImplyLeading: false, 
           backgroundColor: kGrey,
           shadowColor: Colors.transparent,
           flexibleSpace: SafeArea(
