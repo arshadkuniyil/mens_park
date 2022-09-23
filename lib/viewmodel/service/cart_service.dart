@@ -1,7 +1,4 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/src/foundation/change_notifier.dart';
 import 'package:mens_park/model/cart_model/cart_model.dart';
 import 'package:mens_park/model/product_model/product_model.dart';
 
@@ -10,15 +7,14 @@ import 'auth_service.dart';
 class CartService {
   final fireStore = FirebaseFirestore.instance;
   addToCart(ProductModel product, String size) async {
-    final cartProducts = await fireStore
+    final cartProduct = await fireStore
         .collection('users')
         .doc(AuthService().getUser()!.uid)
         .collection('cart')
         .where('id', isEqualTo: '${product.id}$size')
         .get();
-    log('${cartProducts.docs}aa');
-    if (cartProducts.docs.isEmpty) {
-      log('${cartProducts.docs.isEmpty}bb');
+
+    if (cartProduct.docs.isEmpty) {
       CartModel productToCart = CartModel.fromJson(product.toJson());
       productToCart.productSize = size;
       productToCart.id = '${product.id}$size';
@@ -43,5 +39,14 @@ class CartService {
             FieldValue.increment(num.tryParse(product.price.toString())!)
       });
     }
+  }
+
+  getCartPoducts() async {
+    final cartProducts = await fireStore
+        .collection('users')
+        .doc(AuthService().getUser()!.uid)
+        .collection('cart')
+        .get();
+    return cartProducts.docs;
   }
 }

@@ -4,12 +4,13 @@ class HomeAppBarState {
   final bool isLoading;
   final ErrorEnum errorEnum;
   final List<CategoryModel> categoryList;
-
-  final int? cartItemCount;
+  final List<CartModel> cartProductLst;
+  final int cartItemCount;
   HomeAppBarState(
       {required this.isLoading,
       required this.errorEnum,
       required this.categoryList,
+       required this.cartProductLst,
       required this.cartItemCount});
 }
 
@@ -19,5 +20,6 @@ class HomeAppBarInitial extends HomeAppBarState {
             errorEnum: ErrorEnum.noError,
             isLoading: false,
             categoryList: [],
-            cartItemCount: null);
+            cartProductLst: [],
+            cartItemCount: 0);
 }

@@ -89,7 +89,7 @@ class CustomAppBar extends StatelessWidget {
                               color: kBlack,
                             ),
                             child: Text(
-                              '${state.cartItemCount ?? ''}',
+                              '${state.cartItemCount==0?'': state.cartItemCount }',
                               textAlign: TextAlign.center,
                               style:
                                   const TextStyle(color: kWhite, fontSize: 8),

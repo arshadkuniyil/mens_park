@@ -28,7 +28,7 @@ class Main extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => SplashBloc()),
+        BlocProvider(create: (context) => SplashBloc()..add(CheckUserEvent(context: context))),
         BlocProvider(
             create: (context) => HomeAppBarBloc()..add(LoadCategoriesEvent())),
         BlocProvider(create: (context) => SignUpBloc()),
@@ -47,7 +47,7 @@ class Main extends StatelessWidget {
           '/signUp': (context) => SignUp(),
           '/otpVerificationScreen': ((context) => const OtpVerificationScreen())
         },
-        initialRoute: '/home',
+        initialRoute: '/',
       ),
     );
   }

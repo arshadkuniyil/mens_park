@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mens_park/constants/colors.dart';
@@ -18,6 +20,7 @@ class SplashScreen extends StatelessWidget {
       body: BlocBuilder<SplashBloc, SplashState>(
         //
         builder: (context, state) {
+          log('${state.errorEnum}${state.isLoading}');
           if (state.errorEnum == ErrorEnum.networkError) {
             return const SafeArea(
                 child: SplashErrorWidget(

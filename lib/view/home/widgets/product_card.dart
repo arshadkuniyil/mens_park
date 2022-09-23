@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mens_park/constants/colors.dart';
 import 'package:mens_park/model/product_model/product_model.dart';
-import 'package:mens_park/viewmodel/bloc/home/app_bar/home_app_bar_bloc.dart';
-import 'package:mens_park/viewmodel/service/auth_service.dart';
-import 'package:mens_park/viewmodel/service/cart_service.dart';
+import 'package:mens_park/viewmodel/bloc/home/product/home_product_bloc.dart';
 import 'package:mens_park/viewmodel/service/fetch_image_url.dart';
 
 class ProductCard extends StatelessWidget {
@@ -104,49 +102,18 @@ class ProductCard extends StatelessWidget {
                 iconSize: screenWidth * .1,
                 onPressed: () {
                   // context.read<HomeAppBarBloc>().add(CartEvent());
-             
+
                   showDialog(
                     context: context,
-                    builder: (context) {
+                    builder: (ctx) {
                       final sizeList = productData.size;
                       final ValueNotifier<String> dropDownValue =
                           ValueNotifier<String>(sizeList![0]);
-                      return AlertDialog(
-                        title: Text('Select ${productData.category} size'),
-                        content: ValueListenableBuilder(
-                          builder: (context, value, child) {
-                            return DropdownButton<String>(
-                              value: dropDownValue.value,
-                              items: List.generate(
-                                  sizeList.length,
-                                  (index) => DropdownMenuItem<String>(
-                                      value: sizeList[index],
-                                      child: Text(sizeList[index]))),
-                              onChanged: (value) {
-                                if (value != null) {
-                                  dropDownValue.value = value;
-                                }
-                              },
-                            );
-                          },
-                          valueListenable: dropDownValue,
-                        ),
-                        actions: [
-                          ElevatedButton(
-                            onPressed: () => Navigator.of(context).pop(),
-                            child: const Text('cancel'),
-                          ),
-                          ElevatedButton(
-                            onPressed: () async {
-                              final pop = Navigator.of(context).pop();
-                              await CartService()
-                                  .addToCart(productData, dropDownValue.value);
-                              pop;
-                            },
-                            child: const Text('OK'),
-                          )
-                        ],
-                      );
+                      return SizeAlertDialog(
+                          productData: productData,
+                          dropDownValue: dropDownValue,
+                          sizeList: sizeList,
+                          blocContext: context);
                     },
                   );
                 },
@@ -163,6 +130,66 @@ class ProductCard extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+}
+
+class SizeAlertDialog extends StatelessWidget {
+  const SizeAlertDialog({
+    Key? key,
+    required this.productData,
+    required this.dropDownValue,
+    required this.sizeList,
+    required this.blocContext,
+  }) : super(key: key);
+
+  final ProductModel productData;
+  final ValueNotifier<String> dropDownValue;
+  final List<String>? sizeList;
+  final BuildContext blocContext;
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text('Please select ${productData.category!.toLowerCase()} size'),
+      content: ValueListenableBuilder(
+        builder: (ctx, value, child) {
+          return DropdownButton<String>(
+            style: const TextStyle(backgroundColor: kBlack),
+            value: dropDownValue.value,
+            items: List.generate(
+                sizeList!.length,
+                (index) => DropdownMenuItem<String>(
+                    value: sizeList![index],
+                    child: Text(
+                      sizeList![index],
+                      style: const TextStyle(
+                          backgroundColor: kBlack, color: kWhite),
+                    ))),
+            onChanged: (value) {
+              if (value != null) {
+                dropDownValue.value = value;
+              }
+            },
+          );
+        },
+        valueListenable: dropDownValue,
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: const Text('Cancel'),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            final pop = Navigator.of(context).pop();
+            blocContext
+                .read<HomeProductBloc>()
+                .add(AddToCartEvent(productData, dropDownValue.value, context));
+            pop;
+          },
+          child: const Text('OK'),
+        )
+      ],
     );
   }
 }
