@@ -1,40 +1,54 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mens_park/model/cart_model/cart_model.dart';
-import 'package:mens_park/model/product_model/product_model.dart';
 
 import 'auth_service.dart';
 
 class CartService {
   final fireStore = FirebaseFirestore.instance;
-  Future<CartModel> addToCart(ProductModel product, String size) async {
+  Future<CartModel> addToCart(var productData, String size) async {
+    CartModel productToCart;
+
+    if (productData.runtimeType != CartModel) {
+      // call from  home page
+      productToCart = CartModel.fromJson(productData.toJson());
+      productToCart.quantity = 1;
+      productToCart.productSize = size;
+      productToCart.id = '${productData.id}$size';
+    } else {
+      // call from  cart page
+      productToCart = productData;
+      productToCart.quantity = productData.quantity + 1;
+    }
+
     final cartProduct = await fireStore
         .collection('users')
         .doc(AuthService().getUser()!.uid)
         .collection('cart')
-        .where('id', isEqualTo: '${product.id}$size')
+        .where('id', isEqualTo: '${productToCart.id}')
         .get();
-    CartModel productToCart = CartModel.fromJson(product.toJson());
-    productToCart.productSize = size;
-    productToCart.id = '${product.id}$size';
-    productToCart.quantity = 1;
+
     productToCart.totalPrice = productToCart.quantity! * productToCart.price!;
     if (cartProduct.docs.isEmpty) {
+      //add product to cart
       await fireStore
           .collection('users')
           .doc(AuthService().getUser()!.uid)
           .collection('cart')
-          .doc('${product.id}$size')
+          .doc('${productData.id}$size')
           .set(productToCart.toJson());
     } else {
       await fireStore
+          //increase cart product quanity
           .collection('users')
           .doc(AuthService().getUser()!.uid)
           .collection('cart')
-          .doc('${product.id}$size')
+          .doc('${productToCart.id}')
           .update({
         'quantity': FieldValue.increment(1),
         'totalPrice':
-            FieldValue.increment(num.tryParse(product.price.toString())!)
+            FieldValue.increment(productData.price!)
       });
     }
     return productToCart;
@@ -47,5 +61,35 @@ class CartService {
         .collection('cart')
         .get();
     return cartProducts.docs;
+  }
+
+  decreaseCartProductQty(CartModel product) async {
+    product.quantity = product.quantity! - 1;
+    
+    await fireStore
+        .collection('users')
+        .doc(AuthService().getUser()!.uid)
+        .collection('cart')
+        .doc('${product.id}')
+        .update({
+      'quantity': FieldValue.increment(-1),
+      'totalPrice':
+          FieldValue.increment(product.price! * -1)
+    });
+    return true;
+  }
+
+  deleteCartProduct(CartModel product) async {
+    await fireStore
+        .collection('users')
+        .doc(AuthService().getUser()!.uid)
+        .collection('cart')
+        .doc('${product.id}')
+        .delete()
+        .then(
+          (doc) => log("Document deleted"),
+          onError: (e) => log("Error updating document $e"),
+        );
+    ;
   }
 }

@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mens_park/constants/colors.dart';
 import 'package:mens_park/constants/constant.dart';
 import 'package:mens_park/model/cart_model/cart_model.dart';
+import 'package:mens_park/viewmodel/bloc/Cart/cart_bloc.dart';
 import 'package:mens_park/viewmodel/service/fetch_image_url.dart';
 
 class CartProductCard extends StatelessWidget {
@@ -10,10 +12,12 @@ class CartProductCard extends StatelessWidget {
     Key? key,
     required this.screenWidth,
     required this.productData,
+    required this.index,
   }) : super(key: key);
 
   final double screenWidth;
   final CartModel productData;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -69,11 +73,45 @@ class CartProductCard extends StatelessWidget {
                         ),
                       ),
                       const Spacer(),
+
+                      //delete btn
                       IconButton(
                         padding: EdgeInsets.zero,
                         constraints: const BoxConstraints(),
                         iconSize: screenWidth * 0.04,
-                        onPressed: () {},
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (ctx) {
+                              return AlertDialog(
+                                title: const Text(
+                                    'Are you sure you want to delete'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.of(ctx).pop(),
+                                    child: const Text('Cancel'),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 8.0),
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        context
+                                            .read<CartBloc>()
+                                            .add(DeleteCartProductEvent(
+                                              product: productData,
+                                              index: index,
+                                              context: context,
+                                            ));
+                                        Navigator.of(ctx).pop();
+                                      },
+                                      child: const Text('Yes'),
+                                    ),
+                                  )
+                                ],
+                              );
+                            },
+                          );
+                        },
                         icon: const Icon(Icons.close),
                       )
                     ],
@@ -93,11 +131,18 @@ class CartProductCard extends StatelessWidget {
                         style: kTextStyle2,
                       ),
                       const Spacer(),
+                      //quantity decrease btn
                       IconButton(
                         padding: EdgeInsets.zero,
                         constraints: const BoxConstraints(),
                         iconSize: screenWidth * 0.08,
-                        onPressed: () {},
+                        onPressed: () {
+                          context.read<CartBloc>().add(DecreaseQuantity(
+                                product: productData,
+                                context: context,
+                                index: index,
+                              ));
+                        },
                         icon: const Icon(Icons.remove_circle_outline),
                       ),
                       Padding(
@@ -109,11 +154,19 @@ class CartProductCard extends StatelessWidget {
                           style: kTextStyle2,
                         ),
                       ),
+
+                      //quantity increase btn
                       IconButton(
                         padding: EdgeInsets.zero,
                         constraints: const BoxConstraints(),
                         iconSize: screenWidth * 0.08,
-                        onPressed: () {},
+                        onPressed: () {
+                          context.read<CartBloc>().add(IncreaseQuantity(
+                                product: productData,
+                                size: productData.productSize!,
+                                context: context,
+                              ));
+                        },
                         icon: const Icon(Icons.add_circle),
                       ),
                     ],

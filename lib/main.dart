@@ -45,7 +45,7 @@ class Main extends StatelessWidget {
         routes: {
           '/': (context) => const SplashScreen(),
           '/home': (context) => const Home(),
-          '/cart': (context) => const Cart(),
+          '/cart': (context) =>  Cart(),
           '/signUp': (context) => SignUp(),
           '/otpVerificationScreen': ((context) => const OtpVerificationScreen())
         },

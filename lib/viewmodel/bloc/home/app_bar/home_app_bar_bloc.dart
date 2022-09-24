@@ -67,7 +67,29 @@ class HomeAppBarBloc extends Bloc<HomeAppBarEvent, HomeAppBarState> {
     );
     on<CartEvent>((event, emit) {
       cartItemCount++;
-      // cartProductList.add(event.cartProduct);
+
+      emit(
+        HomeAppBarState(
+            isLoading: false,
+            errorEnum: ErrorEnum.noError,
+            categoryList: categoryList,
+            cartItemCount: cartItemCount,
+            cartProductLst: cartProductList),
+      );
+    });
+    on<IncreaseCartItemCount>((event, emit) {
+      cartItemCount++;
+      emit(
+        HomeAppBarState(
+            isLoading: false,
+            errorEnum: ErrorEnum.noError,
+            categoryList: categoryList,
+            cartItemCount: cartItemCount,
+            cartProductLst: cartProductList),
+      );
+    });
+    on<DecreaseCartItemCount>((event, emit) {
+      cartItemCount -= event.decreaseCount;
       emit(
         HomeAppBarState(
             isLoading: false,

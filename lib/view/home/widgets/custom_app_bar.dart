@@ -59,7 +59,7 @@ class CustomAppBar extends StatelessWidget {
                   CartIconButton(
                       itemCount:
                           '${state.cartItemCount == 0 ? '' : state.cartItemCount}',
-                      productList: state.cartProductLst)
+                     )
                 ],
               ),
             ),
