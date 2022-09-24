@@ -15,7 +15,7 @@ class HomeAppBarBloc extends Bloc<HomeAppBarEvent, HomeAppBarState> {
   HomeAppBarBloc() : super(HomeAppBarInitial()) {
     List<CategoryModel> categoryList = [];
     List<CartModel> cartProductList = [];
-    int cartItemCount=0;
+    int cartItemCount = 0;
     on<LoadCategoriesEvent>(
       (event, emit) async {
         emit(
@@ -47,13 +47,14 @@ class HomeAppBarBloc extends Bloc<HomeAppBarEvent, HomeAppBarState> {
         List<QueryDocumentSnapshot> cartProdcutSnapshot =
             await CartService().getCartPoducts();
         cartProductList = cartProdcutSnapshot.map((doc) {
-        final  cartProduct = CartModel.fromJson(doc.data() as Map<String, dynamic>);
-            if (cartProduct.quantity != null) {
+          final cartProduct =
+              CartModel.fromJson(doc.data() as Map<String, dynamic>);
+          if (cartProduct.quantity != null) {
             cartItemCount = cartItemCount + cartProduct.quantity!;
           }
-          return cartProduct ;
+          return cartProduct;
         }).toList();
-    
+
         emit(
           HomeAppBarState(
               isLoading: true,
@@ -65,8 +66,8 @@ class HomeAppBarBloc extends Bloc<HomeAppBarEvent, HomeAppBarState> {
       },
     );
     on<CartEvent>((event, emit) {
-      cartItemCount++ ;
-
+      cartItemCount++;
+      // cartProductList.add(event.cartProduct);
       emit(
         HomeAppBarState(
             isLoading: false,

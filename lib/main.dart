@@ -4,6 +4,7 @@ import 'package:mens_park/constants/colors.dart';
 import 'package:mens_park/view/home/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:mens_park/view/signup/sign_up.dart';
+import 'view/cart/cart.dart';
 import 'view/otp_varification_screen/otp_verification_screen.dart';
 import 'view/splash/splash_screen.dart';
 import 'firebase_options.dart';
@@ -44,6 +45,7 @@ class Main extends StatelessWidget {
         routes: {
           '/': (context) => const SplashScreen(),
           '/home': (context) => const Home(),
+          '/cart': (context) => const Cart(),
           '/signUp': (context) => SignUp(),
           '/otpVerificationScreen': ((context) => const OtpVerificationScreen())
         },

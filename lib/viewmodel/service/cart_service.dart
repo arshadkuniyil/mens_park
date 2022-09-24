@@ -6,21 +6,19 @@ import 'auth_service.dart';
 
 class CartService {
   final fireStore = FirebaseFirestore.instance;
-  addToCart(ProductModel product, String size) async {
+  Future<CartModel> addToCart(ProductModel product, String size) async {
     final cartProduct = await fireStore
         .collection('users')
         .doc(AuthService().getUser()!.uid)
         .collection('cart')
         .where('id', isEqualTo: '${product.id}$size')
         .get();
-
+    CartModel productToCart = CartModel.fromJson(product.toJson());
+    productToCart.productSize = size;
+    productToCart.id = '${product.id}$size';
+    productToCart.quantity = 1;
+    productToCart.totalPrice = productToCart.quantity! * productToCart.price!;
     if (cartProduct.docs.isEmpty) {
-      CartModel productToCart = CartModel.fromJson(product.toJson());
-      productToCart.productSize = size;
-      productToCart.id = '${product.id}$size';
-      productToCart.quantity = 1;
-      productToCart.totalPrice = productToCart.quantity! * productToCart.price!;
-
       await fireStore
           .collection('users')
           .doc(AuthService().getUser()!.uid)
@@ -39,6 +37,7 @@ class CartService {
             FieldValue.increment(num.tryParse(product.price.toString())!)
       });
     }
+    return productToCart;
   }
 
   getCartPoducts() async {

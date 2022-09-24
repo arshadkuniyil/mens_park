@@ -43,6 +43,7 @@ class HomeProductBloc extends Bloc<HomeProductEvent, HomeProductState> {
       final updateUi = event.context.read<HomeAppBarBloc>().add(CartEvent());
       await CartService().addToCart(event.product, event.size);
       //TODO ERROR HANDLE
+      
       updateUi;
     });
   }

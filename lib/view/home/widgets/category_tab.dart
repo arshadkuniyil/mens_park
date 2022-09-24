@@ -5,7 +5,7 @@ import 'package:mens_park/constants/screen_size.dart';
 import 'package:mens_park/viewmodel/bloc/home/product/home_product_bloc.dart';
 
 import 'popular_list_view.dart';
-import 'product_card.dart';
+import 'product_card/product_card.dart';
 
 class CategoryTab extends StatelessWidget {
   final String categoryName;
@@ -28,6 +28,8 @@ class CategoryTab extends StatelessWidget {
           if (state.isLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state.productList.isNotEmpty) {
+            
+            //main products section
             final productList = state.productList;
             return Container(
               color: kGrey,
@@ -52,6 +54,7 @@ class CategoryTab extends StatelessWidget {
                       },
                     ),
                   ),
+                  //popular products section
                   Expanded(
                     flex: 2,
                     child: PopularListView(
