@@ -29,6 +29,7 @@ class CartProductCard extends StatelessWidget {
             width: screenWidth * 0.18,
             height: screenWidth * 0.18,
             decoration: BoxDecoration(
+               boxShadow: kBoxShadow,
               color: kWhite.withAlpha(120),
               borderRadius: BorderRadius.circular(12),
             ),

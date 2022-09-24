@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:mens_park/constants/colors.dart';
+import 'package:mens_park/constants/constant.dart';
 import 'package:mens_park/constants/screen_size.dart';
 
 class CartIconButton extends StatelessWidget {
@@ -22,14 +23,16 @@ class CartIconButton extends StatelessWidget {
               width: screenWidth * .10,
               height: screenWidth * .10,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8), color: kWhite),
+                  boxShadow: kBoxShadow,
+                  borderRadius: BorderRadius.circular(8),
+                  color: kWhite),
               child: IconButton(
                 color: kBlack,
                 iconSize: 20,
                 onPressed: () {
                   if (itemCount.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content:  Text('Bag is empty'),
+                      content: Text('Bag is empty'),
                     ));
                   } else if (ModalRoute.of(context)!.settings.name == '/cart') {
                     return;

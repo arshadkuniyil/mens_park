@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mens_park/constants/colors.dart';
+import 'package:mens_park/constants/constant.dart';
 import 'package:mens_park/model/product_model/product_model.dart';
 import 'package:mens_park/viewmodel/service/fetch_image_url.dart';
 import 'size_alert_dialog.dart';
@@ -32,7 +33,9 @@ class ProductCard extends StatelessWidget {
       ),
       width: screenWidth * 0.54,
       decoration:
-          BoxDecoration(borderRadius: BorderRadius.circular(18), color: kWhite),
+          BoxDecoration(borderRadius: BorderRadius.circular(18), color: kWhite,
+        boxShadow: kBoxShadow2,
+      ),
       child: Stack(
         children: [
           Padding(

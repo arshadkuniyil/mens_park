@@ -73,6 +73,7 @@ class Cart extends StatelessWidget {
                           margin: EdgeInsets.symmetric(
                               vertical: paddingProductCard),
                           decoration: BoxDecoration(
+                            boxShadow: kBoxShadow2,
                               color: kWhite,
                               borderRadius: BorderRadius.circular(12)),
                           child: Padding(
