@@ -48,7 +48,7 @@ class CartService {
           .collection('cart')
           .doc('${productToCart.id}')
           .update({
-        'quantity': FieldValue.increment(1),
+        'quantity': FieldValue.increment(quantity),
         'totalPrice': FieldValue.increment(productData.price!)
       });
     }

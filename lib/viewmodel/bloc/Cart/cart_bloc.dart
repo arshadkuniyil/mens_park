@@ -135,8 +135,8 @@ class CartBloc extends Bloc<CartEvent, CartState> {
           }
         }
 
-        cartItemCount++;
-        subTotal += product.price!;
+        cartItemCount+=event.quantity;
+        subTotal += product.price!*event.quantity;
 
         emit(
           CartState(

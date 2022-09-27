@@ -4,19 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:mens_park/constants/colors.dart';
 import 'package:mens_park/constants/constant.dart';
 import 'package:mens_park/model/product_model/product_model.dart';
+import 'package:mens_park/view/widgets/show_alert_dialog.dart';
 
 class ProductDetailsWidget extends StatelessWidget {
   final double screenWidth;
   final ProductModel productData;
   final double iconSize;
-
+  final addToCartItemCount = ValueNotifier(1);
   ProductDetailsWidget(
       {Key? key,
       required this.iconSize,
       required this.productData,
       required this.screenWidth})
       : super(key: key);
-  final addToCartItemCount = ValueNotifier(1);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,18 +33,26 @@ class ProductDetailsWidget extends StatelessWidget {
       child: Column(children: [
         Row(
           children: [
-            Text(
-              '${productData.productName}',
-              style: kTextStyle1,
-            ),
-            const Spacer(),
-            Row(
-              children: List.generate(
-                5,
-                (index) => index == 4
-                    ? Icon(Icons.star_half, size: iconSize)
-                    : Icon(Icons.star, size: iconSize),
+            Expanded(
+              flex: 7,
+              child: Text(
+                '${productData.productName}',
+                overflow: TextOverflow.fade,
+                softWrap: false,
+                style: kTextStyle1,
               ),
+            ),
+            Expanded(
+              flex: 3,
+              child: Row(children: [
+                const Spacer(),
+                ...List.generate(
+                  5,
+                  (index) => index == 4
+                      ? Icon(Icons.star_half, size: iconSize)
+                      : Icon(Icons.star, size: iconSize),
+                ),
+              ]),
             )
           ],
         ),
@@ -61,19 +70,26 @@ class ProductDetailsWidget extends StatelessWidget {
         const Spacer(),
         Row(
           children: [
-            Text(
-              '₹${productData.price}',
-              style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 22),
+            ValueListenableBuilder(
+              valueListenable: addToCartItemCount,
+              builder: (context, value, child) {
+                return Text(
+                  '₹${productData.price! * addToCartItemCount.value}',
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w600, fontSize: 22),
+                );
+              },
             ),
             const Spacer(),
             Container(
               margin: EdgeInsets.all(iconSize),
               height: screenWidth * 0.08,
-              width: screenWidth * 0.3,
+              width: screenWidth * 0.32,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(18),
                   border: Border.all(color: Colors.black45)),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   IconButton(
                     onPressed: () {
@@ -105,7 +121,12 @@ class ProductDetailsWidget extends StatelessWidget {
             SizedBox(
               height: screenWidth * .12,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  ShowAlertDialog(
+                      context: context,
+                      productData: productData,
+                      quantity: addToCartItemCount.value);
+                },
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(iconSize),

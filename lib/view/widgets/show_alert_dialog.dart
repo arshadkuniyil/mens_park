@@ -3,21 +3,49 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mens_park/constants/colors.dart';
 import 'package:mens_park/model/product_model/product_model.dart';
 import 'package:mens_park/viewmodel/bloc/Cart/cart_bloc.dart';
-import 'package:mens_park/viewmodel/bloc/home/product/home_product_bloc.dart';
+
+class ShowAlertDialog {
+  final BuildContext context;
+  final ProductModel productData;
+  final int quantity;
+  ShowAlertDialog({
+    required this.context,
+    required this.productData,
+    required this.quantity,
+  }) {
+    showDialog(
+      context: context,
+      builder: (ctx) {
+        final sizeList = productData.size;
+        final ValueNotifier<String> dropDownValue =
+            ValueNotifier<String>(sizeList![0]);
+        return SizeAlertDialog(
+          productData: productData,
+          dropDownValue: dropDownValue,
+          sizeList: sizeList,
+          blocContext: context,
+          quantity: quantity,
+        );
+      },
+    );
+  }
+}
 
 class SizeAlertDialog extends StatelessWidget {
-  const SizeAlertDialog({
-    Key? key,
-    required this.productData,
-    required this.dropDownValue,
-    required this.sizeList,
-    required this.blocContext,
-  }) : super(key: key);
+  const SizeAlertDialog(
+      {Key? key,
+      required this.productData,
+      required this.dropDownValue,
+      required this.sizeList,
+      required this.blocContext,
+      required this.quantity})
+      : super(key: key);
 
   final ProductModel productData;
   final ValueNotifier<String> dropDownValue;
   final List<String>? sizeList;
   final BuildContext blocContext;
+  final int quantity;
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -73,12 +101,18 @@ class SizeAlertDialog extends StatelessWidget {
           child: ElevatedButton(
             onPressed: () {
               final pop = Navigator.of(context).pop();
-              blocContext.read<CartBloc>().add(
+              final addToCartEvent = blocContext.read<CartBloc>().add(
                     AddToCart(
                         product: productData,
                         size: dropDownValue.value,
-                        quantity: 1),
+                        quantity: quantity),
                   );
+              if (ModalRoute.of(context)!.settings.name == '/productScreen') {
+                addToCartEvent;
+                Navigator.of(context).pushReplacementNamed('/cart');
+              } else {
+                addToCartEvent;
+              }
               pop;
             },
             child: const Text('OK'),

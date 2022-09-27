@@ -5,7 +5,7 @@ import 'package:mens_park/constants/constant.dart';
 import 'package:mens_park/model/product_model/product_model.dart';
 import 'package:mens_park/view/widgets/image_future_widget.dart';
 import 'package:mens_park/viewmodel/service/fetch_image_url.dart';
-import 'size_alert_dialog.dart';
+import '../../../widgets/show_alert_dialog.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductModel productData;
@@ -98,19 +98,8 @@ class ProductCard extends StatelessWidget {
               child: IconButton(
                 iconSize: screenWidth * .1,
                 onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (ctx) {
-                      final sizeList = productData.size;
-                      final ValueNotifier<String> dropDownValue =
-                          ValueNotifier<String>(sizeList![0]);
-                      return SizeAlertDialog(
-                          productData: productData,
-                          dropDownValue: dropDownValue,
-                          sizeList: sizeList,
-                          blocContext: context);
-                    },
-                  );
+                  ShowAlertDialog(
+                      context: context, productData: productData, quantity: 1);
                 },
                 icon: const CircleAvatar(
                     minRadius: 16,
@@ -128,4 +117,3 @@ class ProductCard extends StatelessWidget {
     );
   }
 }
-
