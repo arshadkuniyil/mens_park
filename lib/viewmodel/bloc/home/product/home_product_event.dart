@@ -11,7 +11,7 @@ class GetHomeProductsEvent extends HomeProductEvent {
 class AddToCartEvent extends HomeProductEvent {
   final ProductModel product;
   final String size;
-  final BuildContext context;
 
-  AddToCartEvent(this.product, this.size, this.context);
+
+  AddToCartEvent(this.product, this.size);
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mens_park/constants/colors.dart';
 import 'package:mens_park/constants/constant.dart';
 import 'package:mens_park/model/product_model/product_model.dart';
+import 'package:mens_park/view/widgets/image_future_widget.dart';
 import 'package:mens_park/viewmodel/service/fetch_image_url.dart';
 import 'size_alert_dialog.dart';
 
@@ -32,69 +33,64 @@ class ProductCard extends StatelessWidget {
         paddingProductCard,
       ),
       width: screenWidth * 0.54,
-      decoration:
-          BoxDecoration(borderRadius: BorderRadius.circular(18), color: kWhite,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(18),
+        color: kWhite,
         boxShadow: kBoxShadow2,
       ),
       child: Stack(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(18),
-                    child: FutureBuilder<String>(
-                        //TODO class
-                        future: getImageUrl(
-                            fullSizeImgPath: productData.fullSizeImgPath!),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            //TODO ERROR BUILDER
-                            return CachedNetworkImage(
-                              imageUrl: snapshot.data!,
-                              fit: BoxFit.cover,
-                            );
-                          } else if (snapshot.hasError) {
-                            //TODO
-                          }
-                          return const SizedBox(
-                            height: double.infinity,
-                            child: Center(child: CircularProgressIndicator()),
-                          );
-                        }),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Text(
-                    productData.productName ?? '',
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w600, fontSize: 16),
-                  ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 4.0),
-                  child: Text(
-                    "Designed for comfort ",
-                    style: TextStyle(fontWeight: FontWeight.w300, fontSize: 12),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Text(
-                    " ₹ ${productData.price}",
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).pushNamed(
+                '/productScreen',
+                arguments: productData,
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(18),
+                      child: ImageFutureWidget(
+                          productImagePath: productData.fullSizeImgPath!),
                     ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: Text(
+                      productData.productName ?? '',
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w600, fontSize: 16),
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 4.0),
+                    child: Text(
+                      "Designed for comfort ",
+                      style:
+                          TextStyle(fontWeight: FontWeight.w300, fontSize: 12),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: Text(
+                      " ₹ ${productData.price}",
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
+
+          //add to cart icon
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 0, 8, 8),
             child: Align(
@@ -102,8 +98,6 @@ class ProductCard extends StatelessWidget {
               child: IconButton(
                 iconSize: screenWidth * .1,
                 onPressed: () {
-                  // context.read<HomeAppBarBloc>().add(CartEvent());
-
                   showDialog(
                     context: context,
                     builder: (ctx) {
@@ -134,3 +128,4 @@ class ProductCard extends StatelessWidget {
     );
   }
 }
+

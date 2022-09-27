@@ -39,84 +39,93 @@ class PopularListView extends StatelessWidget {
               itemBuilder: (context, index) {
                 final productData =
                     popularProductList[popularProductList.length - index - 1];
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      Container(
-                        width: screenWidth * 0.18,
-                        height: screenWidth * 0.18,
-                        decoration: BoxDecoration(
-                           boxShadow: kBoxShadow,
-                          color: kWhite.withAlpha(120),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: FutureBuilder<String>(
-                              future: getImageUrl(
-                                  fullSizeImgPath: productData.imgPath1!),
-                              builder: (context, snapshot) {
-                                if (snapshot.hasData) {
-                                  //TODO ERROR BUILDER
-                                  return Image(
-                                    image: CachedNetworkImageProvider(
-                                        snapshot.data!,
-                                        scale: .5),
-                                    fit: BoxFit.fitHeight,
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(
+                      '/productScreen',
+                      arguments: productData,
+                    );
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: screenWidth * 0.18,
+                          height: screenWidth * 0.18,
+                          decoration: BoxDecoration(
+                            boxShadow: kBoxShadow2,
+                            color: kWhite.withAlpha(120),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: FutureBuilder<String>(
+                                future: getImageUrl(
+                                    fullSizeImgPath: productData.imgPath1!),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasData) {
+                                    //TODO ERROR BUILDER
+                                    return Image(
+                                      image: CachedNetworkImageProvider(
+                                          snapshot.data!,
+                                          scale: .5),
+                                      fit: BoxFit.fitHeight,
+                                    );
+                                  } else if (snapshot.hasError) {
+                                    //TODO HANDLE ERROR
+                                  }
+                                  return const SizedBox(
+                                    child: Center(
+                                        child: CircularProgressIndicator()),
                                   );
-                                } else if (snapshot.hasError) {
-                                  //TODO HANDLE ERROR
-                                }
-                                return const SizedBox(
-                                  child: Center(
-                                      child: CircularProgressIndicator()),
-                                );
-                              }),
-                        ),
-                      ),
-                      SizedBox(
-                        width: screenWidth * .5,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                productData.productName ?? '',
-                                overflow: TextOverflow.fade,
-                                softWrap: false,
-                                maxLines: 1,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w600, fontSize: 14),
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.only(top: 4.0),
-                                child: Text(
-                                  "Designed for comfort",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 12),
-                                ),
-                              ),
-                            ],
+                                }),
                           ),
                         ),
-                      ),
-                      const Spacer(),
-                      SizedBox(
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
-                          child: Text(
-                            "₹ ${productData.price}",
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 16,
+                        SizedBox(
+                          width: screenWidth * .5,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  productData.productName ?? '',
+                                  overflow: TextOverflow.fade,
+                                  softWrap: false,
+                                  maxLines: 1,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 14),
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.only(top: 4.0),
+                                  child: Text(
+                                    "Designed for comfort",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w300,
+                                        fontSize: 12),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                        const Spacer(),
+                        SizedBox(
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Text(
+                              "₹ ${productData.price}",
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },

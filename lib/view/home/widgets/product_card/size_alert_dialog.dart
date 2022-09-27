@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mens_park/constants/colors.dart';
 import 'package:mens_park/model/product_model/product_model.dart';
+import 'package:mens_park/viewmodel/bloc/Cart/cart_bloc.dart';
 import 'package:mens_park/viewmodel/bloc/home/product/home_product_bloc.dart';
 
 class SizeAlertDialog extends StatelessWidget {
@@ -72,8 +73,12 @@ class SizeAlertDialog extends StatelessWidget {
           child: ElevatedButton(
             onPressed: () {
               final pop = Navigator.of(context).pop();
-              blocContext.read<HomeProductBloc>().add(
-                  AddToCartEvent(productData, dropDownValue.value, blocContext));
+              blocContext.read<CartBloc>().add(
+                    AddToCart(
+                        product: productData,
+                        size: dropDownValue.value,
+                        quantity: 1),
+                  );
               pop;
             },
             child: const Text('OK'),

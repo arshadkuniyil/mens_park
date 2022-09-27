@@ -17,7 +17,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
 
       SignUpWithPhoneError signUpWithPhoneRes =
           await AuthService().signUpWithPhone(event.userData, event.context);
-      log(signUpWithPhoneRes.toString());
+    ;
 
       if (signUpWithPhoneRes == SignUpWithPhoneError.noError) {
         emit(SignUpState(

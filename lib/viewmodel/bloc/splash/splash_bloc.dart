@@ -14,7 +14,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
 
     on<CheckUserEvent>((event, emit) async {
       //
-      log('spalsh');
+
 
       emit(
         SplashState(errorEnum: ErrorEnum.noError, isLoading: true),

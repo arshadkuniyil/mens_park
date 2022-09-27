@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mens_park/constants/colors.dart';
 import 'package:mens_park/constants/constant.dart';
 import 'package:mens_park/model/cart_model/cart_model.dart';
+import 'package:mens_park/model/product_model/product_model.dart';
 import 'package:mens_park/viewmodel/bloc/Cart/cart_bloc.dart';
 import 'package:mens_park/viewmodel/service/fetch_image_url.dart';
 
@@ -25,33 +26,40 @@ class CartProductCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
         children: [
-          Container(
-            width: screenWidth * 0.18,
-            height: screenWidth * 0.18,
-            decoration: BoxDecoration(
-               boxShadow: kBoxShadow,
-              color: kWhite.withAlpha(120),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: FutureBuilder<String>(
-                  future: getImageUrl(fullSizeImgPath: productData.imgPath1!),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      //TODO ERROR BUILDER
-                      return Image(
-                        image: CachedNetworkImageProvider(snapshot.data!,
-                            scale: .5),
-                        fit: BoxFit.fitHeight,
+          GestureDetector(
+            onTap: () {
+              
+
+            
+            },
+            child: Container(
+              width: screenWidth * 0.18,
+              height: screenWidth * 0.18,
+              decoration: BoxDecoration(
+                boxShadow: kBoxShadow,
+                color: kWhite,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: FutureBuilder<String>(
+                    future: getImageUrl(fullSizeImgPath: productData.imgPath1!),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        //TODO ERROR BUILDER
+                        return Image(
+                          image: CachedNetworkImageProvider(snapshot.data!,
+                              scale: .5),
+                          fit: BoxFit.fitHeight,
+                        );
+                      } else if (snapshot.hasError) {
+                        //TODO HANDLE ERROR
+                      }
+                      return const SizedBox(
+                        child: Center(child: CircularProgressIndicator()),
                       );
-                    } else if (snapshot.hasError) {
-                      //TODO HANDLE ERROR
-                    }
-                    return const SizedBox(
-                      child: Center(child: CircularProgressIndicator()),
-                    );
-                  }),
+                    }),
+              ),
             ),
           ),
           Expanded(
@@ -165,7 +173,6 @@ class CartProductCard extends StatelessWidget {
                           context.read<CartBloc>().add(IncreaseQuantity(
                                 product: productData,
                                 size: productData.productSize!,
-                                context: context,
                               ));
                         },
                         icon: const Icon(Icons.add_circle),

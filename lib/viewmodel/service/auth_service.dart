@@ -79,7 +79,7 @@ class AuthService {
     }
   }
 
- User? getUser() {
+ getUser() {
     return auth.currentUser;
   }
 

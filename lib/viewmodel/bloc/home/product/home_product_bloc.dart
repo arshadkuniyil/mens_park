@@ -17,7 +17,7 @@ class HomeProductBloc extends Bloc<HomeProductEvent, HomeProductState> {
     List<ProductModel> productList = [];
 
     on<GetHomeProductsEvent>((event, emit) async {
-      log('gethome bloc');
+   
       emit(HomeProductState(
         isLoading: true,
         errorEnum: ErrorEnum.noError,
@@ -39,12 +39,12 @@ class HomeProductBloc extends Bloc<HomeProductEvent, HomeProductState> {
       ));
     });
 
-    on<AddToCartEvent>((event, emit) async {
-      final updateUi = event.context.read<HomeAppBarBloc>().add(CartEvent());
-      await CartService().addToCart(event.product, event.size);
-      //TODO ERROR HANDLE
-      
-      updateUi;
-    });
+    // on<AddToCartEvent>((event, emit) async {
+    //   final updateUi = event.context.read<HomeAppBarBloc>().add(CartEvent());
+    //   await CartService().addToCart(event.product, event.size);
+    //   //TODO ERROR HANDLE
+
+    //   updateUi;
+    // });
   }
 }

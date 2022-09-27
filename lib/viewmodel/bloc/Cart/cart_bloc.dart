@@ -4,6 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mens_park/model/cart_model/cart_model.dart';
+import 'package:mens_park/model/product_model/product_model.dart';
+import 'package:mens_park/view/home/widgets/product_card/product_card.dart';
 import 'package:mens_park/viewmodel/bloc/home/app_bar/home_app_bar_bloc.dart';
 import 'package:mens_park/viewmodel/service/cart_service.dart';
 
@@ -15,6 +17,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     List<CartModel> cartProductList = [];
     int cartItemCount = 0;
     int subTotal = 0;
+    CartService cartService = CartService();
     on<LoadCartEvent>((event, emit) async {
       emit(
         CartState(
@@ -26,7 +29,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       );
 
       List<QueryDocumentSnapshot> cartProdcutSnapshot =
-          await CartService().getCartPoducts();
+          await cartService.getCartPoducts();
 
       cartProductList = cartProdcutSnapshot.map((doc) {
         final cartProduct =
@@ -48,15 +51,19 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       );
     });
     on<IncreaseQuantity>((event, emit) async {
-      await CartService().addToCart(event.product, event.size).then((product) {
+      await cartService
+          .addToCartOrIncreaseQty(
+               isFromCartPage: true,
+              productData: ProductModel.fromJson(event.product.toJson()),
+              quantity: 1,
+              size: event.size)
+          .then((product) {
         int index = cartProductList.indexWhere((productOnTheCart) {
           return productOnTheCart.id == product.id;
         });
         cartProductList[index] = product;
         cartItemCount++;
         subTotal += product.price!;
-
-        event.context.read<HomeAppBarBloc>().add(IncreaseCartItemCount());
 
         emit(
           CartState(
@@ -72,17 +79,11 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         return;
       }
 
-      await CartService().decreaseCartProductQty(event.product).then((status) {
-        log('${event.index}');
-
+      await cartService.decreaseCartProductQty(event.product).then((status) {
         cartItemCount--;
         subTotal -= event.product.price!;
         cartProductList[event.index].totalPrice =
             cartProductList[event.index].totalPrice! - event.product.price!;
-
-        event.context
-            .read<HomeAppBarBloc>()
-            .add(DecreaseCartItemCount(decreaseCount: 1));
 
         emit(
           CartState(
@@ -95,14 +96,10 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     });
 
     on<DeleteCartProductEvent>((event, emit) {
-      CartService().deleteCartProduct(event.product);
+      cartService.deleteCartProduct(event.product);
       cartProductList.removeAt(event.index);
       cartItemCount -= event.product.quantity!;
       subTotal -= event.product.totalPrice!;
-
-      event.context
-          .read<HomeAppBarBloc>()
-          .add(DecreaseCartItemCount(decreaseCount: event.product.quantity!));
 
       if (cartItemCount == 0) {
         Navigator.of(event.context).pushReplacementNamed('/home');
@@ -114,6 +111,42 @@ class CartBloc extends Bloc<CartEvent, CartState> {
             isLoading: false,
             subTotal: subTotal),
       );
+    });
+
+    on<AddToCart>((event, emit) async {
+      await cartService
+          .addToCartOrIncreaseQty(
+              isFromCartPage: false,
+              productData: event.product,
+              quantity: event.quantity,
+              size: event.size)
+          .then((product) {
+        int index;
+        if (cartProductList.isEmpty) {
+          cartProductList.add(product);
+        } else {
+          index = cartProductList.indexWhere((productOnTheCart) {
+            return productOnTheCart.id == product.id;
+          });
+          if (index == -1) {
+            cartProductList.add(product);
+          } else {
+            cartProductList[index] = product;
+          }
+        }
+
+        cartItemCount++;
+        subTotal += product.price!;
+
+        emit(
+          CartState(
+            cartProductList: cartProductList,
+            cartItemCount: cartItemCount,
+            isLoading: false,
+            subTotal: subTotal,
+          ),
+        );
+      });
     });
   }
 }

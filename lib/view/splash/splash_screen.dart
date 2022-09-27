@@ -1,12 +1,11 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mens_park/constants/colors.dart';
+import 'package:mens_park/view/widgets/custom_error_widget.dart';
 import 'package:mens_park/viewmodel/bloc/splash/splash_bloc.dart';
 import 'package:mens_park/viewmodel/core/error_enum.dart';
 
-import 'widgets/splash_error_widget.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -20,18 +19,23 @@ class SplashScreen extends StatelessWidget {
       body: BlocBuilder<SplashBloc, SplashState>(
         //
         builder: (context, state) {
-          log('${state.errorEnum}${state.isLoading}');
           if (state.errorEnum == ErrorEnum.networkError) {
-            return const SafeArea(
-                child: SplashErrorWidget(
+            return SafeArea(
+                child: CustomErrorWidget(
               errorName: 'No internet connection',
               errorDetails:
                   'Please connect your internet connection.\n      it looks like you\'re not connected to\n                          the internet',
+              retryBtnEvent: CheckUserEvent(context: context),
+              bloc: context.read<SplashBloc>(),
             ));
             //
           } else if (state.errorEnum == ErrorEnum.unknownError) {
-            return const SplashErrorWidget(
-                errorName: 'Unknown Error', errorDetails: '');
+            return  CustomErrorWidget(
+              errorName: 'Unknown Error',
+              errorDetails: '',
+               retryBtnEvent: CheckUserEvent(context: context),
+              bloc: context.read<SplashBloc>(),
+            );
             //
           } else if (state.isLoading && state.errorEnum == ErrorEnum.noError) {
             return Center(child: Image.asset('assets/images/logo_sample.png'));

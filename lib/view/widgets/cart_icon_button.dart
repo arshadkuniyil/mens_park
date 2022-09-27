@@ -1,14 +1,16 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mens_park/constants/colors.dart';
 import 'package:mens_park/constants/constant.dart';
 import 'package:mens_park/constants/screen_size.dart';
+import 'package:mens_park/viewmodel/bloc/Cart/cart_bloc.dart';
 
 class CartIconButton extends StatelessWidget {
-  final String itemCount;
-
-  const CartIconButton({Key? key, required this.itemCount}) : super(key: key);
+  const CartIconButton({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,26 +25,33 @@ class CartIconButton extends StatelessWidget {
               width: screenWidth * .10,
               height: screenWidth * .10,
               decoration: BoxDecoration(
-                  boxShadow: kBoxShadow,
-                  borderRadius: BorderRadius.circular(8),
-                  color: kWhite),
-              child: IconButton(
-                color: kBlack,
-                iconSize: 20,
-                onPressed: () {
-                  if (itemCount.isEmpty) {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content: Text('Bag is empty'),
-                    ));
-                  } else if (ModalRoute.of(context)!.settings.name == '/cart') {
-                    return;
-                  } else {
-                    Navigator.of(context).pushNamed(
-                      '/cart',
-                    );
-                  }
+                boxShadow: kBoxShadow,
+                borderRadius: BorderRadius.circular(8),
+                color: kWhite,
+              ),
+              child: BlocBuilder<CartBloc, CartState>(
+                builder: (context, state) {
+                  return IconButton(
+                    color: kBlack,
+                    iconSize: 20,
+                    onPressed: () {
+                      if (state.cartItemCount == 0) {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                          content: Text('Bag is empty'),
+                        ));
+                      } else if (ModalRoute.of(context)!.settings.name ==
+                          '/cart') {
+                        return;
+                      } else {
+                        Navigator.of(context).pushNamed(
+                          '/cart',
+                        );
+                      }
+                    },
+                    icon: const Icon(Icons.local_mall_rounded),
+                  );
                 },
-                icon: const Icon(Icons.local_mall_rounded),
               ),
             ),
           ),
@@ -59,10 +68,16 @@ class CartIconButton extends StatelessWidget {
                 borderRadius: BorderRadius.circular(6),
                 color: kBlack,
               ),
-              child: Text(
-                itemCount,
-                textAlign: TextAlign.center,
-                style: const TextStyle(color: kWhite, fontSize: 8),
+              child: BlocBuilder<CartBloc, CartState>(
+                builder: (context, state) {
+                  return Text(
+                    state.cartItemCount == 0
+                        ? ''
+                        : state.cartItemCount.toString(),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(color: kWhite, fontSize: 8),
+                  );
+                },
               ),
             ),
           ),

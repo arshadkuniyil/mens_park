@@ -42,8 +42,8 @@ class CustomAppBar extends StatelessWidget {
                       aspectRatio: 1,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
-                        child: Image.network(
-                          'https://cdn.pixabay.com/photo/2018/07/27/22/03/boy-3566903_960_720.jpg',
+                        child: Image.asset(
+                          'assets/images/error.png',
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -56,10 +56,7 @@ class CustomAppBar extends StatelessWidget {
                       child: const Text('test')),
                   const Spacer(),
                   //cart button
-                  CartIconButton(
-                      itemCount:
-                          '${state.cartItemCount == 0 ? '' : state.cartItemCount}',
-                     )
+                  const CartIconButton()
                 ],
               ),
             ),

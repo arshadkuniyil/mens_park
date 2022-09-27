@@ -8,15 +8,23 @@ class DeleteCartProductEvent extends CartEvent {
   final CartModel product;
   final int index;
   final BuildContext context;
-  DeleteCartProductEvent({required this.product, required this.index, required this.context});
+  DeleteCartProductEvent(
+      {required this.product, required this.index, required this.context});
 }
 
 class IncreaseQuantity extends CartEvent {
   final CartModel product;
   final String size;
-  final BuildContext context;
-  IncreaseQuantity(
-      {required this.product, required this.size, required this.context});
+
+  IncreaseQuantity({required this.product, required this.size});
+}
+
+class AddToCart extends CartEvent {
+  final ProductModel product;
+  final String size;
+  final int quantity;
+
+  AddToCart({required this.product, required this.size, required this.quantity});
 }
 
 class DecreaseQuantity extends CartEvent {
