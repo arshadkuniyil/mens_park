@@ -43,8 +43,14 @@ class CartIconButton extends StatelessWidget {
                       } else if (ModalRoute.of(context)!.settings.name ==
                           '/cart') {
                         return;
-                      } else {
+                      } else if (ModalRoute.of(context)!.settings.name ==
+                          '/home') {
                         Navigator.of(context).pushNamed(
+                          '/cart',
+                        );
+                      } else if (ModalRoute.of(context)!.settings.name ==
+                          '/productScreen') {
+                        Navigator.of(context).pushReplacementNamed(
                           '/cart',
                         );
                       }

@@ -22,10 +22,10 @@ class HomeCategoryBloc extends Bloc<HomeCategoryEvent, HomeCategoryState> {
         );
         //TODO Handle Error
 
-        List<QueryDocumentSnapshot> categoriesSnaphot =
+        List<QueryDocumentSnapshot>? categoriesSnaphot =
             await HomeScreenService().getCategoriesFromFirestore();
 
-        categoryList = categoriesSnaphot
+        categoryList = categoriesSnaphot!
             .map((doc) =>
                 CategoryModel.fromJson(doc.data() as Map<String, dynamic>))
             .toList();

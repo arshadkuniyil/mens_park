@@ -53,7 +53,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     on<IncreaseQuantity>((event, emit) async {
       await cartService
           .addToCartOrIncreaseQty(
-               isFromCartPage: true,
+              isFromCartPage: true,
               productData: ProductModel.fromJson(event.product.toJson()),
               quantity: 1,
               size: event.size)
@@ -146,6 +146,19 @@ class CartBloc extends Bloc<CartEvent, CartState> {
             subTotal: subTotal,
           ),
         );
+      });
+    });
+
+    on<NavigateToProductScreen>((event, emit) async {
+      String size = event.cartProduct.productSize!;
+      String cartId = event.cartProduct.id!;
+      String productId = cartId.substring(0, cartId.length - size.length);
+//TODO ERROR HANDLE
+      await cartService.getProductDataById(productId).then((snapshotList) {
+        final ProductModel productData =
+            ProductModel.fromJson(snapshotList[0].data());
+        Navigator.of(event.context)
+            .pushReplacementNamed('/productScreen', arguments: productData);
       });
     });
   }

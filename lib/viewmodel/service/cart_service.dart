@@ -8,7 +8,10 @@ class CartService {
   final fireStore = FirebaseFirestore.instance;
 
   Future<CartModel> addToCartOrIncreaseQty(
-      {required ProductModel productData, required String size,required  bool isFromCartPage,required int quantity}) async {
+      {required ProductModel productData,
+      required String size,
+      required bool isFromCartPage,
+      required int quantity}) async {
     CartModel productToCart = CartModel.fromJson(productData.toJson());
 
     if (!isFromCartPage) {
@@ -83,5 +86,14 @@ class CartService {
         .collection('cart')
         .doc('${product.id}')
         .delete();
+  }
+
+  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> getProductDataById(
+      String productId) async {
+    final productDataSnapshot = await fireStore
+        .collection('products')
+        .where('id', isEqualTo: productId)
+        .get();
+    return productDataSnapshot.docs;
   }
 }

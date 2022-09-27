@@ -34,3 +34,10 @@ class DecreaseQuantity extends CartEvent {
   DecreaseQuantity(
       {required this.product, required this.context, required this.index});
 }
+class NavigateToProductScreen extends CartEvent {
+  final CartModel cartProduct;
+  final BuildContext context;
+  
+  NavigateToProductScreen(
+      {required this.cartProduct, required this.context});
+}
