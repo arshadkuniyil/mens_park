@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mens_park/constants/colors.dart';
-import 'package:mens_park/constants/screen_size.dart';
+import 'package:mens_park/helpers/screen_size.dart';
 import 'package:mens_park/model/product_model/product_model.dart';
 import 'package:mens_park/view/widgets/cart_icon_button.dart';
 import 'package:mens_park/view/widgets/page_app_bar.dart';
@@ -20,14 +20,14 @@ class ProductScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: kGrey,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(100),
+      appBar: const PreferredSize(
+        preferredSize: Size.fromHeight(100),
         child: PageAppBar(
-          actionWidget: const CartIconButton(
+          actionWidget: CartIconButton(
            
           ),
           pageName: '',
-          screenWidth: screenWidth,
+        
         ),
       ),
       body: SafeArea(

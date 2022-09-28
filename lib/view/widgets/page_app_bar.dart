@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:mens_park/constants/colors.dart';
+import 'package:mens_park/helpers/screen_size.dart';
 import 'package:mens_park/view/widgets/cart_icon_button.dart';
 
 class PageAppBar extends StatelessWidget {
   const PageAppBar({
     Key? key,
-    required this.screenWidth,
+   
     required this.pageName,
     required this.actionWidget,
   }) : super(key: key);
 
-  final screenWidth;
+  
   final String pageName;
-  final CartIconButton actionWidget;
+  final Widget actionWidget;
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth= getScreenWidth(context);
     return SafeArea(
       child: Container(
         margin: EdgeInsets.all(

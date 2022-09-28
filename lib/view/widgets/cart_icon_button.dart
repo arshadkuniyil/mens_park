@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mens_park/constants/colors.dart';
 import 'package:mens_park/constants/constant.dart';
-import 'package:mens_park/constants/screen_size.dart';
+import 'package:mens_park/helpers/screen_size.dart';
 import 'package:mens_park/viewmodel/bloc/Cart/cart_bloc.dart';
 
 class CartIconButton extends StatelessWidget {

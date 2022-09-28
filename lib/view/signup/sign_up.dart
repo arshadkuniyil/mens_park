@@ -2,7 +2,7 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mens_park/constants/colors.dart';
-import 'package:mens_park/constants/screen_size.dart';
+import 'package:mens_park/helpers/screen_size.dart';
 import 'package:mens_park/viewmodel/bloc/sign_up/sign_up_bloc.dart';
 import 'package:mens_park/viewmodel/core/error_enum.dart';
 import 'package:mens_park/viewmodel/service/auth_service.dart';

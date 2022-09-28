@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
-import '../../constants/screen_size.dart';
+import '../../helpers/screen_size.dart';
 
 class TextFieldOuter extends StatelessWidget {
   final Widget child;

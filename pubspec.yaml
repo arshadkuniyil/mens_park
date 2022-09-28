@@ -47,7 +47,7 @@ dependencies:
   smooth_page_indicator: ^1.0.0+2
   freezed_annotation: ^2.1.0
   flutter_rating_bar: ^4.0.1
-  
+  flutter_multi_formatter: ^2.8.0
 
 
 dev_dependencies:
@@ -84,6 +84,9 @@ flutter:
     - assets/images/image_4.png
     - assets/images/image_5.png
     - assets/images/error.png
+    - assets/images/credit_card_chip.png
+    - assets/images/visa_logo.png
+    - assets/images/mc_symbol.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

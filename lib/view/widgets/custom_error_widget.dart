@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:mens_park/constants/screen_size.dart';
+import 'package:mens_park/helpers/screen_size.dart';
 
 class CustomErrorWidget extends StatelessWidget {
   final String errorName;

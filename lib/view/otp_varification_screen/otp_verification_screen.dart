@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mens_park/constants/colors.dart';
-import 'package:mens_park/constants/screen_size.dart';
+import 'package:mens_park/helpers/screen_size.dart';
 import 'package:mens_park/view/widgets/text_field_outer_widget.dart';
 import 'package:mens_park/viewmodel/service/auth_service.dart';
 
