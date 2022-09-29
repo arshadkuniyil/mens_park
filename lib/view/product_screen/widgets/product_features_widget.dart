@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mens_park/constants/colors.dart';
+import 'package:mens_park/utils/colors.dart';
 
 class ProductFeaturesWidget extends StatelessWidget {
   const ProductFeaturesWidget({

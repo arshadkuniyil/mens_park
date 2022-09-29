@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mens_park/constants/constant.dart';
 import 'package:mens_park/view/widgets/cart_icon_button.dart';
 import 'package:mens_park/viewmodel/bloc/home/app_bar/home_app_bar_bloc.dart';
 import 'package:mens_park/viewmodel/service/auth_service.dart';
-
-import '../../../constants/colors.dart';
-
+import 'package:mens_park/utils/colors.dart';
+import 'package:mens_park/utils/constant.dart';
 class CustomAppBar extends StatelessWidget {
   CustomAppBar({
     Key? key,

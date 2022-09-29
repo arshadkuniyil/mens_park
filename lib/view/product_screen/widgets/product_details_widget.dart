@@ -1,8 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:mens_park/constants/colors.dart';
-import 'package:mens_park/constants/constant.dart';
+import 'package:mens_park/utils/colors.dart';
+import 'package:mens_park/utils/constant.dart';
 import 'package:mens_park/model/product_model/product_model.dart';
 import 'package:mens_park/view/widgets/show_alert_dialog.dart';
 

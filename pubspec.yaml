@@ -48,6 +48,7 @@ dependencies:
   freezed_annotation: ^2.1.0
   flutter_rating_bar: ^4.0.1
   flutter_multi_formatter: ^2.8.0
+  flip_card: ^0.6.0
 
 
 dev_dependencies:
@@ -87,6 +88,15 @@ flutter:
     - assets/images/credit_card_chip.png
     - assets/images/visa_logo.png
     - assets/images/mc_symbol.png
+    - assets/images/apple_symbol.png
+    - assets/images/google_symbol.png
+    - assets/images/paypal_symbol.png
+    - assets/images/map_bg.png
+    - assets/images/card_front_bg.jpg
+    - assets/images/card_back_bg.jpg
+   
+    
+    
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

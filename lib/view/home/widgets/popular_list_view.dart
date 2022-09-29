@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:mens_park/constants/colors.dart';
-import 'package:mens_park/constants/constant.dart';
+import 'package:mens_park/utils/colors.dart';
+import 'package:mens_park/utils/constant.dart';
 import 'package:mens_park/model/product_model/product_model.dart';
 import 'package:mens_park/viewmodel/service/fetch_image_url.dart';
 

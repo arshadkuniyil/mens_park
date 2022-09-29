@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mens_park/constants/colors.dart';
+import 'package:mens_park/utils/colors.dart';
 import 'package:mens_park/view/widgets/custom_error_widget.dart';
 import 'package:mens_park/viewmodel/bloc/splash/splash_bloc.dart';
 import 'package:mens_park/viewmodel/core/error_enum.dart';

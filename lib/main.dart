@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mens_park/constants/colors.dart';
+import 'package:mens_park/utils/colors.dart';
 import 'package:mens_park/view/checkout/checkout.dart';
 import 'package:mens_park/view/home/home.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -31,11 +31,11 @@ class Main extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => SplashBloc()),
-        BlocProvider(
-            create: (context) => HomeAppBarBloc()),
+        BlocProvider(create: (context) => SplashBloc()..add(CheckUserEvent(context: context))),
+        BlocProvider(create: (context) => HomeAppBarBloc()..add(LoadCategoriesEvent())),
+         BlocProvider(create: (context) => CartBloc()..add(LoadCartEvent())),
         BlocProvider(create: (context) => SignUpBloc()),
-        BlocProvider(create: (context) => CartBloc()),
+       
       ],
       child: MaterialApp(
         title: 'Mens Park',
@@ -43,19 +43,18 @@ class Main extends StatelessWidget {
           colorScheme: ColorScheme.fromSwatch().copyWith(
             primary: kBlack,
             secondary: kBlack,
-         
           ),
         ),
         routes: {
           '/': (context) => const SplashScreen(),
           '/home': (context) => const Home(),
-          '/productScreen':(context)=>  const ProductScreen(),
-          '/cart': (context) =>  Cart(),
-          '/checkout': ((context) => const Checkout()),
+          '/productScreen': (context) => const ProductScreen(),
+          '/cart': (context) => Cart(),
+          '/checkout': ((context) => Checkout()),
           '/signUp': (context) => SignUp(),
           '/otpVerificationScreen': ((context) => const OtpVerificationScreen())
         },
-        initialRoute: '/checkout',
+        initialRoute: '/home',
       ),
     );
   }

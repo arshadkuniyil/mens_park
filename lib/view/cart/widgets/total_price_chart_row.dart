@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mens_park/constants/colors.dart';
-import 'package:mens_park/constants/constant.dart';
-
+import 'package:mens_park/utils/colors.dart';
+import 'package:mens_park/utils/constant.dart';
 class TotalPriceChartRow extends StatelessWidget {
   const TotalPriceChartRow({
     Key? key,

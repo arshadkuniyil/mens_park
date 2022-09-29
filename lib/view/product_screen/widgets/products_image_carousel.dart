@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:mens_park/constants/colors.dart';
+import 'package:mens_park/utils/colors.dart';
 import 'package:mens_park/model/product_model/product_model.dart';
 import 'package:mens_park/view/widgets/image_future_widget.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';

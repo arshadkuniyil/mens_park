@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mens_park/constants/colors.dart';
-import 'package:mens_park/constants/constant.dart';
+import 'package:mens_park/utils/colors.dart';
+import 'package:mens_park/utils/constant.dart';
 import 'package:mens_park/helpers/screen_size.dart';
 import 'package:mens_park/model/cart_model/cart_model.dart';
 import 'package:mens_park/view/widgets/cart_icon_button.dart';
@@ -33,7 +33,6 @@ class Cart extends StatelessWidget {
             child: PageAppBar(
               actionWidget: CartIconButton(),
               pageName: 'Shopping Bag',
-            
             ),
           ),
           body: SafeArea(
@@ -134,7 +133,10 @@ class Cart extends StatelessWidget {
                           height: double.infinity,
                           child: Center(
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.of(context)
+                                    .pushReplacementNamed('/checkout',arguments: shippingCharge + subTotal);
+                              },
                               style: ElevatedButton.styleFrom(
                                 minimumSize: Size.fromHeight(screenWidth * .15),
                                 shape: RoundedRectangleBorder(
