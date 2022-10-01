@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mens_park/helpers/screen_size.dart';
-import 'package:mens_park/viewmodel/bloc/splash/splash_bloc.dart';
 
-class SplashErrorWidget extends StatelessWidget {
+class CustomErrorWidget extends StatelessWidget {
   final String errorName;
   final String errorDetails;
-  const SplashErrorWidget(
-      {Key? key, required this.errorName, required this.errorDetails})
+  final dynamic event;
+  final dynamic readBloc;
+  const CustomErrorWidget(
+      {Key? key,
+      required this.errorName,
+      required this.errorDetails,
+      required this.event,
+      required this.readBloc})
       : super(key: key);
 
   @override
@@ -40,9 +44,7 @@ class SplashErrorWidget extends StatelessWidget {
           ),
           ElevatedButton(
               onPressed: () {
-                context
-                    .read<SplashBloc>()
-                    .add(CheckUserEvent(context: context));
+                readBloc.add(event);
               },
               child: const Text('Retry')),
           const Spacer()

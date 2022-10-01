@@ -12,6 +12,7 @@ import 'view/splash/splash_screen.dart';
 import 'firebase_options.dart';
 import 'viewmodel/bloc/Cart/cart_bloc.dart';
 import 'viewmodel/bloc/home/app_bar/home_app_bar_bloc.dart';
+import 'viewmodel/bloc/sign_in/sign_in_bloc.dart';
 import 'viewmodel/bloc/sign_up/sign_up_bloc.dart';
 import 'viewmodel/bloc/splash/splash_bloc.dart';
 
@@ -31,11 +32,14 @@ class Main extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => SplashBloc()..add(CheckUserEvent(context: context))),
-        BlocProvider(create: (context) => HomeAppBarBloc()..add(LoadCategoriesEvent())),
-         BlocProvider(create: (context) => CartBloc()..add(LoadCartEvent())),
+        BlocProvider(
+            create: (context) =>
+                SplashBloc()..add(CheckUserEvent(context: context))),
+        BlocProvider(
+            create: (context) => HomeAppBarBloc()..add(LoadCategoriesEvent())),
+        BlocProvider(create: (context) => CartBloc()..add(LoadCartEvent())),
         BlocProvider(create: (context) => SignUpBloc()),
-       
+        BlocProvider(create: (context) => SignInBloc()),
       ],
       child: MaterialApp(
         title: 'Mens Park',
@@ -52,9 +56,9 @@ class Main extends StatelessWidget {
           '/cart': (context) => Cart(),
           '/checkout': ((context) => Checkout()),
           '/signUp': (context) => SignUp(),
-          '/otpVerificationScreen': ((context) => const OtpVerificationScreen())
+          '/otpVerificationScreen': ((context) =>  OtpVerificationScreen())
         },
-        initialRoute: '/home',
+        initialRoute: '/',
       ),
     );
   }

@@ -5,6 +5,7 @@ import 'package:mens_park/viewmodel/bloc/home/app_bar/home_app_bar_bloc.dart';
 import 'package:mens_park/viewmodel/service/auth_service.dart';
 import 'package:mens_park/utils/colors.dart';
 import 'package:mens_park/utils/constant.dart';
+
 class CustomAppBar extends StatelessWidget {
   CustomAppBar({
     Key? key,
@@ -41,7 +42,7 @@ class CustomAppBar extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: Image.asset(
-                          'assets/images/error.png',
+                          'assets/images/profile_symbol.png',
                           fit: BoxFit.cover,
                         ),
                       ),

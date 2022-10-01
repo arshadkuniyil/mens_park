@@ -18,10 +18,11 @@ class CreditCardBack extends StatelessWidget {
       width: double.infinity,
       height: (screenWidth - kPadding * 2) / 1.58,
       decoration: BoxDecoration(
-        image: const DecorationImage(
+        image: DecorationImage(
             fit: BoxFit.cover,
-         
-            image: AssetImage('assets/images/card_back_bg.jpg')),
+            colorFilter:
+                ColorFilter.mode(kGrey.withOpacity(.3), BlendMode.softLight),
+            image: const AssetImage('assets/images/card_back_bg.jpg')),
         borderRadius: BorderRadius.circular(16),
         color: kBlack,
       ),

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mens_park/model/category_model/category_model.dart';
-import 'package:mens_park/viewmodel/core/error_enum.dart';
+import 'package:mens_park/viewmodel/core/service_status_enum.dart';
 import 'package:mens_park/viewmodel/service/home_screen_service.dart';
 
 part 'home_category_event.dart';

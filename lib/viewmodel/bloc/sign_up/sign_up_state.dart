@@ -1,16 +1,8 @@
 part of 'sign_up_bloc.dart';
 
-class SignUpState {
-  final SignUpWithPhoneError signUpWithPhoneError;
-  final bool isLoading;
+@freezed
+class SignUpState with _$SignUpState {
+  const factory SignUpState({required SignUpWithPhoneStatus signUpWithPhoneStatus}) = _SignUpState;
 
-  SignUpState({required this.signUpWithPhoneError, required this.isLoading});
-}
-
-class SignUpInitial extends SignUpState {
-  SignUpInitial()
-      : super(
-          signUpWithPhoneError: SignUpWithPhoneError.noError,
-          isLoading: true,
-        );
+   factory SignUpState.initial() => const SignUpState(signUpWithPhoneStatus:SignUpWithPhoneStatus.notStarted);
 }

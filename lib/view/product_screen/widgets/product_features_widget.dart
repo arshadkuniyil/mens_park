@@ -11,6 +11,11 @@ class ProductFeaturesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<Map<String, String>> imgMapList = [
+      {'imagePath': 'assets/images/cotton_symbol.png', 'name': 'Cotton'},
+      {'imagePath': 'assets/images/comfort_symbol.png', 'name': 'Comfort'},
+      {'imagePath': 'assets/images/premium_symbol.png', 'name': 'Premium'},
+    ];
     return Padding(
       padding: EdgeInsets.all(screenWidth * 0.06),
       child: Row(
@@ -26,13 +31,19 @@ class ProductFeaturesWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(screenWidth * .09),
               ),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    'assets/images/error.png',
-                    scale: .8,
-                    width: screenWidth * .2,
+                    imgMapList[index]['imagePath']!,
+                    width: screenWidth * .1,
                   ),
-                  const Text('data')
+                  const SizedBox(
+                    height: 6,
+                  ),
+                  Text(
+                    imgMapList[index]['name']!,
+                    style: const TextStyle(color: Colors.black54),
+                  )
                 ],
               ),
             );

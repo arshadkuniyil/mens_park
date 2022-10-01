@@ -1,10 +1,13 @@
 part of 'sign_up_bloc.dart';
 
-class SignUpEvent {}
+@freezed
+class SignUpEvent with _$SignUpEvent {
+  const factory SignUpEvent.signUpWithPhoneEvent(
+      {required HashMap userData,
+      required BuildContext context}) = SignUpWithPhoneEvent;
 
-class SignUpWithPhoneEvent extends SignUpEvent {
-  final HashMap userData;
-  final BuildContext context;
+  const factory SignUpEvent.signUpWithPhoneRes({required String responseCode}) =
+      SignUpWithPhoneRes;
 
-  SignUpWithPhoneEvent(this.userData, this.context);
+  const factory SignUpEvent.signUpResetEvent() = SignUpResetEvent;
 }

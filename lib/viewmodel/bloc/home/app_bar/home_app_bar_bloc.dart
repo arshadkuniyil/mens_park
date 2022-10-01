@@ -6,7 +6,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:mens_park/model/cart_model/cart_model.dart';
 import 'package:mens_park/model/category_model/category_model.dart';
-import 'package:mens_park/viewmodel/core/error_enum.dart';
+import 'package:mens_park/viewmodel/core/service_status_enum.dart';
 import 'package:mens_park/viewmodel/service/cart_service.dart';
 import 'package:mens_park/viewmodel/service/home_screen_service.dart';
 
