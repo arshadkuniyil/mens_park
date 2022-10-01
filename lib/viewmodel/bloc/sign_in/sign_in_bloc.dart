@@ -11,11 +11,11 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   SignInBloc() : super(SignInState.initial()) {
     AuthService authService = AuthService();
     on<SignInWithOtp>((event, emit) async {
-      emit(state.copyWith(isLoading: true));
-      
+      emit(state.copyWith(signInStatus: SignInStatus.loading));
+
       final signInStatus = await authService.signInWithPhoneOtp(event.otp);
-      
-      emit(state.copyWith(signInStatus: signInStatus, isLoading: false));
+    
+      emit(state.copyWith(signInStatus: signInStatus));
     });
   }
 }

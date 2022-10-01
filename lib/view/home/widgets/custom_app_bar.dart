@@ -35,7 +35,7 @@ class CustomAppBar extends StatelessWidget {
                   //profile icon
                   IconButton(
                     onPressed: () {
-                      Navigator.of(context).pushNamed('/signUp');
+                     
                     },
                     icon: AspectRatio(
                       aspectRatio: 1,

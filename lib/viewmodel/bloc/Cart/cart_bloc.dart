@@ -1,12 +1,9 @@
-import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mens_park/model/cart_model/cart_model.dart';
 import 'package:mens_park/model/product_model/product_model.dart';
-import 'package:mens_park/view/home/widgets/product_card/product_card.dart';
-import 'package:mens_park/viewmodel/bloc/home/app_bar/home_app_bar_bloc.dart';
 import 'package:mens_park/viewmodel/service/cart_service.dart';
 
 part 'cart_event.dart';
@@ -153,7 +150,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       String size = event.cartProduct.productSize!;
       String cartId = event.cartProduct.id!;
       String productId = cartId.substring(0, cartId.length - size.length);
-//TODO ERROR HANDLE
+
       await cartService.getProductDataById(productId).then((snapshotList) {
         final ProductModel productData =
             ProductModel.fromJson(snapshotList[0].data());

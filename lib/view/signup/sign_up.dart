@@ -24,22 +24,26 @@ class SignUp extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(kPadding),
-          child: BlocBuilder<SignUpBloc, SignUpState>(
+          child: BlocConsumer<SignUpBloc, SignUpState>(
+            listener: (context, state) {
+              if (state.signUpWithPhoneStatus ==
+                  SignUpWithPhoneStatus.codeSent) {
+                Navigator.of(context)
+                    .pushReplacementNamed('/otpVerificationScreen',);
+              }
+            },
+            buildWhen: (previous, current) => current != previous,
             builder: (context, state) {
               switch (state.signUpWithPhoneStatus) {
-                case SignUpWithPhoneStatus.codeSent:
-                  WidgetsBinding.instance.addPostFrameCallback((_) {
-                    Navigator.of(context)
-                        .pushReplacementNamed('/otpVerificationScreen');
-                  });
-                  break;
                 case SignUpWithPhoneStatus.networkError:
                   return CustomErrorWidget(
                     errorName: 'No internet connection',
                     errorDetails:
                         'Please connect your internet connection.\n      it looks like you\'re not connected to\n                          the internet',
-                    event: SignUpWithPhoneEvent(context: context,userData: userData),
-                    readBloc: context.read<SignUpBloc>(),
+                    retryFunc: () {
+                      context.read<SignUpBloc>().add(SignUpWithPhoneEvent(
+                          context: context, userData: userData));
+                    },
                   );
                 case SignUpWithPhoneStatus.notStarted:
                   return SignUpWIthPhoneForm(
@@ -53,21 +57,23 @@ class SignUp extends StatelessWidget {
                   return const Center(child: CircularProgressIndicator());
 
                 case SignUpWithPhoneStatus.invalidPhoneNumber:
-                  return  CustomErrorWidget(
+                  return CustomErrorWidget(
                     errorName: 'Invalid Phone Number',
-                    errorDetails:
-                        'Please enter a valid phone number',
-                    event: const SignUpResetEvent(),
-                    readBloc: context.read<SignUpBloc>(),
+                    errorDetails: 'Please enter a valid phone number',
+                    retryFunc: () {
+                      context.read<SignUpBloc>().add(const SignUpResetEvent());
+                    },
                   );
                 case SignUpWithPhoneStatus.invalidVerificationId:
-                  return     CustomErrorWidget(
+                  return CustomErrorWidget(
                     errorName: 'Invalid Verification Id',
-                    errorDetails:
-                        'Your request not valid',
-                    event: const SignUpResetEvent(),
-                    readBloc: context.read<SignUpBloc>(),
+                    errorDetails: 'Your request is not valid',
+                    retryFunc: () {
+                      context.read<SignUpBloc>().add(const SignUpResetEvent());
+                    },
                   );
+                default:
+                  break;
               }
               return SignUpWIthPhoneForm(
                 userData: userData,

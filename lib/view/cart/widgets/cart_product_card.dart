@@ -24,7 +24,7 @@ class CartProductCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: GestureDetector(
-         onTap: () {
+        onTap: () {
           context.read<CartBloc>().add(NavigateToProductScreen(
               cartProduct: productData, context: context));
         },
@@ -44,14 +44,14 @@ class CartProductCard extends StatelessWidget {
                     future: getImageUrl(fullSizeImgPath: productData.imgPath1!),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
-                        //TODO ERROR BUILDER
                         return Image(
                           image: CachedNetworkImageProvider(snapshot.data!,
                               scale: .5),
                           fit: BoxFit.fitHeight,
                         );
                       } else if (snapshot.hasError) {
-                        //TODO HANDLE ERROR
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Loading failed')));
                       }
                       return const SizedBox(
                         child: Center(child: CircularProgressIndicator()),
@@ -79,7 +79,7 @@ class CartProductCard extends StatelessWidget {
                           ),
                         ),
                         const Spacer(),
-      
+
                         //delete btn
                         IconButton(
                           padding: EdgeInsets.zero,
@@ -98,7 +98,8 @@ class CartProductCard extends StatelessWidget {
                                       child: const Text('Cancel'),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(right: 8.0),
+                                      padding:
+                                          const EdgeInsets.only(right: 8.0),
                                       child: ElevatedButton(
                                         onPressed: () {
                                           context
@@ -160,7 +161,7 @@ class CartProductCard extends StatelessWidget {
                             style: kTextStyle2,
                           ),
                         ),
-      
+
                         //quantity increase btn
                         IconButton(
                           padding: EdgeInsets.zero,

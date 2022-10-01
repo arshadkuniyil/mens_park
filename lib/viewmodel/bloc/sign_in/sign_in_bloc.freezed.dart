@@ -218,7 +218,6 @@ abstract class SignInWithOtp implements SignInEvent {
 
 /// @nodoc
 mixin _$SignInState {
-  bool get isLoading => throw _privateConstructorUsedError;
   SignInStatus get signInStatus => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -231,7 +230,7 @@ abstract class $SignInStateCopyWith<$Res> {
   factory $SignInStateCopyWith(
           SignInState value, $Res Function(SignInState) then) =
       _$SignInStateCopyWithImpl<$Res>;
-  $Res call({bool isLoading, SignInStatus signInStatus});
+  $Res call({SignInStatus signInStatus});
 }
 
 /// @nodoc
@@ -244,14 +243,9 @@ class _$SignInStateCopyWithImpl<$Res> implements $SignInStateCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? isLoading = freezed,
     Object? signInStatus = freezed,
   }) {
     return _then(_value.copyWith(
-      isLoading: isLoading == freezed
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
       signInStatus: signInStatus == freezed
           ? _value.signInStatus
           : signInStatus // ignore: cast_nullable_to_non_nullable
@@ -267,7 +261,7 @@ abstract class _$$_SignInStateCopyWith<$Res>
           _$_SignInState value, $Res Function(_$_SignInState) then) =
       __$$_SignInStateCopyWithImpl<$Res>;
   @override
-  $Res call({bool isLoading, SignInStatus signInStatus});
+  $Res call({SignInStatus signInStatus});
 }
 
 /// @nodoc
@@ -282,14 +276,9 @@ class __$$_SignInStateCopyWithImpl<$Res> extends _$SignInStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? isLoading = freezed,
     Object? signInStatus = freezed,
   }) {
     return _then(_$_SignInState(
-      isLoading: isLoading == freezed
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
       signInStatus: signInStatus == freezed
           ? _value.signInStatus
           : signInStatus // ignore: cast_nullable_to_non_nullable
@@ -301,16 +290,14 @@ class __$$_SignInStateCopyWithImpl<$Res> extends _$SignInStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SignInState implements _SignInState {
-  const _$_SignInState({required this.isLoading, required this.signInStatus});
+  const _$_SignInState({required this.signInStatus});
 
-  @override
-  final bool isLoading;
   @override
   final SignInStatus signInStatus;
 
   @override
   String toString() {
-    return 'SignInState(isLoading: $isLoading, signInStatus: $signInStatus)';
+    return 'SignInState(signInStatus: $signInStatus)';
   }
 
   @override
@@ -318,16 +305,13 @@ class _$_SignInState implements _SignInState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SignInState &&
-            const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
             const DeepCollectionEquality()
                 .equals(other.signInStatus, signInStatus));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(isLoading),
-      const DeepCollectionEquality().hash(signInStatus));
+      runtimeType, const DeepCollectionEquality().hash(signInStatus));
 
   @JsonKey(ignore: true)
   @override
@@ -336,12 +320,9 @@ class _$_SignInState implements _SignInState {
 }
 
 abstract class _SignInState implements SignInState {
-  const factory _SignInState(
-      {required final bool isLoading,
-      required final SignInStatus signInStatus}) = _$_SignInState;
+  const factory _SignInState({required final SignInStatus signInStatus}) =
+      _$_SignInState;
 
-  @override
-  bool get isLoading;
   @override
   SignInStatus get signInStatus;
   @override

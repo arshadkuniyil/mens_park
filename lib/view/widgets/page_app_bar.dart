@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mens_park/utils/colors.dart';
 import 'package:mens_park/helpers/screen_size.dart';
-import 'package:mens_park/view/widgets/cart_icon_button.dart';
 
 class PageAppBar extends StatelessWidget {
   const PageAppBar({
@@ -37,7 +36,7 @@ class PageAppBar extends StatelessWidget {
             const Spacer(),
             Text(
               pageName,
-              // ignore: prefer_const_constructors
+              
               style: const TextStyle(
                   color: kBlack, fontSize: 18, fontWeight: FontWeight.w600),
             ),

@@ -4,14 +4,13 @@ import 'package:mens_park/helpers/screen_size.dart';
 class CustomErrorWidget extends StatelessWidget {
   final String errorName;
   final String errorDetails;
-  final dynamic event;
-  final dynamic readBloc;
+  final dynamic retryFunc;
+
   const CustomErrorWidget(
       {Key? key,
       required this.errorName,
       required this.errorDetails,
-      required this.event,
-      required this.readBloc})
+      required this.retryFunc})
       : super(key: key);
 
   @override
@@ -44,7 +43,7 @@ class CustomErrorWidget extends StatelessWidget {
           ),
           ElevatedButton(
               onPressed: () {
-                readBloc.add(event);
+                retryFunc();
               },
               child: const Text('Retry')),
           const Spacer()

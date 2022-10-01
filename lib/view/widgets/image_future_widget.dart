@@ -13,17 +13,18 @@ class ImageFutureWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<String>(
-      //TODO class
+  
       future: getImageUrl(fullSizeImgPath: productImagePath),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          //TODO ERROR BUILDER
+      
           return CachedNetworkImage(
             imageUrl: snapshot.data!,
             fit: BoxFit.cover,
           );
         } else if (snapshot.hasError) {
-          //TODO
+        ScaffoldMessenger.of(context)
+              .showSnackBar(const SnackBar(content: Text('Loading failed')));
         }
         return const SizedBox(
           height: double.infinity,

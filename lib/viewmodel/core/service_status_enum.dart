@@ -10,8 +10,12 @@ enum SignUpWithPhoneStatus {
 }
 
 enum SignInStatus {
+  notStarted,
   loading,
   success,
   failed,
-  unknownError,
+  networkError,
+  invalidVerificationCode,
+  invalidVerificationId,
+  unknownError
 }

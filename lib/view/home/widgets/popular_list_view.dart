@@ -65,7 +65,7 @@ class PopularListView extends StatelessWidget {
                                     fullSizeImgPath: productData.imgPath1!),
                                 builder: (context, snapshot) {
                                   if (snapshot.hasData) {
-                                    //TODO ERROR BUILDER
+                                  
                                     return Image(
                                       image: CachedNetworkImageProvider(
                                           snapshot.data!,
@@ -73,7 +73,9 @@ class PopularListView extends StatelessWidget {
                                       fit: BoxFit.fitHeight,
                                     );
                                   } else if (snapshot.hasError) {
-                                    //TODO HANDLE ERROR
+                                   ScaffoldMessenger.of(context).showSnackBar(
+                                        const SnackBar(
+                                            content: Text('Loading failed')));
                                   }
                                   return const SizedBox(
                                     child: Center(

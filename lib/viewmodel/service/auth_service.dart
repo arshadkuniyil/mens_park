@@ -1,5 +1,4 @@
 import 'dart:collection';
-import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -13,17 +12,15 @@ class AuthService {
 
   static final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  signUpWithPhone(HashMap userData, BuildContext context) async {
+  Future<void> signUpWithPhone(HashMap userData, BuildContext context) async {
     await auth.verifyPhoneNumber(
       timeout: const Duration(seconds: 60),
       phoneNumber: '+91${userData['mobileNumber']}',
       verificationCompleted: (PhoneAuthCredential credential) async {},
       verificationFailed: (FirebaseAuthException e) {
-        log('${e.code}');
         context
             .read<SignUpBloc>()
             .add(SignUpWithPhoneRes(responseCode: e.code));
-        
       },
       codeSent: (String verificationId, int? resendToken) async {
         final resEvent = context
@@ -32,6 +29,7 @@ class AuthService {
 
         SharedPreferences sh = await SharedPreferences.getInstance();
         sh.setString('verificationId', verificationId);
+        sh.setString('userDisplayName', userData['fullName']);
 
         if (resendToken != null) {
           sh.setInt('resendToken', resendToken);
@@ -45,6 +43,7 @@ class AuthService {
   Future<SignInStatus> signInWithPhoneOtp(String smsCode) async {
     final SharedPreferences sh = await SharedPreferences.getInstance();
     final String? verificationId = sh.getString('verificationId');
+    final String? displayName = sh.getString('userDisplayName');
     final PhoneAuthCredential credential;
 
     if (verificationId != null) {
@@ -54,29 +53,28 @@ class AuthService {
           smsCode: smsCode,
         );
 
-        await auth.signInWithCredential(credential).then((userCredential) {
-          if (userCredential.user != null) {
-            log("on success");
-            return SignInStatus.success;
-          } else {
-            log("on onfailed");
-            return SignInStatus.failed;
-          }
-        });
+        final userCredential = await auth.signInWithCredential(credential);
+        if (userCredential.user != null) {
+          userCredential.user!.updateDisplayName(displayName);
+          return SignInStatus.success;
+        } else {
+          return SignInStatus.failed;
+        }
       } on FirebaseAuthException catch (e) {
-        log("on Catch: $e");
         switch (e.code) {
           case 'network-request-failed':
-            return SignInStatus.unknownError;
+            return SignInStatus.networkError;
           case 'invalid-verification-code':
-            return SignInStatus.unknownError;
+            return SignInStatus.invalidVerificationCode;
+          case 'invalid-verification-id':
+            return SignInStatus.invalidVerificationId;
           default:
             return SignInStatus.unknownError;
         }
       }
+    } else {
+      return SignInStatus.unknownError;
     }
-    log("on else");
-    return SignInStatus.unknownError;
   }
 
   // anonymousSignIn() async {
@@ -101,9 +99,5 @@ class AuthService {
 
   signOut() {
     auth.signOut();
-  }
-
-  funct() {
-    return true;
   }
 }
