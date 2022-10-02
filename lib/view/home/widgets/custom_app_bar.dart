@@ -34,9 +34,7 @@ class CustomAppBar extends StatelessWidget {
                 children: [
                   //profile icon
                   IconButton(
-                    onPressed: () {
-                     
-                    },
+                    onPressed: () {},
                     icon: AspectRatio(
                       aspectRatio: 1,
                       child: ClipRRect(
@@ -48,11 +46,7 @@ class CustomAppBar extends StatelessWidget {
                       ),
                     ),
                   ),
-                  ElevatedButton(
-                      onPressed: () async {
-                        AuthService().signOut();
-                      },
-                      child: const Text('test')),
+
                   const Spacer(),
                   //cart button
                   const CartIconButton()
