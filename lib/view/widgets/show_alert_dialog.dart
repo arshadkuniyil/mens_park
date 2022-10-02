@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mens_park/utils/colors.dart';
 
 import 'package:mens_park/model/product_model/product_model.dart';
-import 'package:mens_park/viewmodel/bloc/Cart/cart_bloc.dart';
+import 'package:mens_park/viewmodel/bloc/cart/cart_bloc.dart';
 
 class ShowAlertDialog {
   final BuildContext context;

@@ -3,17 +3,18 @@ import 'package:mens_park/utils/colors.dart';
 import 'package:mens_park/utils/constant.dart';
 
 class AddressTextFieldWidget extends StatelessWidget {
-  const AddressTextFieldWidget({
+   const AddressTextFieldWidget({
     Key? key,
     required this.screenWidth,
     required this.kPadding,
     required this.dropDownValue,
+    required this.addressTextController
   }) : super(key: key);
 
   final double screenWidth;
   final double kPadding;
   final ValueNotifier<String> dropDownValue;
-
+  final TextEditingController addressTextController;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -71,16 +72,25 @@ class AddressTextFieldWidget extends StatelessWidget {
                   );
                 },
               ),
-              const TextField(
+              TextFormField(
+                controller: addressTextController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your address';
+                  } else if (value.length < 6) {
+                    return 'minimum 6 characters';
+                  }
+                  return null;
+                },
                 maxLines: 2,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Enter your address',
                   border: InputBorder.none,
                   focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.black12),
                   ),
                 ),
-                style: TextStyle(color: Colors.black54),
+                style: const TextStyle(color: Colors.black54),
               ),
             ],
           ),

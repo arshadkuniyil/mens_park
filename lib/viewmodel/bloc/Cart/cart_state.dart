@@ -1,19 +1,14 @@
 part of 'cart_bloc.dart';
 
-class CartState {
-  final List<CartModel> cartProductList;
-  final int cartItemCount;
-  final int subTotal;
-  final bool isLoading;
+@freezed
+class CartState with _$CartState {
+  const factory CartState({
+    required List<CartModel> cartProductList,
+    required int cartItemCount,
+    required int subTotal,
+    required bool isLoading,
+  }) = _CartState;
 
-  CartState(
-      {required this.cartProductList,
-      required this.cartItemCount,
-      required this.isLoading,
-      required this.subTotal});
-}
-
-class CartInitial extends CartState {
-  CartInitial() : super(cartProductList: [], cartItemCount: 0, isLoading: true,
-            subTotal: 0);
+  factory CartState.initial() =>const  CartState(
+    cartProductList: [], cartItemCount: 0, isLoading: true, subTotal: 0);
 }

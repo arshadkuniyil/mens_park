@@ -6,7 +6,7 @@ import 'package:mens_park/helpers/screen_size.dart';
 import 'package:mens_park/model/cart_model/cart_model.dart';
 import 'package:mens_park/view/widgets/cart_icon_button.dart';
 import 'package:mens_park/view/widgets/page_app_bar.dart';
-import 'package:mens_park/viewmodel/bloc/Cart/cart_bloc.dart';
+import 'package:mens_park/viewmodel/bloc/cart/cart_bloc.dart';
 
 import 'widgets/cart_product_card.dart';
 import 'widgets/total_price_chart_row.dart';

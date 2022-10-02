@@ -1,43 +1,40 @@
 part of 'cart_bloc.dart';
 
-class CartEvent {}
+@freezed
+class CartEvent with _$CartEvent {
+  const factory CartEvent.loadCartEvent() = LoadCartEvent;
 
-class LoadCartEvent extends CartEvent {}
+  const factory CartEvent.deleteCartProductEvent({
+    required CartModel product,
+    required int index,
+    required BuildContext context,
+  }) = DeleteCartProductEvent;
 
-class DeleteCartProductEvent extends CartEvent {
-  final CartModel product;
-  final int index;
-  final BuildContext context;
-  DeleteCartProductEvent(
-      {required this.product, required this.index, required this.context});
-}
+  const factory CartEvent.addToCart({
+    required ProductModel product,
+    required String size,
+    required int quantity,
+  }) = AddToCart;
 
-class IncreaseQuantity extends CartEvent {
-  final CartModel product;
-  final String size;
+  const factory CartEvent.increaseQuantity({
+    required CartModel product,
+    required String size,
+  }) = IncreaseQuantity;
 
-  IncreaseQuantity({required this.product, required this.size});
-}
+  const factory CartEvent.decreaseQuantity({
+    required CartModel product,
+    required BuildContext context,
+    required int index,
+  }) = DecreaseQuantity;
 
-class AddToCart extends CartEvent {
-  final ProductModel product;
-  final String size;
-  final int quantity;
-
-  AddToCart({required this.product, required this.size, required this.quantity});
-}
-
-class DecreaseQuantity extends CartEvent {
-  final CartModel product;
-  final BuildContext context;
-  final int index;
-  DecreaseQuantity(
-      {required this.product, required this.context, required this.index});
-}
-class NavigateToProductScreen extends CartEvent {
-  final CartModel cartProduct;
-  final BuildContext context;
+  const factory CartEvent.navigateToProductScreen({
+    required CartModel cartProduct,
+    required BuildContext context,
+  }) = NavigateToProductScreen;
   
-  NavigateToProductScreen(
-      {required this.cartProduct, required this.context});
+  const factory CartEvent.placeOrder({
+    required String address,
+    required BuildContext context,
+  }) = PlaceOrder;
+  
 }

@@ -1,30 +1,25 @@
-
+import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mens_park/model/cart_model/cart_model.dart';
 import 'package:mens_park/model/product_model/product_model.dart';
+import 'package:mens_park/utils/global/global.dart';
 import 'package:mens_park/viewmodel/service/cart_service.dart';
 
 part 'cart_event.dart';
 part 'cart_state.dart';
+part 'cart_bloc.freezed.dart';
 
 class CartBloc extends Bloc<CartEvent, CartState> {
-  CartBloc() : super(CartInitial()) {
+  CartBloc() : super(CartState.initial()) {
     List<CartModel> cartProductList = [];
     int cartItemCount = 0;
     int subTotal = 0;
     CartService cartService = CartService();
-    on<LoadCartEvent>((event, emit) async {
-      emit(
-        CartState(
-          cartProductList: cartProductList,
-          cartItemCount: cartItemCount,
-          isLoading: true,
-          subTotal: subTotal,
-        ),
-      );
 
+    on<LoadCartEvent>((event, emit) async {
+      emit(state.copyWith(isLoading: true));
       List<QueryDocumentSnapshot> cartProdcutSnapshot =
           await cartService.getCartPoducts();
 
@@ -40,13 +35,15 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       }).toList();
 
       emit(
-        CartState(
-            cartProductList: cartProductList,
-            cartItemCount: cartItemCount,
-            isLoading: false,
-            subTotal: subTotal),
+        state.copyWith(
+          cartProductList: cartProductList,
+          cartItemCount: cartItemCount,
+          subTotal: subTotal,
+          isLoading: false,
+        ),
       );
     });
+
     on<IncreaseQuantity>((event, emit) async {
       await cartService
           .addToCartOrIncreaseQty(
@@ -63,14 +60,14 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         subTotal += product.price!;
 
         emit(
-          CartState(
+          state.copyWith(
               cartProductList: cartProductList,
               cartItemCount: cartItemCount,
-              isLoading: false,
               subTotal: subTotal),
         );
       });
     });
+
     on<DecreaseQuantity>((event, emit) async {
       if (event.product.quantity == 1) {
         return;
@@ -83,31 +80,33 @@ class CartBloc extends Bloc<CartEvent, CartState> {
             cartProductList[event.index].totalPrice! - event.product.price!;
 
         emit(
-          CartState(
+          state.copyWith(
               cartProductList: cartProductList,
               cartItemCount: cartItemCount,
-              isLoading: false,
               subTotal: subTotal),
         );
       });
     });
 
-    on<DeleteCartProductEvent>((event, emit) {
-      cartService.deleteCartProduct(event.product);
-      cartProductList.removeAt(event.index);
-      cartItemCount -= event.product.quantity!;
-      subTotal -= event.product.totalPrice!;
+    on<DeleteCartProductEvent>((event, emit) async {
+      final goToHome =
+          Navigator.of(event.context).pushReplacementNamed('/home');
 
-      if (cartItemCount == 0) {
-        Navigator.of(event.context).pushReplacementNamed('/home');
-      }
-      emit(
-        CartState(
-            cartProductList: cartProductList,
-            cartItemCount: cartItemCount,
-            isLoading: false,
-            subTotal: subTotal),
-      );
+      await cartService.deleteCartProduct(event.product).then(() {
+        cartProductList.removeAt(event.index);
+        cartItemCount -= event.product.quantity!;
+        subTotal -= event.product.totalPrice!;
+
+        if (cartItemCount == 0) {
+          goToHome;
+        }
+        emit(
+          state.copyWith(
+              cartProductList: cartProductList,
+              cartItemCount: cartItemCount,
+              subTotal: subTotal),
+        );
+      });
     });
 
     on<AddToCart>((event, emit) async {
@@ -132,14 +131,13 @@ class CartBloc extends Bloc<CartEvent, CartState> {
           }
         }
 
-        cartItemCount+=event.quantity;
-        subTotal += product.price!*event.quantity;
+        cartItemCount += event.quantity;
+        subTotal += product.price! * event.quantity;
 
         emit(
-          CartState(
+          state.copyWith(
             cartProductList: cartProductList,
             cartItemCount: cartItemCount,
-            isLoading: false,
             subTotal: subTotal,
           ),
         );
@@ -156,6 +154,29 @@ class CartBloc extends Bloc<CartEvent, CartState> {
             ProductModel.fromJson(snapshotList[0].data());
         Navigator.of(event.context)
             .pushReplacementNamed('/productScreen', arguments: productData);
+      });
+    });
+
+    on<PlaceOrder>((event, emit) async {
+      final goToHome =
+          Navigator.of(event.context).pushReplacementNamed('/home');
+
+      await cartService
+          .placeOrder(cartProductList, event.address)
+          .then((_) async {
+        await cartService.clearCart().then((_) {
+          goToHome;
+          snackbarKey.currentState?.showSnackBar(
+              const SnackBar(content: Text('Order placed successful')));
+          cartProductList = [];
+          subTotal = 0;
+          cartItemCount = 0; 
+          emit(state.copyWith(
+            cartProductList: [],
+            cartItemCount: 0,
+            subTotal: 0,
+          ));
+        });
       });
     });
   }
