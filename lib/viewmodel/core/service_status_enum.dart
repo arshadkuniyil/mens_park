@@ -19,3 +19,10 @@ enum SignInStatus {
   invalidVerificationId,
   unknownError
 }
+
+enum UserSignInStatus{
+  loading,
+  userExist,
+  userNotExist,
+  otpVerificationPending,
+}

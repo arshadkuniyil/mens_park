@@ -30,7 +30,7 @@ class AuthService {
         SharedPreferences sh = await SharedPreferences.getInstance();
         sh.setString('verificationId', verificationId);
         sh.setString('userDisplayName', userData['fullName']);
-
+        sh.setBool('isPhoneVerified', false);
         if (resendToken != null) {
           sh.setInt('resendToken', resendToken);
         }
@@ -56,6 +56,7 @@ class AuthService {
         final userCredential = await auth.signInWithCredential(credential);
         if (userCredential.user != null) {
           userCredential.user!.updateDisplayName(displayName);
+          sh.setBool('isPhoneVerified', true);
           return SignInStatus.success;
         } else {
           return SignInStatus.failed;

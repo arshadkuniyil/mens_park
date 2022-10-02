@@ -1,14 +1,13 @@
 part of 'splash_bloc.dart';
 
 class SplashState {
-  final bool isLoading;
-  final User? user;
+ final UserSignInStatus userStatus;
   SplashState({
-    required this.isLoading,
-    required this.user,
+    required this.userStatus,
+   
   });
 }
 
 class SplashInitial extends SplashState {
-  SplashInitial() : super(isLoading: true, user: null);
+  SplashInitial() : super(userStatus: UserSignInStatus.loading);
 }

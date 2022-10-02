@@ -18,15 +18,7 @@ class Home extends StatelessWidget {
 
     return BlocBuilder<HomeAppBarBloc, HomeAppBarState>(
       builder: (context, state) {
-        // if (state.errorEnum == ErrorEnum.unknownError &&
-        //     state.categoryList.isEmpty) {
-        //   return CustomErrorWidget(
-        //     errorName: 'Unknown error',
-        //     errorDetails: '',
-        //     bloc: context.read<HomeAppBarBloc>(),
-        //     retryBtnEvent: LoadCategoriesEvent(),
-        //   );
-        // }
+
 
         int? categoriesLength;
         List<String> categoryNameList = ['   ', '   ', '   '];

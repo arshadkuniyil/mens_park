@@ -1,3 +1,4 @@
+
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -92,8 +93,9 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       final goToHome =
           Navigator.of(event.context).pushReplacementNamed('/home');
 
-      await cartService.deleteCartProduct(event.product).then(() {
+      await cartService.deleteCartProduct(event.product).then((_) {
         cartProductList.removeAt(event.index);
+
         cartItemCount -= event.product.quantity!;
         subTotal -= event.product.totalPrice!;
 
@@ -133,7 +135,9 @@ class CartBloc extends Bloc<CartEvent, CartState> {
 
         cartItemCount += event.quantity;
         subTotal += product.price! * event.quantity;
-
+        
+        snackbarKey.currentState
+            ?.showSnackBar(const SnackBar(content: Text('Added to cart')));
         emit(
           state.copyWith(
             cartProductList: cartProductList,
@@ -170,7 +174,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
               const SnackBar(content: Text('Order placed successful')));
           cartProductList = [];
           subTotal = 0;
-          cartItemCount = 0; 
+          cartItemCount = 0;
           emit(state.copyWith(
             cartProductList: [],
             cartItemCount: 0,

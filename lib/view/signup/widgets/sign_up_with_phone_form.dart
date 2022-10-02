@@ -133,7 +133,7 @@ class SignUpWIthPhoneForm extends StatelessWidget {
                             context: blocContext, userData: userData));
                       }
                     },
-                    child: const Text('  Varify  '),
+                    child: const Text('  Verify  '),
                   ),
                 ),
               ),
