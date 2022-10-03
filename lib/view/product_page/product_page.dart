@@ -8,8 +8,8 @@ import 'widgets/product_details_widget.dart';
 import 'widgets/product_features_widget.dart';
 import 'widgets/products_image_carousel.dart';
 
-class ProductScreen extends StatelessWidget {
-  const ProductScreen({Key? key}) : super(key: key);
+class ProductPage extends StatelessWidget {
+  const ProductPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

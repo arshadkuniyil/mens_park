@@ -1,8 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:mens_park/viewmodel/core/service_status_enum.dart';
 import 'package:mens_park/viewmodel/service/auth_service.dart';
+import 'package:mens_park/viewmodel/service/core/service_status_enum.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 part 'splash_event.dart';
 part 'splash_state.dart';

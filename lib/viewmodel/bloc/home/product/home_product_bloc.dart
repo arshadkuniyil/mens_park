@@ -3,7 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mens_park/model/product_model/product_model.dart';
-import 'package:mens_park/viewmodel/core/service_status_enum.dart';
+import 'package:mens_park/viewmodel/service/core/service_status_enum.dart';
 import 'package:mens_park/viewmodel/service/home_screen_service.dart';
 part 'home_product_event.dart';
 part 'home_product_state.dart';

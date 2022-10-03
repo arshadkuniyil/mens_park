@@ -1,12 +1,13 @@
-
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mens_park/model/cart_model/cart_model.dart';
 import 'package:mens_park/model/product_model/product_model.dart';
 import 'package:mens_park/utils/global/global.dart';
 import 'package:mens_park/viewmodel/service/cart_service.dart';
+import 'package:mens_park/viewmodel/service/account_service.dart';
 
 part 'cart_event.dart';
 part 'cart_state.dart';
@@ -18,6 +19,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     int cartItemCount = 0;
     int subTotal = 0;
     CartService cartService = CartService();
+    AccountService accountService = AccountService();
 
     on<LoadCartEvent>((event, emit) async {
       emit(state.copyWith(isLoading: true));
@@ -90,8 +92,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     });
 
     on<DeleteCartProductEvent>((event, emit) async {
-      final goToHome =
-          Navigator.of(event.context).pushReplacementNamed('/home');
+      final goToHome = navigatorKey.currentState!.pushReplacementNamed('/home');
 
       await cartService.deleteCartProduct(event.product).then((_) {
         cartProductList.removeAt(event.index);
@@ -135,7 +136,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
 
         cartItemCount += event.quantity;
         subTotal += product.price! * event.quantity;
-        
+
         snackbarKey.currentState
             ?.showSnackBar(const SnackBar(content: Text('Added to cart')));
         emit(
@@ -156,16 +157,16 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       await cartService.getProductDataById(productId).then((snapshotList) {
         final ProductModel productData =
             ProductModel.fromJson(snapshotList[0].data());
-        Navigator.of(event.context)
+        navigatorKey.currentState!
             .pushReplacementNamed('/productScreen', arguments: productData);
       });
     });
 
     on<PlaceOrder>((event, emit) async {
       final goToHome =
-          Navigator.of(event.context).pushReplacementNamed('/home');
+          navigatorKey.currentState!.pushReplacementNamed('/account');
 
-      await cartService
+      await accountService
           .placeOrder(cartProductList, event.address)
           .then((_) async {
         await cartService.clearCart().then((_) {

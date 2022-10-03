@@ -6,10 +6,10 @@ import 'package:mens_park/helpers/screen_size.dart';
 import 'package:mens_park/view/widgets/error/custom_error_widget.dart';
 import 'package:mens_park/view/widgets/text_field_outer_widget.dart';
 import 'package:mens_park/viewmodel/bloc/sign_in/sign_in_bloc.dart';
-import 'package:mens_park/viewmodel/core/service_status_enum.dart';
+import 'package:mens_park/viewmodel/service/core/service_status_enum.dart';
 
-class OtpVerificationScreen extends StatelessWidget {
-  OtpVerificationScreen({Key? key}) : super(key: key);
+class OtpVerificationPage extends StatelessWidget {
+  OtpVerificationPage({Key? key}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {

@@ -19,48 +19,38 @@ mixin _$CartEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadCartEvent,
-    required TResult Function(
-            CartModel product, int index, BuildContext context)
+    required TResult Function(CartModel product, int index)
         deleteCartProductEvent,
     required TResult Function(ProductModel product, String size, int quantity)
         addToCart,
     required TResult Function(CartModel product, String size) increaseQuantity,
-    required TResult Function(
-            CartModel product, BuildContext context, int index)
-        decreaseQuantity,
-    required TResult Function(CartModel cartProduct, BuildContext context)
-        navigateToProductScreen,
-    required TResult Function(String address, BuildContext context) placeOrder,
+    required TResult Function(CartModel product, int index) decreaseQuantity,
+    required TResult Function(CartModel cartProduct) navigateToProductScreen,
+    required TResult Function(String address) placeOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loadCartEvent,
-    TResult Function(CartModel product, int index, BuildContext context)?
-        deleteCartProductEvent,
+    TResult Function(CartModel product, int index)? deleteCartProductEvent,
     TResult Function(ProductModel product, String size, int quantity)?
         addToCart,
     TResult Function(CartModel product, String size)? increaseQuantity,
-    TResult Function(CartModel product, BuildContext context, int index)?
-        decreaseQuantity,
-    TResult Function(CartModel cartProduct, BuildContext context)?
-        navigateToProductScreen,
-    TResult Function(String address, BuildContext context)? placeOrder,
+    TResult Function(CartModel product, int index)? decreaseQuantity,
+    TResult Function(CartModel cartProduct)? navigateToProductScreen,
+    TResult Function(String address)? placeOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadCartEvent,
-    TResult Function(CartModel product, int index, BuildContext context)?
-        deleteCartProductEvent,
+    TResult Function(CartModel product, int index)? deleteCartProductEvent,
     TResult Function(ProductModel product, String size, int quantity)?
         addToCart,
     TResult Function(CartModel product, String size)? increaseQuantity,
-    TResult Function(CartModel product, BuildContext context, int index)?
-        decreaseQuantity,
-    TResult Function(CartModel cartProduct, BuildContext context)?
-        navigateToProductScreen,
-    TResult Function(String address, BuildContext context)? placeOrder,
+    TResult Function(CartModel product, int index)? decreaseQuantity,
+    TResult Function(CartModel cartProduct)? navigateToProductScreen,
+    TResult Function(String address)? placeOrder,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -158,18 +148,14 @@ class _$LoadCartEvent implements LoadCartEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadCartEvent,
-    required TResult Function(
-            CartModel product, int index, BuildContext context)
+    required TResult Function(CartModel product, int index)
         deleteCartProductEvent,
     required TResult Function(ProductModel product, String size, int quantity)
         addToCart,
     required TResult Function(CartModel product, String size) increaseQuantity,
-    required TResult Function(
-            CartModel product, BuildContext context, int index)
-        decreaseQuantity,
-    required TResult Function(CartModel cartProduct, BuildContext context)
-        navigateToProductScreen,
-    required TResult Function(String address, BuildContext context) placeOrder,
+    required TResult Function(CartModel product, int index) decreaseQuantity,
+    required TResult Function(CartModel cartProduct) navigateToProductScreen,
+    required TResult Function(String address) placeOrder,
   }) {
     return loadCartEvent();
   }
@@ -178,16 +164,13 @@ class _$LoadCartEvent implements LoadCartEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loadCartEvent,
-    TResult Function(CartModel product, int index, BuildContext context)?
-        deleteCartProductEvent,
+    TResult Function(CartModel product, int index)? deleteCartProductEvent,
     TResult Function(ProductModel product, String size, int quantity)?
         addToCart,
     TResult Function(CartModel product, String size)? increaseQuantity,
-    TResult Function(CartModel product, BuildContext context, int index)?
-        decreaseQuantity,
-    TResult Function(CartModel cartProduct, BuildContext context)?
-        navigateToProductScreen,
-    TResult Function(String address, BuildContext context)? placeOrder,
+    TResult Function(CartModel product, int index)? decreaseQuantity,
+    TResult Function(CartModel cartProduct)? navigateToProductScreen,
+    TResult Function(String address)? placeOrder,
   }) {
     return loadCartEvent?.call();
   }
@@ -196,16 +179,13 @@ class _$LoadCartEvent implements LoadCartEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadCartEvent,
-    TResult Function(CartModel product, int index, BuildContext context)?
-        deleteCartProductEvent,
+    TResult Function(CartModel product, int index)? deleteCartProductEvent,
     TResult Function(ProductModel product, String size, int quantity)?
         addToCart,
     TResult Function(CartModel product, String size)? increaseQuantity,
-    TResult Function(CartModel product, BuildContext context, int index)?
-        decreaseQuantity,
-    TResult Function(CartModel cartProduct, BuildContext context)?
-        navigateToProductScreen,
-    TResult Function(String address, BuildContext context)? placeOrder,
+    TResult Function(CartModel product, int index)? decreaseQuantity,
+    TResult Function(CartModel cartProduct)? navigateToProductScreen,
+    TResult Function(String address)? placeOrder,
     required TResult orElse(),
   }) {
     if (loadCartEvent != null) {
@@ -272,7 +252,7 @@ abstract class _$$DeleteCartProductEventCopyWith<$Res> {
   factory _$$DeleteCartProductEventCopyWith(_$DeleteCartProductEvent value,
           $Res Function(_$DeleteCartProductEvent) then) =
       __$$DeleteCartProductEventCopyWithImpl<$Res>;
-  $Res call({CartModel product, int index, BuildContext context});
+  $Res call({CartModel product, int index});
 }
 
 /// @nodoc
@@ -291,7 +271,6 @@ class __$$DeleteCartProductEventCopyWithImpl<$Res>
   $Res call({
     Object? product = freezed,
     Object? index = freezed,
-    Object? context = freezed,
   }) {
     return _then(_$DeleteCartProductEvent(
       product: product == freezed
@@ -302,10 +281,6 @@ class __$$DeleteCartProductEventCopyWithImpl<$Res>
           ? _value.index
           : index // ignore: cast_nullable_to_non_nullable
               as int,
-      context: context == freezed
-          ? _value.context
-          : context // ignore: cast_nullable_to_non_nullable
-              as BuildContext,
     ));
   }
 }
@@ -313,19 +288,16 @@ class __$$DeleteCartProductEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$DeleteCartProductEvent implements DeleteCartProductEvent {
-  const _$DeleteCartProductEvent(
-      {required this.product, required this.index, required this.context});
+  const _$DeleteCartProductEvent({required this.product, required this.index});
 
   @override
   final CartModel product;
   @override
   final int index;
-  @override
-  final BuildContext context;
 
   @override
   String toString() {
-    return 'CartEvent.deleteCartProductEvent(product: $product, index: $index, context: $context)';
+    return 'CartEvent.deleteCartProductEvent(product: $product, index: $index)';
   }
 
   @override
@@ -334,16 +306,14 @@ class _$DeleteCartProductEvent implements DeleteCartProductEvent {
         (other.runtimeType == runtimeType &&
             other is _$DeleteCartProductEvent &&
             const DeepCollectionEquality().equals(other.product, product) &&
-            const DeepCollectionEquality().equals(other.index, index) &&
-            const DeepCollectionEquality().equals(other.context, context));
+            const DeepCollectionEquality().equals(other.index, index));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(product),
-      const DeepCollectionEquality().hash(index),
-      const DeepCollectionEquality().hash(context));
+      const DeepCollectionEquality().hash(index));
 
   @JsonKey(ignore: true)
   @override
@@ -355,58 +325,48 @@ class _$DeleteCartProductEvent implements DeleteCartProductEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadCartEvent,
-    required TResult Function(
-            CartModel product, int index, BuildContext context)
+    required TResult Function(CartModel product, int index)
         deleteCartProductEvent,
     required TResult Function(ProductModel product, String size, int quantity)
         addToCart,
     required TResult Function(CartModel product, String size) increaseQuantity,
-    required TResult Function(
-            CartModel product, BuildContext context, int index)
-        decreaseQuantity,
-    required TResult Function(CartModel cartProduct, BuildContext context)
-        navigateToProductScreen,
-    required TResult Function(String address, BuildContext context) placeOrder,
+    required TResult Function(CartModel product, int index) decreaseQuantity,
+    required TResult Function(CartModel cartProduct) navigateToProductScreen,
+    required TResult Function(String address) placeOrder,
   }) {
-    return deleteCartProductEvent(product, index, context);
+    return deleteCartProductEvent(product, index);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loadCartEvent,
-    TResult Function(CartModel product, int index, BuildContext context)?
-        deleteCartProductEvent,
+    TResult Function(CartModel product, int index)? deleteCartProductEvent,
     TResult Function(ProductModel product, String size, int quantity)?
         addToCart,
     TResult Function(CartModel product, String size)? increaseQuantity,
-    TResult Function(CartModel product, BuildContext context, int index)?
-        decreaseQuantity,
-    TResult Function(CartModel cartProduct, BuildContext context)?
-        navigateToProductScreen,
-    TResult Function(String address, BuildContext context)? placeOrder,
+    TResult Function(CartModel product, int index)? decreaseQuantity,
+    TResult Function(CartModel cartProduct)? navigateToProductScreen,
+    TResult Function(String address)? placeOrder,
   }) {
-    return deleteCartProductEvent?.call(product, index, context);
+    return deleteCartProductEvent?.call(product, index);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadCartEvent,
-    TResult Function(CartModel product, int index, BuildContext context)?
-        deleteCartProductEvent,
+    TResult Function(CartModel product, int index)? deleteCartProductEvent,
     TResult Function(ProductModel product, String size, int quantity)?
         addToCart,
     TResult Function(CartModel product, String size)? increaseQuantity,
-    TResult Function(CartModel product, BuildContext context, int index)?
-        decreaseQuantity,
-    TResult Function(CartModel cartProduct, BuildContext context)?
-        navigateToProductScreen,
-    TResult Function(String address, BuildContext context)? placeOrder,
+    TResult Function(CartModel product, int index)? decreaseQuantity,
+    TResult Function(CartModel cartProduct)? navigateToProductScreen,
+    TResult Function(String address)? placeOrder,
     required TResult orElse(),
   }) {
     if (deleteCartProductEvent != null) {
-      return deleteCartProductEvent(product, index, context);
+      return deleteCartProductEvent(product, index);
     }
     return orElse();
   }
@@ -463,12 +423,10 @@ class _$DeleteCartProductEvent implements DeleteCartProductEvent {
 abstract class DeleteCartProductEvent implements CartEvent {
   const factory DeleteCartProductEvent(
       {required final CartModel product,
-      required final int index,
-      required final BuildContext context}) = _$DeleteCartProductEvent;
+      required final int index}) = _$DeleteCartProductEvent;
 
   CartModel get product;
   int get index;
-  BuildContext get context;
   @JsonKey(ignore: true)
   _$$DeleteCartProductEventCopyWith<_$DeleteCartProductEvent> get copyWith =>
       throw _privateConstructorUsedError;
@@ -559,18 +517,14 @@ class _$AddToCart implements AddToCart {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadCartEvent,
-    required TResult Function(
-            CartModel product, int index, BuildContext context)
+    required TResult Function(CartModel product, int index)
         deleteCartProductEvent,
     required TResult Function(ProductModel product, String size, int quantity)
         addToCart,
     required TResult Function(CartModel product, String size) increaseQuantity,
-    required TResult Function(
-            CartModel product, BuildContext context, int index)
-        decreaseQuantity,
-    required TResult Function(CartModel cartProduct, BuildContext context)
-        navigateToProductScreen,
-    required TResult Function(String address, BuildContext context) placeOrder,
+    required TResult Function(CartModel product, int index) decreaseQuantity,
+    required TResult Function(CartModel cartProduct) navigateToProductScreen,
+    required TResult Function(String address) placeOrder,
   }) {
     return addToCart(product, size, quantity);
   }
@@ -579,16 +533,13 @@ class _$AddToCart implements AddToCart {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loadCartEvent,
-    TResult Function(CartModel product, int index, BuildContext context)?
-        deleteCartProductEvent,
+    TResult Function(CartModel product, int index)? deleteCartProductEvent,
     TResult Function(ProductModel product, String size, int quantity)?
         addToCart,
     TResult Function(CartModel product, String size)? increaseQuantity,
-    TResult Function(CartModel product, BuildContext context, int index)?
-        decreaseQuantity,
-    TResult Function(CartModel cartProduct, BuildContext context)?
-        navigateToProductScreen,
-    TResult Function(String address, BuildContext context)? placeOrder,
+    TResult Function(CartModel product, int index)? decreaseQuantity,
+    TResult Function(CartModel cartProduct)? navigateToProductScreen,
+    TResult Function(String address)? placeOrder,
   }) {
     return addToCart?.call(product, size, quantity);
   }
@@ -597,16 +548,13 @@ class _$AddToCart implements AddToCart {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadCartEvent,
-    TResult Function(CartModel product, int index, BuildContext context)?
-        deleteCartProductEvent,
+    TResult Function(CartModel product, int index)? deleteCartProductEvent,
     TResult Function(ProductModel product, String size, int quantity)?
         addToCart,
     TResult Function(CartModel product, String size)? increaseQuantity,
-    TResult Function(CartModel product, BuildContext context, int index)?
-        decreaseQuantity,
-    TResult Function(CartModel cartProduct, BuildContext context)?
-        navigateToProductScreen,
-    TResult Function(String address, BuildContext context)? placeOrder,
+    TResult Function(CartModel product, int index)? decreaseQuantity,
+    TResult Function(CartModel cartProduct)? navigateToProductScreen,
+    TResult Function(String address)? placeOrder,
     required TResult orElse(),
   }) {
     if (addToCart != null) {
@@ -754,18 +702,14 @@ class _$IncreaseQuantity implements IncreaseQuantity {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadCartEvent,
-    required TResult Function(
-            CartModel product, int index, BuildContext context)
+    required TResult Function(CartModel product, int index)
         deleteCartProductEvent,
     required TResult Function(ProductModel product, String size, int quantity)
         addToCart,
     required TResult Function(CartModel product, String size) increaseQuantity,
-    required TResult Function(
-            CartModel product, BuildContext context, int index)
-        decreaseQuantity,
-    required TResult Function(CartModel cartProduct, BuildContext context)
-        navigateToProductScreen,
-    required TResult Function(String address, BuildContext context) placeOrder,
+    required TResult Function(CartModel product, int index) decreaseQuantity,
+    required TResult Function(CartModel cartProduct) navigateToProductScreen,
+    required TResult Function(String address) placeOrder,
   }) {
     return increaseQuantity(product, size);
   }
@@ -774,16 +718,13 @@ class _$IncreaseQuantity implements IncreaseQuantity {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loadCartEvent,
-    TResult Function(CartModel product, int index, BuildContext context)?
-        deleteCartProductEvent,
+    TResult Function(CartModel product, int index)? deleteCartProductEvent,
     TResult Function(ProductModel product, String size, int quantity)?
         addToCart,
     TResult Function(CartModel product, String size)? increaseQuantity,
-    TResult Function(CartModel product, BuildContext context, int index)?
-        decreaseQuantity,
-    TResult Function(CartModel cartProduct, BuildContext context)?
-        navigateToProductScreen,
-    TResult Function(String address, BuildContext context)? placeOrder,
+    TResult Function(CartModel product, int index)? decreaseQuantity,
+    TResult Function(CartModel cartProduct)? navigateToProductScreen,
+    TResult Function(String address)? placeOrder,
   }) {
     return increaseQuantity?.call(product, size);
   }
@@ -792,16 +733,13 @@ class _$IncreaseQuantity implements IncreaseQuantity {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadCartEvent,
-    TResult Function(CartModel product, int index, BuildContext context)?
-        deleteCartProductEvent,
+    TResult Function(CartModel product, int index)? deleteCartProductEvent,
     TResult Function(ProductModel product, String size, int quantity)?
         addToCart,
     TResult Function(CartModel product, String size)? increaseQuantity,
-    TResult Function(CartModel product, BuildContext context, int index)?
-        decreaseQuantity,
-    TResult Function(CartModel cartProduct, BuildContext context)?
-        navigateToProductScreen,
-    TResult Function(String address, BuildContext context)? placeOrder,
+    TResult Function(CartModel product, int index)? decreaseQuantity,
+    TResult Function(CartModel cartProduct)? navigateToProductScreen,
+    TResult Function(String address)? placeOrder,
     required TResult orElse(),
   }) {
     if (increaseQuantity != null) {
@@ -876,7 +814,7 @@ abstract class _$$DecreaseQuantityCopyWith<$Res> {
   factory _$$DecreaseQuantityCopyWith(
           _$DecreaseQuantity value, $Res Function(_$DecreaseQuantity) then) =
       __$$DecreaseQuantityCopyWithImpl<$Res>;
-  $Res call({CartModel product, BuildContext context, int index});
+  $Res call({CartModel product, int index});
 }
 
 /// @nodoc
@@ -893,7 +831,6 @@ class __$$DecreaseQuantityCopyWithImpl<$Res>
   @override
   $Res call({
     Object? product = freezed,
-    Object? context = freezed,
     Object? index = freezed,
   }) {
     return _then(_$DecreaseQuantity(
@@ -901,10 +838,6 @@ class __$$DecreaseQuantityCopyWithImpl<$Res>
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
               as CartModel,
-      context: context == freezed
-          ? _value.context
-          : context // ignore: cast_nullable_to_non_nullable
-              as BuildContext,
       index: index == freezed
           ? _value.index
           : index // ignore: cast_nullable_to_non_nullable
@@ -916,19 +849,16 @@ class __$$DecreaseQuantityCopyWithImpl<$Res>
 /// @nodoc
 
 class _$DecreaseQuantity implements DecreaseQuantity {
-  const _$DecreaseQuantity(
-      {required this.product, required this.context, required this.index});
+  const _$DecreaseQuantity({required this.product, required this.index});
 
   @override
   final CartModel product;
-  @override
-  final BuildContext context;
   @override
   final int index;
 
   @override
   String toString() {
-    return 'CartEvent.decreaseQuantity(product: $product, context: $context, index: $index)';
+    return 'CartEvent.decreaseQuantity(product: $product, index: $index)';
   }
 
   @override
@@ -937,7 +867,6 @@ class _$DecreaseQuantity implements DecreaseQuantity {
         (other.runtimeType == runtimeType &&
             other is _$DecreaseQuantity &&
             const DeepCollectionEquality().equals(other.product, product) &&
-            const DeepCollectionEquality().equals(other.context, context) &&
             const DeepCollectionEquality().equals(other.index, index));
   }
 
@@ -945,7 +874,6 @@ class _$DecreaseQuantity implements DecreaseQuantity {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(product),
-      const DeepCollectionEquality().hash(context),
       const DeepCollectionEquality().hash(index));
 
   @JsonKey(ignore: true)
@@ -957,58 +885,48 @@ class _$DecreaseQuantity implements DecreaseQuantity {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadCartEvent,
-    required TResult Function(
-            CartModel product, int index, BuildContext context)
+    required TResult Function(CartModel product, int index)
         deleteCartProductEvent,
     required TResult Function(ProductModel product, String size, int quantity)
         addToCart,
     required TResult Function(CartModel product, String size) increaseQuantity,
-    required TResult Function(
-            CartModel product, BuildContext context, int index)
-        decreaseQuantity,
-    required TResult Function(CartModel cartProduct, BuildContext context)
-        navigateToProductScreen,
-    required TResult Function(String address, BuildContext context) placeOrder,
+    required TResult Function(CartModel product, int index) decreaseQuantity,
+    required TResult Function(CartModel cartProduct) navigateToProductScreen,
+    required TResult Function(String address) placeOrder,
   }) {
-    return decreaseQuantity(product, context, index);
+    return decreaseQuantity(product, index);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loadCartEvent,
-    TResult Function(CartModel product, int index, BuildContext context)?
-        deleteCartProductEvent,
+    TResult Function(CartModel product, int index)? deleteCartProductEvent,
     TResult Function(ProductModel product, String size, int quantity)?
         addToCart,
     TResult Function(CartModel product, String size)? increaseQuantity,
-    TResult Function(CartModel product, BuildContext context, int index)?
-        decreaseQuantity,
-    TResult Function(CartModel cartProduct, BuildContext context)?
-        navigateToProductScreen,
-    TResult Function(String address, BuildContext context)? placeOrder,
+    TResult Function(CartModel product, int index)? decreaseQuantity,
+    TResult Function(CartModel cartProduct)? navigateToProductScreen,
+    TResult Function(String address)? placeOrder,
   }) {
-    return decreaseQuantity?.call(product, context, index);
+    return decreaseQuantity?.call(product, index);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadCartEvent,
-    TResult Function(CartModel product, int index, BuildContext context)?
-        deleteCartProductEvent,
+    TResult Function(CartModel product, int index)? deleteCartProductEvent,
     TResult Function(ProductModel product, String size, int quantity)?
         addToCart,
     TResult Function(CartModel product, String size)? increaseQuantity,
-    TResult Function(CartModel product, BuildContext context, int index)?
-        decreaseQuantity,
-    TResult Function(CartModel cartProduct, BuildContext context)?
-        navigateToProductScreen,
-    TResult Function(String address, BuildContext context)? placeOrder,
+    TResult Function(CartModel product, int index)? decreaseQuantity,
+    TResult Function(CartModel cartProduct)? navigateToProductScreen,
+    TResult Function(String address)? placeOrder,
     required TResult orElse(),
   }) {
     if (decreaseQuantity != null) {
-      return decreaseQuantity(product, context, index);
+      return decreaseQuantity(product, index);
     }
     return orElse();
   }
@@ -1065,11 +983,9 @@ class _$DecreaseQuantity implements DecreaseQuantity {
 abstract class DecreaseQuantity implements CartEvent {
   const factory DecreaseQuantity(
       {required final CartModel product,
-      required final BuildContext context,
       required final int index}) = _$DecreaseQuantity;
 
   CartModel get product;
-  BuildContext get context;
   int get index;
   @JsonKey(ignore: true)
   _$$DecreaseQuantityCopyWith<_$DecreaseQuantity> get copyWith =>
@@ -1081,7 +997,7 @@ abstract class _$$NavigateToProductScreenCopyWith<$Res> {
   factory _$$NavigateToProductScreenCopyWith(_$NavigateToProductScreen value,
           $Res Function(_$NavigateToProductScreen) then) =
       __$$NavigateToProductScreenCopyWithImpl<$Res>;
-  $Res call({CartModel cartProduct, BuildContext context});
+  $Res call({CartModel cartProduct});
 }
 
 /// @nodoc
@@ -1099,17 +1015,12 @@ class __$$NavigateToProductScreenCopyWithImpl<$Res>
   @override
   $Res call({
     Object? cartProduct = freezed,
-    Object? context = freezed,
   }) {
     return _then(_$NavigateToProductScreen(
       cartProduct: cartProduct == freezed
           ? _value.cartProduct
           : cartProduct // ignore: cast_nullable_to_non_nullable
               as CartModel,
-      context: context == freezed
-          ? _value.context
-          : context // ignore: cast_nullable_to_non_nullable
-              as BuildContext,
     ));
   }
 }
@@ -1117,17 +1028,14 @@ class __$$NavigateToProductScreenCopyWithImpl<$Res>
 /// @nodoc
 
 class _$NavigateToProductScreen implements NavigateToProductScreen {
-  const _$NavigateToProductScreen(
-      {required this.cartProduct, required this.context});
+  const _$NavigateToProductScreen({required this.cartProduct});
 
   @override
   final CartModel cartProduct;
-  @override
-  final BuildContext context;
 
   @override
   String toString() {
-    return 'CartEvent.navigateToProductScreen(cartProduct: $cartProduct, context: $context)';
+    return 'CartEvent.navigateToProductScreen(cartProduct: $cartProduct)';
   }
 
   @override
@@ -1136,15 +1044,12 @@ class _$NavigateToProductScreen implements NavigateToProductScreen {
         (other.runtimeType == runtimeType &&
             other is _$NavigateToProductScreen &&
             const DeepCollectionEquality()
-                .equals(other.cartProduct, cartProduct) &&
-            const DeepCollectionEquality().equals(other.context, context));
+                .equals(other.cartProduct, cartProduct));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(cartProduct),
-      const DeepCollectionEquality().hash(context));
+      runtimeType, const DeepCollectionEquality().hash(cartProduct));
 
   @JsonKey(ignore: true)
   @override
@@ -1156,58 +1061,48 @@ class _$NavigateToProductScreen implements NavigateToProductScreen {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadCartEvent,
-    required TResult Function(
-            CartModel product, int index, BuildContext context)
+    required TResult Function(CartModel product, int index)
         deleteCartProductEvent,
     required TResult Function(ProductModel product, String size, int quantity)
         addToCart,
     required TResult Function(CartModel product, String size) increaseQuantity,
-    required TResult Function(
-            CartModel product, BuildContext context, int index)
-        decreaseQuantity,
-    required TResult Function(CartModel cartProduct, BuildContext context)
-        navigateToProductScreen,
-    required TResult Function(String address, BuildContext context) placeOrder,
+    required TResult Function(CartModel product, int index) decreaseQuantity,
+    required TResult Function(CartModel cartProduct) navigateToProductScreen,
+    required TResult Function(String address) placeOrder,
   }) {
-    return navigateToProductScreen(cartProduct, context);
+    return navigateToProductScreen(cartProduct);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loadCartEvent,
-    TResult Function(CartModel product, int index, BuildContext context)?
-        deleteCartProductEvent,
+    TResult Function(CartModel product, int index)? deleteCartProductEvent,
     TResult Function(ProductModel product, String size, int quantity)?
         addToCart,
     TResult Function(CartModel product, String size)? increaseQuantity,
-    TResult Function(CartModel product, BuildContext context, int index)?
-        decreaseQuantity,
-    TResult Function(CartModel cartProduct, BuildContext context)?
-        navigateToProductScreen,
-    TResult Function(String address, BuildContext context)? placeOrder,
+    TResult Function(CartModel product, int index)? decreaseQuantity,
+    TResult Function(CartModel cartProduct)? navigateToProductScreen,
+    TResult Function(String address)? placeOrder,
   }) {
-    return navigateToProductScreen?.call(cartProduct, context);
+    return navigateToProductScreen?.call(cartProduct);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadCartEvent,
-    TResult Function(CartModel product, int index, BuildContext context)?
-        deleteCartProductEvent,
+    TResult Function(CartModel product, int index)? deleteCartProductEvent,
     TResult Function(ProductModel product, String size, int quantity)?
         addToCart,
     TResult Function(CartModel product, String size)? increaseQuantity,
-    TResult Function(CartModel product, BuildContext context, int index)?
-        decreaseQuantity,
-    TResult Function(CartModel cartProduct, BuildContext context)?
-        navigateToProductScreen,
-    TResult Function(String address, BuildContext context)? placeOrder,
+    TResult Function(CartModel product, int index)? decreaseQuantity,
+    TResult Function(CartModel cartProduct)? navigateToProductScreen,
+    TResult Function(String address)? placeOrder,
     required TResult orElse(),
   }) {
     if (navigateToProductScreen != null) {
-      return navigateToProductScreen(cartProduct, context);
+      return navigateToProductScreen(cartProduct);
     }
     return orElse();
   }
@@ -1263,11 +1158,9 @@ class _$NavigateToProductScreen implements NavigateToProductScreen {
 
 abstract class NavigateToProductScreen implements CartEvent {
   const factory NavigateToProductScreen(
-      {required final CartModel cartProduct,
-      required final BuildContext context}) = _$NavigateToProductScreen;
+      {required final CartModel cartProduct}) = _$NavigateToProductScreen;
 
   CartModel get cartProduct;
-  BuildContext get context;
   @JsonKey(ignore: true)
   _$$NavigateToProductScreenCopyWith<_$NavigateToProductScreen> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1278,7 +1171,7 @@ abstract class _$$PlaceOrderCopyWith<$Res> {
   factory _$$PlaceOrderCopyWith(
           _$PlaceOrder value, $Res Function(_$PlaceOrder) then) =
       __$$PlaceOrderCopyWithImpl<$Res>;
-  $Res call({String address, BuildContext context});
+  $Res call({String address});
 }
 
 /// @nodoc
@@ -1294,17 +1187,12 @@ class __$$PlaceOrderCopyWithImpl<$Res> extends _$CartEventCopyWithImpl<$Res>
   @override
   $Res call({
     Object? address = freezed,
-    Object? context = freezed,
   }) {
     return _then(_$PlaceOrder(
       address: address == freezed
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
-      context: context == freezed
-          ? _value.context
-          : context // ignore: cast_nullable_to_non_nullable
-              as BuildContext,
     ));
   }
 }
@@ -1312,16 +1200,14 @@ class __$$PlaceOrderCopyWithImpl<$Res> extends _$CartEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$PlaceOrder implements PlaceOrder {
-  const _$PlaceOrder({required this.address, required this.context});
+  const _$PlaceOrder({required this.address});
 
   @override
   final String address;
-  @override
-  final BuildContext context;
 
   @override
   String toString() {
-    return 'CartEvent.placeOrder(address: $address, context: $context)';
+    return 'CartEvent.placeOrder(address: $address)';
   }
 
   @override
@@ -1329,15 +1215,12 @@ class _$PlaceOrder implements PlaceOrder {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PlaceOrder &&
-            const DeepCollectionEquality().equals(other.address, address) &&
-            const DeepCollectionEquality().equals(other.context, context));
+            const DeepCollectionEquality().equals(other.address, address));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(address),
-      const DeepCollectionEquality().hash(context));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(address));
 
   @JsonKey(ignore: true)
   @override
@@ -1348,58 +1231,48 @@ class _$PlaceOrder implements PlaceOrder {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadCartEvent,
-    required TResult Function(
-            CartModel product, int index, BuildContext context)
+    required TResult Function(CartModel product, int index)
         deleteCartProductEvent,
     required TResult Function(ProductModel product, String size, int quantity)
         addToCart,
     required TResult Function(CartModel product, String size) increaseQuantity,
-    required TResult Function(
-            CartModel product, BuildContext context, int index)
-        decreaseQuantity,
-    required TResult Function(CartModel cartProduct, BuildContext context)
-        navigateToProductScreen,
-    required TResult Function(String address, BuildContext context) placeOrder,
+    required TResult Function(CartModel product, int index) decreaseQuantity,
+    required TResult Function(CartModel cartProduct) navigateToProductScreen,
+    required TResult Function(String address) placeOrder,
   }) {
-    return placeOrder(address, context);
+    return placeOrder(address);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loadCartEvent,
-    TResult Function(CartModel product, int index, BuildContext context)?
-        deleteCartProductEvent,
+    TResult Function(CartModel product, int index)? deleteCartProductEvent,
     TResult Function(ProductModel product, String size, int quantity)?
         addToCart,
     TResult Function(CartModel product, String size)? increaseQuantity,
-    TResult Function(CartModel product, BuildContext context, int index)?
-        decreaseQuantity,
-    TResult Function(CartModel cartProduct, BuildContext context)?
-        navigateToProductScreen,
-    TResult Function(String address, BuildContext context)? placeOrder,
+    TResult Function(CartModel product, int index)? decreaseQuantity,
+    TResult Function(CartModel cartProduct)? navigateToProductScreen,
+    TResult Function(String address)? placeOrder,
   }) {
-    return placeOrder?.call(address, context);
+    return placeOrder?.call(address);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadCartEvent,
-    TResult Function(CartModel product, int index, BuildContext context)?
-        deleteCartProductEvent,
+    TResult Function(CartModel product, int index)? deleteCartProductEvent,
     TResult Function(ProductModel product, String size, int quantity)?
         addToCart,
     TResult Function(CartModel product, String size)? increaseQuantity,
-    TResult Function(CartModel product, BuildContext context, int index)?
-        decreaseQuantity,
-    TResult Function(CartModel cartProduct, BuildContext context)?
-        navigateToProductScreen,
-    TResult Function(String address, BuildContext context)? placeOrder,
+    TResult Function(CartModel product, int index)? decreaseQuantity,
+    TResult Function(CartModel cartProduct)? navigateToProductScreen,
+    TResult Function(String address)? placeOrder,
     required TResult orElse(),
   }) {
     if (placeOrder != null) {
-      return placeOrder(address, context);
+      return placeOrder(address);
     }
     return orElse();
   }
@@ -1454,12 +1327,9 @@ class _$PlaceOrder implements PlaceOrder {
 }
 
 abstract class PlaceOrder implements CartEvent {
-  const factory PlaceOrder(
-      {required final String address,
-      required final BuildContext context}) = _$PlaceOrder;
+  const factory PlaceOrder({required final String address}) = _$PlaceOrder;
 
   String get address;
-  BuildContext get context;
   @JsonKey(ignore: true)
   _$$PlaceOrderCopyWith<_$PlaceOrder> get copyWith =>
       throw _privateConstructorUsedError;

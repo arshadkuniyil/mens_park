@@ -34,7 +34,9 @@ class CustomAppBar extends StatelessWidget {
                 children: [
                   //profile icon
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushNamed('/account');
+                    },
                     icon: AspectRatio(
                       aspectRatio: 1,
                       child: ClipRRect(

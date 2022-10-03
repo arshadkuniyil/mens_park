@@ -7,7 +7,7 @@ class CartEvent with _$CartEvent {
   const factory CartEvent.deleteCartProductEvent({
     required CartModel product,
     required int index,
-    required BuildContext context,
+   
   }) = DeleteCartProductEvent;
 
   const factory CartEvent.addToCart({
@@ -23,18 +23,17 @@ class CartEvent with _$CartEvent {
 
   const factory CartEvent.decreaseQuantity({
     required CartModel product,
-    required BuildContext context,
     required int index,
   }) = DecreaseQuantity;
 
   const factory CartEvent.navigateToProductScreen({
     required CartModel cartProduct,
-    required BuildContext context,
+   
   }) = NavigateToProductScreen;
   
   const factory CartEvent.placeOrder({
     required String address,
-    required BuildContext context,
+   
   }) = PlaceOrder;
   
 }

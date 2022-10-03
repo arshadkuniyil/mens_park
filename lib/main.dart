@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mens_park/utils/colors.dart';
-import 'package:mens_park/view/checkout/checkout.dart';
-import 'package:mens_park/view/home/home.dart';
+import 'package:mens_park/view/checkout/checkout_page.dart';
+import 'package:mens_park/view/home/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:mens_park/view/product_screen/product_screen.dart';
-import 'package:mens_park/view/signup/sign_up.dart';
+import 'package:mens_park/view/signup/sign_up_page.dart';
 import 'utils/global/global.dart';
-import 'view/cart/cart.dart';
-import 'view/otp_verification_screen/otp_verification_screen.dart';
+import 'view/account/account_page.dart';
+import 'view/cart/cart_page.dart';
+import 'view/otp_verification_screen/otp_verification_page.dart';
+import 'view/product_page/product_page.dart';
 import 'view/splash/splash_screen.dart';
 import 'firebase_options.dart';
+import 'viewmodel/bloc/account/account_bloc.dart';
 import 'viewmodel/bloc/cart/cart_bloc.dart';
 import 'viewmodel/bloc/home/app_bar/home_app_bar_bloc.dart';
 import 'viewmodel/bloc/sign_in/sign_in_bloc.dart';
@@ -43,10 +45,13 @@ class Main extends StatelessWidget {
             create: (context) => CartBloc()..add(const LoadCartEvent())),
         BlocProvider(create: (context) => SignUpBloc()),
         BlocProvider(create: (context) => SignInBloc()),
+        BlocProvider(
+            create: (context) => AccountBloc()),
       ],
       child: MaterialApp(
         title: 'Mens Park',
         scaffoldMessengerKey: snackbarKey,
+        navigatorKey:navigatorKey ,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSwatch().copyWith(
             primary: kBlack,
@@ -55,12 +60,14 @@ class Main extends StatelessWidget {
         ),
         routes: {
           '/': (context) => const SplashScreen(),
-          '/home': (context) => const Home(),
-          '/productScreen': (context) => const ProductScreen(),
-          '/cart': (context) => Cart(),
-          '/checkout': ((context) => Checkout()),
-          '/signUp': (context) => SignUp(),
-          '/otpVerificationScreen': ((context) => OtpVerificationScreen())
+          '/home': (context) => const HomePage(),
+          '/productScreen': (context) => const  ProductPage(),
+          '/cart': (context) => CartPage(),
+          '/checkout': ((context) => CheckoutPage()),
+          '/signUp': (context) => SignUpPage(),
+          '/otpVerificationScreen': ((context) => OtpVerificationPage()),
+      
+          '/account': ((context) => const AccountPage())
         },
         initialRoute: '/',
       ),

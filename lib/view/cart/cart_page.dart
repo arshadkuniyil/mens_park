@@ -8,11 +8,11 @@ import 'package:mens_park/view/widgets/cart_icon_button.dart';
 import 'package:mens_park/view/widgets/page_app_bar.dart';
 import 'package:mens_park/viewmodel/bloc/cart/cart_bloc.dart';
 
-import 'widgets/cart_product_card.dart';
+import 'widgets/cart_product_container.dart';
 import 'widgets/total_price_chart_row.dart';
 
-class Cart extends StatelessWidget {
-  Cart({Key? key}) : super(key: key);
+class CartPage extends StatelessWidget {
+  CartPage({Key? key}) : super(key: key);
   final GlobalKey<FormState> promoCodeFormKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
@@ -50,7 +50,7 @@ class Cart extends StatelessWidget {
                           itemCount: productList.length,
                           itemBuilder: (context, index) {
                             final productData = productList[index];
-                            return CartProductCard(
+                            return CartProductContainer(
                               screenWidth: screenWidth,
                               productData: productData,
                               index: index,

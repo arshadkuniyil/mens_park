@@ -2,7 +2,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:mens_park/model/cart_model/cart_model.dart';
 import 'package:mens_park/model/category_model/category_model.dart';
-import 'package:mens_park/viewmodel/core/service_status_enum.dart';
+import 'package:mens_park/viewmodel/service/core/service_status_enum.dart';
 import 'package:mens_park/viewmodel/service/home_screen_service.dart';
 part 'home_app_bar_event.dart';
 part 'home_app_bar_state.dart';

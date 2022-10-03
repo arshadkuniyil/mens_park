@@ -9,8 +9,8 @@ import 'package:mens_park/viewmodel/bloc/home/app_bar/home_app_bar_bloc.dart';
 import 'widgets/category_tab.dart';
 import 'widgets/custom_app_bar.dart';
 
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mens_park/utils/colors.dart';
@@ -48,7 +47,8 @@ class CartIconButton extends StatelessWidget {
                           '/cart',
                         );
                       } else if (ModalRoute.of(context)!.settings.name ==
-                          '/productScreen') {
+                              '/productScreen' ||
+                          ModalRoute.of(context)!.settings.name == '/account') {
                         Navigator.of(context).pushReplacementNamed(
                           '/cart',
                         );

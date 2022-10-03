@@ -11,8 +11,8 @@ import 'widgets/credit_card_widget/credit_card_widget.dart';
 import 'widgets/payment_method/payment_method_widget.dart';
 import 'widgets/total_payment_text_widget.dart';
 
-class Checkout extends StatelessWidget {
-  Checkout({Key? key}) : super(key: key);
+class CheckoutPage extends StatelessWidget {
+  CheckoutPage({Key? key}) : super(key: key);
   final dropDownValue = ValueNotifier('Home');
   static final orderFormKey = GlobalKey<FormState>();
   final TextEditingController addressTextController = TextEditingController();
@@ -82,7 +82,7 @@ class Checkout extends StatelessWidget {
                       
                           final address = addressTextController.text;
                           context.read<CartBloc>().add(
-                              PlaceOrder(address: address, context: context));
+                              PlaceOrder(address: address));
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(

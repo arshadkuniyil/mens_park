@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mens_park/utils/colors.dart';
 import 'package:mens_park/viewmodel/bloc/splash/splash_bloc.dart';
-import 'package:mens_park/viewmodel/core/service_status_enum.dart';
+import 'package:mens_park/viewmodel/service/core/service_status_enum.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);

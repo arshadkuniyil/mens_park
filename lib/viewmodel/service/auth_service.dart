@@ -4,8 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mens_park/viewmodel/bloc/sign_up/sign_up_bloc.dart';
-import 'package:mens_park/viewmodel/core/service_status_enum.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'core/service_status_enum.dart';
 
 class AuthService {
   static final auth = FirebaseAuth.instance;

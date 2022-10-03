@@ -7,8 +7,8 @@ import 'package:mens_park/model/cart_model/cart_model.dart';
 import 'package:mens_park/viewmodel/bloc/cart/cart_bloc.dart';
 import 'package:mens_park/viewmodel/service/fetch_image_url.dart';
 
-class CartProductCard extends StatelessWidget {
-  const CartProductCard({
+class CartProductContainer extends StatelessWidget {
+  const CartProductContainer({
     Key? key,
     required this.screenWidth,
     required this.productData,
@@ -26,7 +26,7 @@ class CartProductCard extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           context.read<CartBloc>().add(NavigateToProductScreen(
-              cartProduct: productData, context: context));
+              cartProduct: productData));
         },
         child: Row(
           children: [
@@ -107,7 +107,7 @@ class CartProductCard extends StatelessWidget {
                                               .add(DeleteCartProductEvent(
                                                 product: productData,
                                                 index: index,
-                                                context: context,
+                                          
                                               ));
                                           Navigator.of(ctx).pop();
                                         },
@@ -146,7 +146,7 @@ class CartProductCard extends StatelessWidget {
                           onPressed: () {
                             context.read<CartBloc>().add(DecreaseQuantity(
                                   product: productData,
-                                  context: context,
+                                
                                   index: index,
                                 ));
                           },
