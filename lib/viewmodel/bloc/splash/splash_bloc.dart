@@ -14,9 +14,9 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
       if (authService.getUser() == null) {
         SharedPreferences sh = await SharedPreferences.getInstance();
         final isPhoneVerified = sh.getBool('isPhoneVerified');
-        if (isPhoneVerified != null && isPhoneVerified) {
-          emit(SplashState(userStatus: UserSignInStatus.userExist));
-        }else{
+        if (  isPhoneVerified == null) {
+          emit(SplashState(userStatus: UserSignInStatus.userNotExist));
+        }else if(!isPhoneVerified){
           emit(SplashState(userStatus: UserSignInStatus.otpVerificationPending));
         }
       } else {

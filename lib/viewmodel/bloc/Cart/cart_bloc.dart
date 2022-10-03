@@ -92,8 +92,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     });
 
     on<DeleteCartProductEvent>((event, emit) async {
-      final goToHome = navigatorKey.currentState!.pushReplacementNamed('/home');
-
+      
       await cartService.deleteCartProduct(event.product).then((_) {
         cartProductList.removeAt(event.index);
 
@@ -101,7 +100,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         subTotal -= event.product.totalPrice!;
 
         if (cartItemCount == 0) {
-          goToHome;
+          navigatorKey.currentState!.pushReplacementNamed('/home');
         }
         emit(
           state.copyWith(
