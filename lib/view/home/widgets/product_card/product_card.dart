@@ -4,7 +4,7 @@ import 'package:mens_park/utils/colors.dart';
 import 'package:mens_park/utils/constant.dart';
 import 'package:mens_park/model/product_model/product_model.dart';
 import 'package:mens_park/view/widgets/image_future_widget.dart';
-import 'package:mens_park/view/widgets/show_alert_dialog.dart';
+import 'package:mens_park/view/widgets/show_size_alert_dialog.dart';
 
 
 class ProductCard extends StatelessWidget {
@@ -98,7 +98,7 @@ class ProductCard extends StatelessWidget {
               child: IconButton(
                 iconSize: screenWidth * .1,
                 onPressed: () {
-                  ShowAlertDialog(
+                  ShowSizeAlertDialog(
                       context: context, productData: productData, quantity: 1);
                 },
                 icon: const CircleAvatar(

@@ -21,6 +21,7 @@ mixin _$AccountEvent {
     required TResult Function() loadOrdersList,
     required TResult Function(String productId, String placedTime, int index)
         cancelOrder,
+    required TResult Function() logOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$AccountEvent {
     TResult Function()? loadOrdersList,
     TResult Function(String productId, String placedTime, int index)?
         cancelOrder,
+    TResult Function()? logOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$AccountEvent {
     TResult Function()? loadOrdersList,
     TResult Function(String productId, String placedTime, int index)?
         cancelOrder,
+    TResult Function()? logOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -42,18 +45,21 @@ mixin _$AccountEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(LoadOrdersList value) loadOrdersList,
     required TResult Function(CancelOrder value) cancelOrder,
+    required TResult Function(LogOut value) logOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(LoadOrdersList value)? loadOrdersList,
     TResult Function(CancelOrder value)? cancelOrder,
+    TResult Function(LogOut value)? logOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadOrdersList value)? loadOrdersList,
     TResult Function(CancelOrder value)? cancelOrder,
+    TResult Function(LogOut value)? logOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -119,6 +125,7 @@ class _$LoadOrdersList implements LoadOrdersList {
     required TResult Function() loadOrdersList,
     required TResult Function(String productId, String placedTime, int index)
         cancelOrder,
+    required TResult Function() logOut,
   }) {
     return loadOrdersList();
   }
@@ -129,6 +136,7 @@ class _$LoadOrdersList implements LoadOrdersList {
     TResult Function()? loadOrdersList,
     TResult Function(String productId, String placedTime, int index)?
         cancelOrder,
+    TResult Function()? logOut,
   }) {
     return loadOrdersList?.call();
   }
@@ -139,6 +147,7 @@ class _$LoadOrdersList implements LoadOrdersList {
     TResult Function()? loadOrdersList,
     TResult Function(String productId, String placedTime, int index)?
         cancelOrder,
+    TResult Function()? logOut,
     required TResult orElse(),
   }) {
     if (loadOrdersList != null) {
@@ -152,6 +161,7 @@ class _$LoadOrdersList implements LoadOrdersList {
   TResult map<TResult extends Object?>({
     required TResult Function(LoadOrdersList value) loadOrdersList,
     required TResult Function(CancelOrder value) cancelOrder,
+    required TResult Function(LogOut value) logOut,
   }) {
     return loadOrdersList(this);
   }
@@ -161,6 +171,7 @@ class _$LoadOrdersList implements LoadOrdersList {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(LoadOrdersList value)? loadOrdersList,
     TResult Function(CancelOrder value)? cancelOrder,
+    TResult Function(LogOut value)? logOut,
   }) {
     return loadOrdersList?.call(this);
   }
@@ -170,6 +181,7 @@ class _$LoadOrdersList implements LoadOrdersList {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadOrdersList value)? loadOrdersList,
     TResult Function(CancelOrder value)? cancelOrder,
+    TResult Function(LogOut value)? logOut,
     required TResult orElse(),
   }) {
     if (loadOrdersList != null) {
@@ -271,6 +283,7 @@ class _$CancelOrder implements CancelOrder {
     required TResult Function() loadOrdersList,
     required TResult Function(String productId, String placedTime, int index)
         cancelOrder,
+    required TResult Function() logOut,
   }) {
     return cancelOrder(productId, placedTime, index);
   }
@@ -281,6 +294,7 @@ class _$CancelOrder implements CancelOrder {
     TResult Function()? loadOrdersList,
     TResult Function(String productId, String placedTime, int index)?
         cancelOrder,
+    TResult Function()? logOut,
   }) {
     return cancelOrder?.call(productId, placedTime, index);
   }
@@ -291,6 +305,7 @@ class _$CancelOrder implements CancelOrder {
     TResult Function()? loadOrdersList,
     TResult Function(String productId, String placedTime, int index)?
         cancelOrder,
+    TResult Function()? logOut,
     required TResult orElse(),
   }) {
     if (cancelOrder != null) {
@@ -304,6 +319,7 @@ class _$CancelOrder implements CancelOrder {
   TResult map<TResult extends Object?>({
     required TResult Function(LoadOrdersList value) loadOrdersList,
     required TResult Function(CancelOrder value) cancelOrder,
+    required TResult Function(LogOut value) logOut,
   }) {
     return cancelOrder(this);
   }
@@ -313,6 +329,7 @@ class _$CancelOrder implements CancelOrder {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(LoadOrdersList value)? loadOrdersList,
     TResult Function(CancelOrder value)? cancelOrder,
+    TResult Function(LogOut value)? logOut,
   }) {
     return cancelOrder?.call(this);
   }
@@ -322,6 +339,7 @@ class _$CancelOrder implements CancelOrder {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadOrdersList value)? loadOrdersList,
     TResult Function(CancelOrder value)? cancelOrder,
+    TResult Function(LogOut value)? logOut,
     required TResult orElse(),
   }) {
     if (cancelOrder != null) {
@@ -343,6 +361,117 @@ abstract class CancelOrder implements AccountEvent {
   @JsonKey(ignore: true)
   _$$CancelOrderCopyWith<_$CancelOrder> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LogOutCopyWith<$Res> {
+  factory _$$LogOutCopyWith(_$LogOut value, $Res Function(_$LogOut) then) =
+      __$$LogOutCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LogOutCopyWithImpl<$Res> extends _$AccountEventCopyWithImpl<$Res>
+    implements _$$LogOutCopyWith<$Res> {
+  __$$LogOutCopyWithImpl(_$LogOut _value, $Res Function(_$LogOut) _then)
+      : super(_value, (v) => _then(v as _$LogOut));
+
+  @override
+  _$LogOut get _value => super._value as _$LogOut;
+}
+
+/// @nodoc
+
+class _$LogOut implements LogOut {
+  const _$LogOut();
+
+  @override
+  String toString() {
+    return 'AccountEvent.logOut()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LogOut);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadOrdersList,
+    required TResult Function(String productId, String placedTime, int index)
+        cancelOrder,
+    required TResult Function() logOut,
+  }) {
+    return logOut();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loadOrdersList,
+    TResult Function(String productId, String placedTime, int index)?
+        cancelOrder,
+    TResult Function()? logOut,
+  }) {
+    return logOut?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadOrdersList,
+    TResult Function(String productId, String placedTime, int index)?
+        cancelOrder,
+    TResult Function()? logOut,
+    required TResult orElse(),
+  }) {
+    if (logOut != null) {
+      return logOut();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadOrdersList value) loadOrdersList,
+    required TResult Function(CancelOrder value) cancelOrder,
+    required TResult Function(LogOut value) logOut,
+  }) {
+    return logOut(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(LoadOrdersList value)? loadOrdersList,
+    TResult Function(CancelOrder value)? cancelOrder,
+    TResult Function(LogOut value)? logOut,
+  }) {
+    return logOut?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadOrdersList value)? loadOrdersList,
+    TResult Function(CancelOrder value)? cancelOrder,
+    TResult Function(LogOut value)? logOut,
+    required TResult orElse(),
+  }) {
+    if (logOut != null) {
+      return logOut(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LogOut implements AccountEvent {
+  const factory LogOut() = _$LogOut;
 }
 
 /// @nodoc

@@ -5,9 +5,12 @@ import 'package:mens_park/model/cart_model/cart_model.dart';
 import 'package:mens_park/model/order_model/order_model.dart';
 import 'package:mens_park/utils/colors.dart';
 import 'package:mens_park/utils/constant.dart';
+import 'package:mens_park/utils/global/global.dart';
 import 'package:mens_park/viewmodel/bloc/account/account_bloc.dart';
 import 'package:mens_park/viewmodel/bloc/cart/cart_bloc.dart';
 import 'package:mens_park/viewmodel/service/fetch_image_url.dart';
+
+import '../../../helpers/custom_alert_dialog.dart';
 
 class OrderProductContainer extends StatelessWidget {
   const OrderProductContainer({
@@ -101,36 +104,15 @@ class OrderProductContainer extends StatelessWidget {
                         const Spacer(),
                         ElevatedButton(
                           onPressed: () {
-                            showDialog(
-                              context: context,
-                              builder: (ctx) {
-                                return AlertDialog(
-                                  title: const Text(
-                                      'Are you sure you want to cancel the order'),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () => Navigator.of(ctx).pop(),
-                                      child: const Text('No'),
-                                    ),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 8.0),
-                                      child: ElevatedButton(
-                                        onPressed: () {
-                                          context.read<AccountBloc>().add(
-                                              CancelOrder(
-                                                  productId: productData.id!,
-                                                  placedTime:
-                                                      productData.placedTime!,
-                                                  index: index));
-                                        },
-                                        child: const Text('Yes'),
-                                      ),
-                                    )
-                                  ],
-                                );
-                              },
-                            );
+                            showCustomAlert(context,
+                                'Are you sure you want to cancel the order',
+                                (BuildContext ctx) {
+                              context.read<AccountBloc>().add(CancelOrder(
+                                  productId: productData.id!,
+                                  placedTime: productData.placedTime!,
+                                  index: index));
+                              Navigator.of(ctx).pop();
+                            });
                           },
                           child: const Text('Cancel'),
                         )

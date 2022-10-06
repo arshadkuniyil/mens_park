@@ -4,7 +4,7 @@ import 'package:mens_park/utils/colors.dart';
 import 'package:mens_park/utils/constant.dart';
 import 'package:mens_park/helpers/screen_size.dart';
 import 'package:mens_park/model/cart_model/cart_model.dart';
-import 'package:mens_park/view/widgets/cart_icon_button.dart';
+import 'package:mens_park/view/widgets/cart_icon/cart_icon_button.dart';
 import 'package:mens_park/view/widgets/page_app_bar.dart';
 import 'package:mens_park/viewmodel/bloc/cart/cart_bloc.dart';
 
@@ -16,6 +16,7 @@ class CartPage extends StatelessWidget {
   final GlobalKey<FormState> promoCodeFormKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
+    
     return BlocBuilder<CartBloc, CartState>(
       builder: (context, state) {
         final subTotal = state.subTotal;
@@ -134,8 +135,9 @@ class CartPage extends StatelessWidget {
                           child: Center(
                             child: ElevatedButton(
                               onPressed: () {
-                                Navigator.of(context)
-                                    .pushReplacementNamed('/checkout',arguments: shippingCharge + subTotal);
+                                Navigator.of(context).pushReplacementNamed(
+                                    '/checkout',
+                                    arguments: shippingCharge + subTotal);
                               },
                               style: ElevatedButton.styleFrom(
                                 minimumSize: Size.fromHeight(screenWidth * .15),

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mens_park/utils/colors.dart';
 import 'package:mens_park/utils/constant.dart';
 import 'package:mens_park/model/product_model/product_model.dart';
-import 'package:mens_park/view/widgets/show_alert_dialog.dart';
+import 'package:mens_park/view/widgets/show_size_alert_dialog.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class ProductDetailsWidget extends StatelessWidget {
@@ -136,7 +136,7 @@ class ProductDetailsWidget extends StatelessWidget {
                         height: screenWidth * .12,
                         child: ElevatedButton(
                           onPressed: () {
-                            ShowAlertDialog(
+                            ShowSizeAlertDialog(
                                 context: context,
                                 productData: productData,
                                 quantity: addToCartItemCount.value);

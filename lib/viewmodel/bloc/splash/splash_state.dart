@@ -1,7 +1,7 @@
 part of 'splash_bloc.dart';
 
 class SplashState {
- final UserSignInStatus userStatus;
+ final UserStatus userStatus;
   SplashState({
     required this.userStatus,
    
@@ -9,5 +9,5 @@ class SplashState {
 }
 
 class SplashInitial extends SplashState {
-  SplashInitial() : super(userStatus: UserSignInStatus.loading);
+  SplashInitial() : super(userStatus: UserStatus.loading);
 }

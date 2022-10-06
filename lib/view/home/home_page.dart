@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mens_park/utils/colors.dart';
@@ -14,12 +13,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     final double screenWidth = getScreenWidth(context);
-
+  
     return BlocBuilder<HomeAppBarBloc, HomeAppBarState>(
       builder: (context, state) {
-
-
         int? categoriesLength;
         List<String> categoryNameList = ['   ', '   ', '   '];
         if (state.categoryList.isNotEmpty) {

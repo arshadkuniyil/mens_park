@@ -3,6 +3,12 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mens_park/model/order_model/order_model.dart';
+import 'package:mens_park/utils/global/global.dart';
+import 'package:mens_park/viewmodel/bloc/auth/sign_in/sign_in_bloc.dart';
+import 'package:mens_park/viewmodel/bloc/auth/sign_up/sign_up_bloc.dart';
+import 'package:mens_park/viewmodel/bloc/cart/cart_bloc.dart';
+import 'package:mens_park/viewmodel/bloc/home/app_bar/home_app_bar_bloc.dart';
+import 'package:mens_park/viewmodel/bloc/home/product/home_product_bloc.dart';
 import 'package:mens_park/viewmodel/service/account_service.dart';
 import 'package:mens_park/viewmodel/service/auth_service.dart';
 
@@ -35,20 +41,21 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
 
     on<CancelOrder>((event, emit) async {
       final orderId = '${event.productId}_${event.placedTime}';
-      
-      emit(state.copyWith(
-        isCancelling: true
-      ));
+
+      emit(state.copyWith(isCancelling: true));
       await accountService.cancelOrder(orderId).then((_) {
-        log('message');
         orderProductList.removeAt(event.index);
-        log(orderProductList.toString());
 
         emit(state.copyWith(
-          orderProductList: orderProductList,
-          isCancelling: false
-        ));
+            orderProductList: orderProductList, isCancelling: false));
       });
+    });
+
+    on<LogOut>((event, emit) async {
+      await authService.signOut();
+      SignInState.initial();
+      navigatorKey.currentState!
+          .pushNamedAndRemoveUntil('/signUp', (route) => false);
     });
   }
 }

@@ -137,7 +137,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         subTotal += product.price! * event.quantity;
 
         snackbarKey.currentState
-            ?.showSnackBar(const SnackBar(content: Text('Added to cart')));
+            ?.showSnackBar(const SnackBar(content: Text('Added to bag')));
         emit(
           state.copyWith(
             cartProductList: cartProductList,

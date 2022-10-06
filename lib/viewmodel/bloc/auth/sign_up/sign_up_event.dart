@@ -4,7 +4,7 @@ part of 'sign_up_bloc.dart';
 class SignUpEvent with _$SignUpEvent {
   const factory SignUpEvent.signUpWithPhoneEvent(
       {required HashMap userData,
-      required BuildContext context}) = SignUpWithPhoneEvent;
+      }) = SignUpWithPhoneEvent;
 
   const factory SignUpEvent.signUpWithPhoneRes({required String responseCode}) =
       SignUpWithPhoneRes;

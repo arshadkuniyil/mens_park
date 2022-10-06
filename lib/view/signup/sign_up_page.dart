@@ -1,12 +1,13 @@
 import 'dart:collection';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mens_park/utils/colors.dart';
 import 'package:mens_park/helpers/screen_size.dart';
 import 'package:mens_park/view/widgets/error/custom_error_widget.dart';
-import 'package:mens_park/viewmodel/bloc/sign_up/sign_up_bloc.dart';
+import 'package:mens_park/viewmodel/bloc/auth/sign_up/sign_up_bloc.dart';
+import 'package:mens_park/viewmodel/core/service_status_enum.dart';
 import 'package:mens_park/viewmodel/service/auth_service.dart';
-import 'package:mens_park/viewmodel/service/core/service_status_enum.dart';
 import 'widgets/sign_up_with_phone_form.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -28,8 +29,10 @@ class SignUpPage extends StatelessWidget {
             listener: (context, state) {
               if (state.signUpWithPhoneStatus ==
                   SignUpWithPhoneStatus.codeSent) {
-                Navigator.of(context)
-                    .pushReplacementNamed('/otpVerificationScreen',);
+              
+                Navigator.of(context).pushReplacementNamed(
+                    '/otpVerificationScreen',
+                    arguments: state.mobileNumber);
               }
             },
             buildWhen: (previous, current) => current != previous,
@@ -42,7 +45,7 @@ class SignUpPage extends StatelessWidget {
                         'Please connect your internet connection.\n      it looks like you\'re not connected to\n                          the internet',
                     retryFunc: () {
                       context.read<SignUpBloc>().add(SignUpWithPhoneEvent(
-                          context: context, userData: userData));
+                           userData: userData,));
                     },
                   );
                 case SignUpWithPhoneStatus.notStarted:
@@ -50,7 +53,7 @@ class SignUpPage extends StatelessWidget {
                     userData: userData,
                     kPadding: kPadding,
                     userService: userService,
-                    blocContext: context,
+                  
                   );
 
                 case SignUpWithPhoneStatus.loading:
@@ -79,7 +82,7 @@ class SignUpPage extends StatelessWidget {
                 userData: userData,
                 kPadding: kPadding,
                 userService: userService,
-                blocContext: context,
+                
               );
             },
           ),

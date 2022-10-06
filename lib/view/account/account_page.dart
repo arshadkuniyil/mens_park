@@ -5,10 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mens_park/helpers/screen_size.dart';
 import 'package:mens_park/utils/colors.dart';
 import 'package:mens_park/utils/constant.dart';
-import 'package:mens_park/view/widgets/cart_icon_button.dart';
 import 'package:mens_park/view/widgets/page_app_bar.dart';
 import 'package:mens_park/viewmodel/bloc/account/account_bloc.dart';
 
+import 'widgets/log_out_widget.dart';
 import 'widgets/order_product_container.dart';
 
 class AccountPage extends StatelessWidget {
@@ -25,7 +25,7 @@ class AccountPage extends StatelessWidget {
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(100),
         child: PageAppBar(
-          actionWidget: CartIconButton(),
+          actionWidget: LogOutWidget(),
           pageName: '',
         ),
       ),

@@ -5,11 +5,11 @@ import 'package:mens_park/utils/colors.dart';
 import 'package:mens_park/model/product_model/product_model.dart';
 import 'package:mens_park/viewmodel/bloc/cart/cart_bloc.dart';
 
-class ShowAlertDialog {
+class ShowSizeAlertDialog {
   final BuildContext context;
   final ProductModel productData;
   final int quantity;
-  ShowAlertDialog({
+  ShowSizeAlertDialog({
     required this.context,
     required this.productData,
     required this.quantity,

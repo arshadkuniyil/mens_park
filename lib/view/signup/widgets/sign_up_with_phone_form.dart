@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mens_park/helpers/screen_size.dart';
 import 'package:mens_park/utils/colors.dart';
 import 'package:mens_park/view/widgets/text_field_outer_widget.dart';
-import 'package:mens_park/viewmodel/bloc/sign_up/sign_up_bloc.dart';
+import 'package:mens_park/viewmodel/bloc/auth/sign_up/sign_up_bloc.dart';
 import 'package:mens_park/viewmodel/service/auth_service.dart';
 
 class SignUpWIthPhoneForm extends StatelessWidget {
@@ -14,13 +14,13 @@ class SignUpWIthPhoneForm extends StatelessWidget {
       required this.userData,
       required this.kPadding,
       required this.userService,
-      required this.blocContext})
+      })
       : super(key: key);
 
   final HashMap userData;
   final double kPadding;
   final AuthService userService;
-  final BuildContext blocContext;
+ 
   static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -130,7 +130,7 @@ class SignUpWIthPhoneForm extends StatelessWidget {
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
                         context.read<SignUpBloc>().add(SignUpWithPhoneEvent(
-                            context: blocContext, userData: userData));
+                             userData: userData));
                       }
                     },
                     child: const Text('  Verify  '),

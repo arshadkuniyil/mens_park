@@ -20,55 +20,55 @@ class CategoryTab extends StatelessWidget {
     final double screenWidth = getScreenWidth(context);
     final double paddingProductCard = screenWidth * 0.06;
 
-    return BlocProvider(
-      create: (context) => HomeProductBloc()
-        ..add(GetHomeProductsEvent(categoryName: categoryName)),
-      child: BlocBuilder<HomeProductBloc, HomeProductState>(
-        builder: (context, state) {
-          if (state.isLoading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state.productList.isNotEmpty) {
-            
-            //main products section
-            final productList = state.productList;
-            return Container(
-              color: kGrey,
-              height: screenWidth * 0.2,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: productList.length,
-                      itemBuilder: (context, index) {
-                        final bool isLast = index == productList.length - 1;
-                        return ProductCard(
-                          paddingProductCard: paddingProductCard,
-                          screenWidth: screenWidth,
-                          index: index,
-                          productData: productList[index],
-                          isLast: isLast,
-                        );
-                      },
-                    ),
-                  ),
-                  //popular products section
-                  Expanded(
-                    flex: 2,
-                    child: PopularListView(
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      context
+          .read<HomeProductBloc>()
+          .add(GetHomeProductsEvent(categoryName: categoryName));
+    });
+    return BlocBuilder<HomeProductBloc, HomeProductState>(
+      builder: (context, state) {
+        if (state.isLoading) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (state.productList.isNotEmpty) {
+          //main products section
+          final productList = state.productList;
+          return Container(
+            color: kGrey,
+            height: screenWidth * 0.2,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  flex: 5,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: productList.length,
+                    itemBuilder: (context, index) {
+                      final bool isLast = index == productList.length - 1;
+                      return ProductCard(
                         paddingProductCard: paddingProductCard,
                         screenWidth: screenWidth,
-                        popularProductList: productList),
-                  )
-                ],
-              ),
-            );
-          }
-          return const SizedBox();
-        },
-      ),
+                        index: index,
+                        productData: productList[index],
+                        isLast: isLast,
+                      );
+                    },
+                  ),
+                ),
+                //popular products section
+                Expanded(
+                  flex: 2,
+                  child: PopularListView(
+                      paddingProductCard: paddingProductCard,
+                      screenWidth: screenWidth,
+                      popularProductList: productList),
+                )
+              ],
+            ),
+          );
+        }
+        return const SizedBox();
+      },
     );
   }
 }

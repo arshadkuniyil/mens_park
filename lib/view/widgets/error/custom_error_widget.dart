@@ -4,7 +4,7 @@ import 'package:mens_park/helpers/screen_size.dart';
 class CustomErrorWidget extends StatelessWidget {
   final String errorName;
   final String errorDetails;
-  final dynamic retryFunc;
+  final Function() retryFunc;
 
   const CustomErrorWidget(
       {Key? key,

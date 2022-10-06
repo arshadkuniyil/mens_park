@@ -18,8 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SignUpEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            HashMap<dynamic, dynamic> userData, BuildContext context)
+    required TResult Function(HashMap<dynamic, dynamic> userData)
         signUpWithPhoneEvent,
     required TResult Function(String responseCode) signUpWithPhoneRes,
     required TResult Function() signUpResetEvent,
@@ -27,16 +26,14 @@ mixin _$SignUpEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(HashMap<dynamic, dynamic> userData, BuildContext context)?
-        signUpWithPhoneEvent,
+    TResult Function(HashMap<dynamic, dynamic> userData)? signUpWithPhoneEvent,
     TResult Function(String responseCode)? signUpWithPhoneRes,
     TResult Function()? signUpResetEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(HashMap<dynamic, dynamic> userData, BuildContext context)?
-        signUpWithPhoneEvent,
+    TResult Function(HashMap<dynamic, dynamic> userData)? signUpWithPhoneEvent,
     TResult Function(String responseCode)? signUpWithPhoneRes,
     TResult Function()? signUpResetEvent,
     required TResult orElse(),
@@ -87,7 +84,7 @@ abstract class _$$SignUpWithPhoneEventCopyWith<$Res> {
   factory _$$SignUpWithPhoneEventCopyWith(_$SignUpWithPhoneEvent value,
           $Res Function(_$SignUpWithPhoneEvent) then) =
       __$$SignUpWithPhoneEventCopyWithImpl<$Res>;
-  $Res call({HashMap<dynamic, dynamic> userData, BuildContext context});
+  $Res call({HashMap<dynamic, dynamic> userData});
 }
 
 /// @nodoc
@@ -104,17 +101,12 @@ class __$$SignUpWithPhoneEventCopyWithImpl<$Res>
   @override
   $Res call({
     Object? userData = freezed,
-    Object? context = freezed,
   }) {
     return _then(_$SignUpWithPhoneEvent(
       userData: userData == freezed
           ? _value.userData
           : userData // ignore: cast_nullable_to_non_nullable
               as HashMap<dynamic, dynamic>,
-      context: context == freezed
-          ? _value.context
-          : context // ignore: cast_nullable_to_non_nullable
-              as BuildContext,
     ));
   }
 }
@@ -122,16 +114,14 @@ class __$$SignUpWithPhoneEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SignUpWithPhoneEvent implements SignUpWithPhoneEvent {
-  const _$SignUpWithPhoneEvent({required this.userData, required this.context});
+  const _$SignUpWithPhoneEvent({required this.userData});
 
   @override
   final HashMap<dynamic, dynamic> userData;
-  @override
-  final BuildContext context;
 
   @override
   String toString() {
-    return 'SignUpEvent.signUpWithPhoneEvent(userData: $userData, context: $context)';
+    return 'SignUpEvent.signUpWithPhoneEvent(userData: $userData)';
   }
 
   @override
@@ -139,15 +129,12 @@ class _$SignUpWithPhoneEvent implements SignUpWithPhoneEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SignUpWithPhoneEvent &&
-            const DeepCollectionEquality().equals(other.userData, userData) &&
-            const DeepCollectionEquality().equals(other.context, context));
+            const DeepCollectionEquality().equals(other.userData, userData));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(userData),
-      const DeepCollectionEquality().hash(context));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(userData));
 
   @JsonKey(ignore: true)
   @override
@@ -158,37 +145,34 @@ class _$SignUpWithPhoneEvent implements SignUpWithPhoneEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            HashMap<dynamic, dynamic> userData, BuildContext context)
+    required TResult Function(HashMap<dynamic, dynamic> userData)
         signUpWithPhoneEvent,
     required TResult Function(String responseCode) signUpWithPhoneRes,
     required TResult Function() signUpResetEvent,
   }) {
-    return signUpWithPhoneEvent(userData, context);
+    return signUpWithPhoneEvent(userData);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(HashMap<dynamic, dynamic> userData, BuildContext context)?
-        signUpWithPhoneEvent,
+    TResult Function(HashMap<dynamic, dynamic> userData)? signUpWithPhoneEvent,
     TResult Function(String responseCode)? signUpWithPhoneRes,
     TResult Function()? signUpResetEvent,
   }) {
-    return signUpWithPhoneEvent?.call(userData, context);
+    return signUpWithPhoneEvent?.call(userData);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(HashMap<dynamic, dynamic> userData, BuildContext context)?
-        signUpWithPhoneEvent,
+    TResult Function(HashMap<dynamic, dynamic> userData)? signUpWithPhoneEvent,
     TResult Function(String responseCode)? signUpWithPhoneRes,
     TResult Function()? signUpResetEvent,
     required TResult orElse(),
   }) {
     if (signUpWithPhoneEvent != null) {
-      return signUpWithPhoneEvent(userData, context);
+      return signUpWithPhoneEvent(userData);
     }
     return orElse();
   }
@@ -230,11 +214,10 @@ class _$SignUpWithPhoneEvent implements SignUpWithPhoneEvent {
 
 abstract class SignUpWithPhoneEvent implements SignUpEvent {
   const factory SignUpWithPhoneEvent(
-      {required final HashMap<dynamic, dynamic> userData,
-      required final BuildContext context}) = _$SignUpWithPhoneEvent;
+          {required final HashMap<dynamic, dynamic> userData}) =
+      _$SignUpWithPhoneEvent;
 
   HashMap<dynamic, dynamic> get userData;
-  BuildContext get context;
   @JsonKey(ignore: true)
   _$$SignUpWithPhoneEventCopyWith<_$SignUpWithPhoneEvent> get copyWith =>
       throw _privateConstructorUsedError;
@@ -307,8 +290,7 @@ class _$SignUpWithPhoneRes implements SignUpWithPhoneRes {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            HashMap<dynamic, dynamic> userData, BuildContext context)
+    required TResult Function(HashMap<dynamic, dynamic> userData)
         signUpWithPhoneEvent,
     required TResult Function(String responseCode) signUpWithPhoneRes,
     required TResult Function() signUpResetEvent,
@@ -319,8 +301,7 @@ class _$SignUpWithPhoneRes implements SignUpWithPhoneRes {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(HashMap<dynamic, dynamic> userData, BuildContext context)?
-        signUpWithPhoneEvent,
+    TResult Function(HashMap<dynamic, dynamic> userData)? signUpWithPhoneEvent,
     TResult Function(String responseCode)? signUpWithPhoneRes,
     TResult Function()? signUpResetEvent,
   }) {
@@ -330,8 +311,7 @@ class _$SignUpWithPhoneRes implements SignUpWithPhoneRes {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(HashMap<dynamic, dynamic> userData, BuildContext context)?
-        signUpWithPhoneEvent,
+    TResult Function(HashMap<dynamic, dynamic> userData)? signUpWithPhoneEvent,
     TResult Function(String responseCode)? signUpWithPhoneRes,
     TResult Function()? signUpResetEvent,
     required TResult orElse(),
@@ -428,8 +408,7 @@ class _$SignUpResetEvent implements SignUpResetEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            HashMap<dynamic, dynamic> userData, BuildContext context)
+    required TResult Function(HashMap<dynamic, dynamic> userData)
         signUpWithPhoneEvent,
     required TResult Function(String responseCode) signUpWithPhoneRes,
     required TResult Function() signUpResetEvent,
@@ -440,8 +419,7 @@ class _$SignUpResetEvent implements SignUpResetEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(HashMap<dynamic, dynamic> userData, BuildContext context)?
-        signUpWithPhoneEvent,
+    TResult Function(HashMap<dynamic, dynamic> userData)? signUpWithPhoneEvent,
     TResult Function(String responseCode)? signUpWithPhoneRes,
     TResult Function()? signUpResetEvent,
   }) {
@@ -451,8 +429,7 @@ class _$SignUpResetEvent implements SignUpResetEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(HashMap<dynamic, dynamic> userData, BuildContext context)?
-        signUpWithPhoneEvent,
+    TResult Function(HashMap<dynamic, dynamic> userData)? signUpWithPhoneEvent,
     TResult Function(String responseCode)? signUpWithPhoneRes,
     TResult Function()? signUpResetEvent,
     required TResult orElse(),
@@ -506,6 +483,7 @@ abstract class SignUpResetEvent implements SignUpEvent {
 mixin _$SignUpState {
   SignUpWithPhoneStatus get signUpWithPhoneStatus =>
       throw _privateConstructorUsedError;
+  String get mobileNumber => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SignUpStateCopyWith<SignUpState> get copyWith =>
@@ -517,7 +495,7 @@ abstract class $SignUpStateCopyWith<$Res> {
   factory $SignUpStateCopyWith(
           SignUpState value, $Res Function(SignUpState) then) =
       _$SignUpStateCopyWithImpl<$Res>;
-  $Res call({SignUpWithPhoneStatus signUpWithPhoneStatus});
+  $Res call({SignUpWithPhoneStatus signUpWithPhoneStatus, String mobileNumber});
 }
 
 /// @nodoc
@@ -531,12 +509,17 @@ class _$SignUpStateCopyWithImpl<$Res> implements $SignUpStateCopyWith<$Res> {
   @override
   $Res call({
     Object? signUpWithPhoneStatus = freezed,
+    Object? mobileNumber = freezed,
   }) {
     return _then(_value.copyWith(
       signUpWithPhoneStatus: signUpWithPhoneStatus == freezed
           ? _value.signUpWithPhoneStatus
           : signUpWithPhoneStatus // ignore: cast_nullable_to_non_nullable
               as SignUpWithPhoneStatus,
+      mobileNumber: mobileNumber == freezed
+          ? _value.mobileNumber
+          : mobileNumber // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -548,7 +531,7 @@ abstract class _$$_SignUpStateCopyWith<$Res>
           _$_SignUpState value, $Res Function(_$_SignUpState) then) =
       __$$_SignUpStateCopyWithImpl<$Res>;
   @override
-  $Res call({SignUpWithPhoneStatus signUpWithPhoneStatus});
+  $Res call({SignUpWithPhoneStatus signUpWithPhoneStatus, String mobileNumber});
 }
 
 /// @nodoc
@@ -564,12 +547,17 @@ class __$$_SignUpStateCopyWithImpl<$Res> extends _$SignUpStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? signUpWithPhoneStatus = freezed,
+    Object? mobileNumber = freezed,
   }) {
     return _then(_$_SignUpState(
       signUpWithPhoneStatus: signUpWithPhoneStatus == freezed
           ? _value.signUpWithPhoneStatus
           : signUpWithPhoneStatus // ignore: cast_nullable_to_non_nullable
               as SignUpWithPhoneStatus,
+      mobileNumber: mobileNumber == freezed
+          ? _value.mobileNumber
+          : mobileNumber // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -577,14 +565,17 @@ class __$$_SignUpStateCopyWithImpl<$Res> extends _$SignUpStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SignUpState implements _SignUpState {
-  const _$_SignUpState({required this.signUpWithPhoneStatus});
+  const _$_SignUpState(
+      {required this.signUpWithPhoneStatus, required this.mobileNumber});
 
   @override
   final SignUpWithPhoneStatus signUpWithPhoneStatus;
+  @override
+  final String mobileNumber;
 
   @override
   String toString() {
-    return 'SignUpState(signUpWithPhoneStatus: $signUpWithPhoneStatus)';
+    return 'SignUpState(signUpWithPhoneStatus: $signUpWithPhoneStatus, mobileNumber: $mobileNumber)';
   }
 
   @override
@@ -593,12 +584,16 @@ class _$_SignUpState implements _SignUpState {
         (other.runtimeType == runtimeType &&
             other is _$_SignUpState &&
             const DeepCollectionEquality()
-                .equals(other.signUpWithPhoneStatus, signUpWithPhoneStatus));
+                .equals(other.signUpWithPhoneStatus, signUpWithPhoneStatus) &&
+            const DeepCollectionEquality()
+                .equals(other.mobileNumber, mobileNumber));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(signUpWithPhoneStatus));
+      runtimeType,
+      const DeepCollectionEquality().hash(signUpWithPhoneStatus),
+      const DeepCollectionEquality().hash(mobileNumber));
 
   @JsonKey(ignore: true)
   @override
@@ -608,11 +603,13 @@ class _$_SignUpState implements _SignUpState {
 
 abstract class _SignUpState implements SignUpState {
   const factory _SignUpState(
-          {required final SignUpWithPhoneStatus signUpWithPhoneStatus}) =
-      _$_SignUpState;
+      {required final SignUpWithPhoneStatus signUpWithPhoneStatus,
+      required final String mobileNumber}) = _$_SignUpState;
 
   @override
   SignUpWithPhoneStatus get signUpWithPhoneStatus;
+  @override
+  String get mobileNumber;
   @override
   @JsonKey(ignore: true)
   _$$_SignUpStateCopyWith<_$_SignUpState> get copyWith =>

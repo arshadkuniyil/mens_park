@@ -9,18 +9,21 @@ enum SignUpWithPhoneStatus {
   invalidVerificationId
 }
 
-enum SignInStatus {
+enum PhoneSignInStatus {
   notStarted,
   loading,
   success,
+  codeResent,
   failed,
   networkError,
   invalidVerificationCode,
   invalidVerificationId,
-  unknownError
+  unknownError,
+  smsLimitExceed
 }
 
-enum UserSignInStatus{
+
+enum UserStatus{
   loading,
   userExist,
   userNotExist,
