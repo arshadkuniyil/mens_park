@@ -1,5 +1,4 @@
 import 'dart:collection';
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mens_park/utils/colors.dart';
@@ -7,13 +6,12 @@ import 'package:mens_park/helpers/screen_size.dart';
 import 'package:mens_park/view/widgets/error/custom_error_widget.dart';
 import 'package:mens_park/viewmodel/bloc/auth/sign_up/sign_up_bloc.dart';
 import 'package:mens_park/viewmodel/core/service_status_enum.dart';
-import 'package:mens_park/viewmodel/service/auth_service.dart';
+import 'widgets/sign_in_with_google_btn.dart';
 import 'widgets/sign_up_with_phone_form.dart';
 
 class SignUpPage extends StatelessWidget {
   SignUpPage({Key? key}) : super(key: key);
 
-  final AuthService userService = AuthService();
   final HashMap userData = HashMap<String, String>();
 
   @override
@@ -29,7 +27,6 @@ class SignUpPage extends StatelessWidget {
             listener: (context, state) {
               if (state.signUpWithPhoneStatus ==
                   SignUpWithPhoneStatus.codeSent) {
-              
                 Navigator.of(context).pushReplacementNamed(
                     '/otpVerificationScreen',
                     arguments: state.mobileNumber);
@@ -45,15 +42,18 @@ class SignUpPage extends StatelessWidget {
                         'Please connect your internet connection.\n      it looks like you\'re not connected to\n                          the internet',
                     retryFunc: () {
                       context.read<SignUpBloc>().add(SignUpWithPhoneEvent(
-                           userData: userData,));
+                            userData: userData,
+                          ));
                     },
                   );
                 case SignUpWithPhoneStatus.notStarted:
-                  return SignUpWIthPhoneForm(
-                    userData: userData,
-                    kPadding: kPadding,
-                    userService: userService,
-                  
+                  return Column(
+                    children: [
+                      SignUpWIthPhoneForm(
+                          userData: userData, kPadding: kPadding),
+                      const Text('or'),
+                      SignInWithGoogleBtn(kPadding: kPadding)
+                    ],
                   );
 
                 case SignUpWithPhoneStatus.loading:
@@ -78,12 +78,7 @@ class SignUpPage extends StatelessWidget {
                 default:
                   break;
               }
-              return SignUpWIthPhoneForm(
-                userData: userData,
-                kPadding: kPadding,
-                userService: userService,
-                
-              );
+              return const SizedBox();
             },
           ),
         ),

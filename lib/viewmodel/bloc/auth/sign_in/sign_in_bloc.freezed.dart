@@ -18,51 +18,57 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SignInEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() startCountDown,
     required TResult Function(String otp) signInWithOtp,
     required TResult Function() resendOtp,
     required TResult Function(String responseCode) resendOtpRes,
-    required TResult Function() startCountDown,
+    required TResult Function() signInWithGoogle,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? startCountDown,
     TResult Function(String otp)? signInWithOtp,
     TResult Function()? resendOtp,
     TResult Function(String responseCode)? resendOtpRes,
-    TResult Function()? startCountDown,
+    TResult Function()? signInWithGoogle,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? startCountDown,
     TResult Function(String otp)? signInWithOtp,
     TResult Function()? resendOtp,
     TResult Function(String responseCode)? resendOtpRes,
-    TResult Function()? startCountDown,
+    TResult Function()? signInWithGoogle,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(StartCountDown value) startCountDown,
     required TResult Function(SignInWithOtp value) signInWithOtp,
     required TResult Function(ResendOtp value) resendOtp,
     required TResult Function(ResendOtpRes value) resendOtpRes,
-    required TResult Function(StartCountDown value) startCountDown,
+    required TResult Function(SignInWithGoogle value) signInWithGoogle,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(StartCountDown value)? startCountDown,
     TResult Function(SignInWithOtp value)? signInWithOtp,
     TResult Function(ResendOtp value)? resendOtp,
     TResult Function(ResendOtpRes value)? resendOtpRes,
-    TResult Function(StartCountDown value)? startCountDown,
+    TResult Function(SignInWithGoogle value)? signInWithGoogle,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(StartCountDown value)? startCountDown,
     TResult Function(SignInWithOtp value)? signInWithOtp,
     TResult Function(ResendOtp value)? resendOtp,
     TResult Function(ResendOtpRes value)? resendOtpRes,
-    TResult Function(StartCountDown value)? startCountDown,
+    TResult Function(SignInWithGoogle value)? signInWithGoogle,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -82,6 +88,129 @@ class _$SignInEventCopyWithImpl<$Res> implements $SignInEventCopyWith<$Res> {
   final SignInEvent _value;
   // ignore: unused_field
   final $Res Function(SignInEvent) _then;
+}
+
+/// @nodoc
+abstract class _$$StartCountDownCopyWith<$Res> {
+  factory _$$StartCountDownCopyWith(
+          _$StartCountDown value, $Res Function(_$StartCountDown) then) =
+      __$$StartCountDownCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$StartCountDownCopyWithImpl<$Res>
+    extends _$SignInEventCopyWithImpl<$Res>
+    implements _$$StartCountDownCopyWith<$Res> {
+  __$$StartCountDownCopyWithImpl(
+      _$StartCountDown _value, $Res Function(_$StartCountDown) _then)
+      : super(_value, (v) => _then(v as _$StartCountDown));
+
+  @override
+  _$StartCountDown get _value => super._value as _$StartCountDown;
+}
+
+/// @nodoc
+
+class _$StartCountDown implements StartCountDown {
+  const _$StartCountDown();
+
+  @override
+  String toString() {
+    return 'SignInEvent.startCountDown()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$StartCountDown);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() startCountDown,
+    required TResult Function(String otp) signInWithOtp,
+    required TResult Function() resendOtp,
+    required TResult Function(String responseCode) resendOtpRes,
+    required TResult Function() signInWithGoogle,
+  }) {
+    return startCountDown();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? startCountDown,
+    TResult Function(String otp)? signInWithOtp,
+    TResult Function()? resendOtp,
+    TResult Function(String responseCode)? resendOtpRes,
+    TResult Function()? signInWithGoogle,
+  }) {
+    return startCountDown?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? startCountDown,
+    TResult Function(String otp)? signInWithOtp,
+    TResult Function()? resendOtp,
+    TResult Function(String responseCode)? resendOtpRes,
+    TResult Function()? signInWithGoogle,
+    required TResult orElse(),
+  }) {
+    if (startCountDown != null) {
+      return startCountDown();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(StartCountDown value) startCountDown,
+    required TResult Function(SignInWithOtp value) signInWithOtp,
+    required TResult Function(ResendOtp value) resendOtp,
+    required TResult Function(ResendOtpRes value) resendOtpRes,
+    required TResult Function(SignInWithGoogle value) signInWithGoogle,
+  }) {
+    return startCountDown(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(StartCountDown value)? startCountDown,
+    TResult Function(SignInWithOtp value)? signInWithOtp,
+    TResult Function(ResendOtp value)? resendOtp,
+    TResult Function(ResendOtpRes value)? resendOtpRes,
+    TResult Function(SignInWithGoogle value)? signInWithGoogle,
+  }) {
+    return startCountDown?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(StartCountDown value)? startCountDown,
+    TResult Function(SignInWithOtp value)? signInWithOtp,
+    TResult Function(ResendOtp value)? resendOtp,
+    TResult Function(ResendOtpRes value)? resendOtpRes,
+    TResult Function(SignInWithGoogle value)? signInWithGoogle,
+    required TResult orElse(),
+  }) {
+    if (startCountDown != null) {
+      return startCountDown(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class StartCountDown implements SignInEvent {
+  const factory StartCountDown() = _$StartCountDown;
 }
 
 /// @nodoc
@@ -149,10 +278,11 @@ class _$SignInWithOtp implements SignInWithOtp {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() startCountDown,
     required TResult Function(String otp) signInWithOtp,
     required TResult Function() resendOtp,
     required TResult Function(String responseCode) resendOtpRes,
-    required TResult Function() startCountDown,
+    required TResult Function() signInWithGoogle,
   }) {
     return signInWithOtp(otp);
   }
@@ -160,10 +290,11 @@ class _$SignInWithOtp implements SignInWithOtp {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? startCountDown,
     TResult Function(String otp)? signInWithOtp,
     TResult Function()? resendOtp,
     TResult Function(String responseCode)? resendOtpRes,
-    TResult Function()? startCountDown,
+    TResult Function()? signInWithGoogle,
   }) {
     return signInWithOtp?.call(otp);
   }
@@ -171,10 +302,11 @@ class _$SignInWithOtp implements SignInWithOtp {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? startCountDown,
     TResult Function(String otp)? signInWithOtp,
     TResult Function()? resendOtp,
     TResult Function(String responseCode)? resendOtpRes,
-    TResult Function()? startCountDown,
+    TResult Function()? signInWithGoogle,
     required TResult orElse(),
   }) {
     if (signInWithOtp != null) {
@@ -186,10 +318,11 @@ class _$SignInWithOtp implements SignInWithOtp {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(StartCountDown value) startCountDown,
     required TResult Function(SignInWithOtp value) signInWithOtp,
     required TResult Function(ResendOtp value) resendOtp,
     required TResult Function(ResendOtpRes value) resendOtpRes,
-    required TResult Function(StartCountDown value) startCountDown,
+    required TResult Function(SignInWithGoogle value) signInWithGoogle,
   }) {
     return signInWithOtp(this);
   }
@@ -197,10 +330,11 @@ class _$SignInWithOtp implements SignInWithOtp {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(StartCountDown value)? startCountDown,
     TResult Function(SignInWithOtp value)? signInWithOtp,
     TResult Function(ResendOtp value)? resendOtp,
     TResult Function(ResendOtpRes value)? resendOtpRes,
-    TResult Function(StartCountDown value)? startCountDown,
+    TResult Function(SignInWithGoogle value)? signInWithGoogle,
   }) {
     return signInWithOtp?.call(this);
   }
@@ -208,10 +342,11 @@ class _$SignInWithOtp implements SignInWithOtp {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(StartCountDown value)? startCountDown,
     TResult Function(SignInWithOtp value)? signInWithOtp,
     TResult Function(ResendOtp value)? resendOtp,
     TResult Function(ResendOtpRes value)? resendOtpRes,
-    TResult Function(StartCountDown value)? startCountDown,
+    TResult Function(SignInWithGoogle value)? signInWithGoogle,
     required TResult orElse(),
   }) {
     if (signInWithOtp != null) {
@@ -270,10 +405,11 @@ class _$ResendOtp implements ResendOtp {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() startCountDown,
     required TResult Function(String otp) signInWithOtp,
     required TResult Function() resendOtp,
     required TResult Function(String responseCode) resendOtpRes,
-    required TResult Function() startCountDown,
+    required TResult Function() signInWithGoogle,
   }) {
     return resendOtp();
   }
@@ -281,10 +417,11 @@ class _$ResendOtp implements ResendOtp {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? startCountDown,
     TResult Function(String otp)? signInWithOtp,
     TResult Function()? resendOtp,
     TResult Function(String responseCode)? resendOtpRes,
-    TResult Function()? startCountDown,
+    TResult Function()? signInWithGoogle,
   }) {
     return resendOtp?.call();
   }
@@ -292,10 +429,11 @@ class _$ResendOtp implements ResendOtp {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? startCountDown,
     TResult Function(String otp)? signInWithOtp,
     TResult Function()? resendOtp,
     TResult Function(String responseCode)? resendOtpRes,
-    TResult Function()? startCountDown,
+    TResult Function()? signInWithGoogle,
     required TResult orElse(),
   }) {
     if (resendOtp != null) {
@@ -307,10 +445,11 @@ class _$ResendOtp implements ResendOtp {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(StartCountDown value) startCountDown,
     required TResult Function(SignInWithOtp value) signInWithOtp,
     required TResult Function(ResendOtp value) resendOtp,
     required TResult Function(ResendOtpRes value) resendOtpRes,
-    required TResult Function(StartCountDown value) startCountDown,
+    required TResult Function(SignInWithGoogle value) signInWithGoogle,
   }) {
     return resendOtp(this);
   }
@@ -318,10 +457,11 @@ class _$ResendOtp implements ResendOtp {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(StartCountDown value)? startCountDown,
     TResult Function(SignInWithOtp value)? signInWithOtp,
     TResult Function(ResendOtp value)? resendOtp,
     TResult Function(ResendOtpRes value)? resendOtpRes,
-    TResult Function(StartCountDown value)? startCountDown,
+    TResult Function(SignInWithGoogle value)? signInWithGoogle,
   }) {
     return resendOtp?.call(this);
   }
@@ -329,10 +469,11 @@ class _$ResendOtp implements ResendOtp {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(StartCountDown value)? startCountDown,
     TResult Function(SignInWithOtp value)? signInWithOtp,
     TResult Function(ResendOtp value)? resendOtp,
     TResult Function(ResendOtpRes value)? resendOtpRes,
-    TResult Function(StartCountDown value)? startCountDown,
+    TResult Function(SignInWithGoogle value)? signInWithGoogle,
     required TResult orElse(),
   }) {
     if (resendOtp != null) {
@@ -411,10 +552,11 @@ class _$ResendOtpRes implements ResendOtpRes {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() startCountDown,
     required TResult Function(String otp) signInWithOtp,
     required TResult Function() resendOtp,
     required TResult Function(String responseCode) resendOtpRes,
-    required TResult Function() startCountDown,
+    required TResult Function() signInWithGoogle,
   }) {
     return resendOtpRes(responseCode);
   }
@@ -422,10 +564,11 @@ class _$ResendOtpRes implements ResendOtpRes {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? startCountDown,
     TResult Function(String otp)? signInWithOtp,
     TResult Function()? resendOtp,
     TResult Function(String responseCode)? resendOtpRes,
-    TResult Function()? startCountDown,
+    TResult Function()? signInWithGoogle,
   }) {
     return resendOtpRes?.call(responseCode);
   }
@@ -433,10 +576,11 @@ class _$ResendOtpRes implements ResendOtpRes {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? startCountDown,
     TResult Function(String otp)? signInWithOtp,
     TResult Function()? resendOtp,
     TResult Function(String responseCode)? resendOtpRes,
-    TResult Function()? startCountDown,
+    TResult Function()? signInWithGoogle,
     required TResult orElse(),
   }) {
     if (resendOtpRes != null) {
@@ -448,10 +592,11 @@ class _$ResendOtpRes implements ResendOtpRes {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(StartCountDown value) startCountDown,
     required TResult Function(SignInWithOtp value) signInWithOtp,
     required TResult Function(ResendOtp value) resendOtp,
     required TResult Function(ResendOtpRes value) resendOtpRes,
-    required TResult Function(StartCountDown value) startCountDown,
+    required TResult Function(SignInWithGoogle value) signInWithGoogle,
   }) {
     return resendOtpRes(this);
   }
@@ -459,10 +604,11 @@ class _$ResendOtpRes implements ResendOtpRes {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(StartCountDown value)? startCountDown,
     TResult Function(SignInWithOtp value)? signInWithOtp,
     TResult Function(ResendOtp value)? resendOtp,
     TResult Function(ResendOtpRes value)? resendOtpRes,
-    TResult Function(StartCountDown value)? startCountDown,
+    TResult Function(SignInWithGoogle value)? signInWithGoogle,
   }) {
     return resendOtpRes?.call(this);
   }
@@ -470,10 +616,11 @@ class _$ResendOtpRes implements ResendOtpRes {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(StartCountDown value)? startCountDown,
     TResult Function(SignInWithOtp value)? signInWithOtp,
     TResult Function(ResendOtp value)? resendOtp,
     TResult Function(ResendOtpRes value)? resendOtpRes,
-    TResult Function(StartCountDown value)? startCountDown,
+    TResult Function(SignInWithGoogle value)? signInWithGoogle,
     required TResult orElse(),
   }) {
     if (resendOtpRes != null) {
@@ -494,38 +641,38 @@ abstract class ResendOtpRes implements SignInEvent {
 }
 
 /// @nodoc
-abstract class _$$StartCountDownCopyWith<$Res> {
-  factory _$$StartCountDownCopyWith(
-          _$StartCountDown value, $Res Function(_$StartCountDown) then) =
-      __$$StartCountDownCopyWithImpl<$Res>;
+abstract class _$$SignInWithGoogleCopyWith<$Res> {
+  factory _$$SignInWithGoogleCopyWith(
+          _$SignInWithGoogle value, $Res Function(_$SignInWithGoogle) then) =
+      __$$SignInWithGoogleCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$StartCountDownCopyWithImpl<$Res>
+class __$$SignInWithGoogleCopyWithImpl<$Res>
     extends _$SignInEventCopyWithImpl<$Res>
-    implements _$$StartCountDownCopyWith<$Res> {
-  __$$StartCountDownCopyWithImpl(
-      _$StartCountDown _value, $Res Function(_$StartCountDown) _then)
-      : super(_value, (v) => _then(v as _$StartCountDown));
+    implements _$$SignInWithGoogleCopyWith<$Res> {
+  __$$SignInWithGoogleCopyWithImpl(
+      _$SignInWithGoogle _value, $Res Function(_$SignInWithGoogle) _then)
+      : super(_value, (v) => _then(v as _$SignInWithGoogle));
 
   @override
-  _$StartCountDown get _value => super._value as _$StartCountDown;
+  _$SignInWithGoogle get _value => super._value as _$SignInWithGoogle;
 }
 
 /// @nodoc
 
-class _$StartCountDown implements StartCountDown {
-  const _$StartCountDown();
+class _$SignInWithGoogle implements SignInWithGoogle {
+  const _$SignInWithGoogle();
 
   @override
   String toString() {
-    return 'SignInEvent.startCountDown()';
+    return 'SignInEvent.signInWithGoogle()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$StartCountDown);
+        (other.runtimeType == runtimeType && other is _$SignInWithGoogle);
   }
 
   @override
@@ -534,36 +681,39 @@ class _$StartCountDown implements StartCountDown {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() startCountDown,
     required TResult Function(String otp) signInWithOtp,
     required TResult Function() resendOtp,
     required TResult Function(String responseCode) resendOtpRes,
-    required TResult Function() startCountDown,
+    required TResult Function() signInWithGoogle,
   }) {
-    return startCountDown();
+    return signInWithGoogle();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? startCountDown,
     TResult Function(String otp)? signInWithOtp,
     TResult Function()? resendOtp,
     TResult Function(String responseCode)? resendOtpRes,
-    TResult Function()? startCountDown,
+    TResult Function()? signInWithGoogle,
   }) {
-    return startCountDown?.call();
+    return signInWithGoogle?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? startCountDown,
     TResult Function(String otp)? signInWithOtp,
     TResult Function()? resendOtp,
     TResult Function(String responseCode)? resendOtpRes,
-    TResult Function()? startCountDown,
+    TResult Function()? signInWithGoogle,
     required TResult orElse(),
   }) {
-    if (startCountDown != null) {
-      return startCountDown();
+    if (signInWithGoogle != null) {
+      return signInWithGoogle();
     }
     return orElse();
   }
@@ -571,43 +721,46 @@ class _$StartCountDown implements StartCountDown {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(StartCountDown value) startCountDown,
     required TResult Function(SignInWithOtp value) signInWithOtp,
     required TResult Function(ResendOtp value) resendOtp,
     required TResult Function(ResendOtpRes value) resendOtpRes,
-    required TResult Function(StartCountDown value) startCountDown,
+    required TResult Function(SignInWithGoogle value) signInWithGoogle,
   }) {
-    return startCountDown(this);
+    return signInWithGoogle(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(StartCountDown value)? startCountDown,
     TResult Function(SignInWithOtp value)? signInWithOtp,
     TResult Function(ResendOtp value)? resendOtp,
     TResult Function(ResendOtpRes value)? resendOtpRes,
-    TResult Function(StartCountDown value)? startCountDown,
+    TResult Function(SignInWithGoogle value)? signInWithGoogle,
   }) {
-    return startCountDown?.call(this);
+    return signInWithGoogle?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(StartCountDown value)? startCountDown,
     TResult Function(SignInWithOtp value)? signInWithOtp,
     TResult Function(ResendOtp value)? resendOtp,
     TResult Function(ResendOtpRes value)? resendOtpRes,
-    TResult Function(StartCountDown value)? startCountDown,
+    TResult Function(SignInWithGoogle value)? signInWithGoogle,
     required TResult orElse(),
   }) {
-    if (startCountDown != null) {
-      return startCountDown(this);
+    if (signInWithGoogle != null) {
+      return signInWithGoogle(this);
     }
     return orElse();
   }
 }
 
-abstract class StartCountDown implements SignInEvent {
-  const factory StartCountDown() = _$StartCountDown;
+abstract class SignInWithGoogle implements SignInEvent {
+  const factory SignInWithGoogle() = _$SignInWithGoogle;
 }
 
 /// @nodoc

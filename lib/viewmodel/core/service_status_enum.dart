@@ -14,7 +14,6 @@ enum PhoneSignInStatus {
   loading,
   success,
   codeResent,
-  failed,
   networkError,
   invalidVerificationCode,
   invalidVerificationId,

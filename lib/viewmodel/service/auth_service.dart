@@ -2,12 +2,13 @@ import 'dart:collection';
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mens_park/viewmodel/core/service_status_enum.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   static final auth = FirebaseAuth.instance;
-
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
   static final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   Future<void> signUpWithPhone(
@@ -58,7 +59,7 @@ class AuthService {
           sh.remove('smsSentCount');
           return PhoneSignInStatus.success;
         } else {
-          return PhoneSignInStatus.failed;
+          return PhoneSignInStatus.unknownError;
         }
       } on FirebaseAuthException catch (e) {
         switch (e.code) {
@@ -88,7 +89,7 @@ class AuthService {
       responseCallback(responseCode: 'sms-limit-exceed');
       return;
     }
-
+    log('$smsSentCount');
     auth.verifyPhoneNumber(
       forceResendingToken: resendToken,
       phoneNumber: mobileNumber,
@@ -127,6 +128,20 @@ class AuthService {
   //     }
   //   }
   // }
+
+  Future<UserCredential> signInWithGoogle() async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
 
   getUser() {
     return auth.currentUser;

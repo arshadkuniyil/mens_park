@@ -33,7 +33,21 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       emit(state.copyWith(signInStatus: signInStatus));
     });
 
+    on<SignInWithGoogle>((event, emit) async {
+      final userCredential = await authService.signInWithGoogle();
+
+      if (userCredential.user != null) {
+        navigatorKey.currentState?.pushReplacementNamed('/home');
+      } else {
+        snackbarKey.currentState?.showSnackBar(const SnackBar(
+          content: Text('Sign in Failed'),
+        ));
+      }
+    });
+
     on<StartCountDown>((event, emit) async {
+      emit(state.copyWith(signInStatus: PhoneSignInStatus.notStarted));
+
       SharedPreferences sh = await SharedPreferences.getInstance();
       final int otpSentTime =
           sh.getInt('otpSentTime') ?? DateTime.now().millisecondsSinceEpoch;
@@ -47,15 +61,17 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     });
 
     on<ResendOtp>((event, emit) async {
-      await authService.resendOtp(responseCallback: ({required responseCode}) {
-        add(ResendOtpRes(responseCode: responseCode));
-      },);
+      await authService.resendOtp(
+        responseCallback: ({required responseCode}) {
+          add(ResendOtpRes(responseCode: responseCode));
+        },
+      );
       emit(state.copyWith(isSmsResending: true));
     });
 
     on<ResendOtpRes>((event, emit) async {
       SharedPreferences sh = await SharedPreferences.getInstance();
-      log('resendotp${event.responseCode}');
+
       switch (event.responseCode) {
         case 'code-resent':
           final int otpSentTime =
@@ -98,7 +114,6 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
             isSmsResending: false,
           ));
       }
-      
     });
   }
 }

@@ -32,7 +32,7 @@ class OtpVerificationPage extends StatelessWidget {
           listener: (context, state) {},
           builder: (context, state) {
             final signInStatus = state.signInStatus;
-            log('$signInStatus');
+         
             if (signInStatus == PhoneSignInStatus.invalidVerificationId) {
               return CustomErrorWidget(
                 errorName: 'Invalid Verification Id',

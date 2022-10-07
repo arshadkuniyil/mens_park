@@ -123,7 +123,7 @@ class ProductDetailsWidget extends StatelessWidget {
                             IconButton(
                               onPressed: () {
                                 addToCartItemCount.value += 1;
-                                log('${addToCartItemCount.value}');
+                            
                               },
                               iconSize: iconSize,
                               color: Colors.black45,
