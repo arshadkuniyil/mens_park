@@ -18,7 +18,9 @@ enum PhoneSignInStatus {
   invalidVerificationCode,
   invalidVerificationId,
   unknownError,
-  smsLimitExceed
+  smsLimitExceed,
+  signInWithGoogleSuccess,
+  signInWithGoogleFailed
 }
 
 

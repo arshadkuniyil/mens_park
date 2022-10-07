@@ -23,6 +23,7 @@ mixin _$SignInEvent {
     required TResult Function() resendOtp,
     required TResult Function(String responseCode) resendOtpRes,
     required TResult Function() signInWithGoogle,
+    required TResult Function() resetSignInUI,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +33,7 @@ mixin _$SignInEvent {
     TResult Function()? resendOtp,
     TResult Function(String responseCode)? resendOtpRes,
     TResult Function()? signInWithGoogle,
+    TResult Function()? resetSignInUI,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +43,7 @@ mixin _$SignInEvent {
     TResult Function()? resendOtp,
     TResult Function(String responseCode)? resendOtpRes,
     TResult Function()? signInWithGoogle,
+    TResult Function()? resetSignInUI,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,6 +54,7 @@ mixin _$SignInEvent {
     required TResult Function(ResendOtp value) resendOtp,
     required TResult Function(ResendOtpRes value) resendOtpRes,
     required TResult Function(SignInWithGoogle value) signInWithGoogle,
+    required TResult Function(ResetSignInUI value) resetSignInUI,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +64,7 @@ mixin _$SignInEvent {
     TResult Function(ResendOtp value)? resendOtp,
     TResult Function(ResendOtpRes value)? resendOtpRes,
     TResult Function(SignInWithGoogle value)? signInWithGoogle,
+    TResult Function(ResetSignInUI value)? resetSignInUI,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +74,7 @@ mixin _$SignInEvent {
     TResult Function(ResendOtp value)? resendOtp,
     TResult Function(ResendOtpRes value)? resendOtpRes,
     TResult Function(SignInWithGoogle value)? signInWithGoogle,
+    TResult Function(ResetSignInUI value)? resetSignInUI,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -136,6 +142,7 @@ class _$StartCountDown implements StartCountDown {
     required TResult Function() resendOtp,
     required TResult Function(String responseCode) resendOtpRes,
     required TResult Function() signInWithGoogle,
+    required TResult Function() resetSignInUI,
   }) {
     return startCountDown();
   }
@@ -148,6 +155,7 @@ class _$StartCountDown implements StartCountDown {
     TResult Function()? resendOtp,
     TResult Function(String responseCode)? resendOtpRes,
     TResult Function()? signInWithGoogle,
+    TResult Function()? resetSignInUI,
   }) {
     return startCountDown?.call();
   }
@@ -160,6 +168,7 @@ class _$StartCountDown implements StartCountDown {
     TResult Function()? resendOtp,
     TResult Function(String responseCode)? resendOtpRes,
     TResult Function()? signInWithGoogle,
+    TResult Function()? resetSignInUI,
     required TResult orElse(),
   }) {
     if (startCountDown != null) {
@@ -176,6 +185,7 @@ class _$StartCountDown implements StartCountDown {
     required TResult Function(ResendOtp value) resendOtp,
     required TResult Function(ResendOtpRes value) resendOtpRes,
     required TResult Function(SignInWithGoogle value) signInWithGoogle,
+    required TResult Function(ResetSignInUI value) resetSignInUI,
   }) {
     return startCountDown(this);
   }
@@ -188,6 +198,7 @@ class _$StartCountDown implements StartCountDown {
     TResult Function(ResendOtp value)? resendOtp,
     TResult Function(ResendOtpRes value)? resendOtpRes,
     TResult Function(SignInWithGoogle value)? signInWithGoogle,
+    TResult Function(ResetSignInUI value)? resetSignInUI,
   }) {
     return startCountDown?.call(this);
   }
@@ -200,6 +211,7 @@ class _$StartCountDown implements StartCountDown {
     TResult Function(ResendOtp value)? resendOtp,
     TResult Function(ResendOtpRes value)? resendOtpRes,
     TResult Function(SignInWithGoogle value)? signInWithGoogle,
+    TResult Function(ResetSignInUI value)? resetSignInUI,
     required TResult orElse(),
   }) {
     if (startCountDown != null) {
@@ -283,6 +295,7 @@ class _$SignInWithOtp implements SignInWithOtp {
     required TResult Function() resendOtp,
     required TResult Function(String responseCode) resendOtpRes,
     required TResult Function() signInWithGoogle,
+    required TResult Function() resetSignInUI,
   }) {
     return signInWithOtp(otp);
   }
@@ -295,6 +308,7 @@ class _$SignInWithOtp implements SignInWithOtp {
     TResult Function()? resendOtp,
     TResult Function(String responseCode)? resendOtpRes,
     TResult Function()? signInWithGoogle,
+    TResult Function()? resetSignInUI,
   }) {
     return signInWithOtp?.call(otp);
   }
@@ -307,6 +321,7 @@ class _$SignInWithOtp implements SignInWithOtp {
     TResult Function()? resendOtp,
     TResult Function(String responseCode)? resendOtpRes,
     TResult Function()? signInWithGoogle,
+    TResult Function()? resetSignInUI,
     required TResult orElse(),
   }) {
     if (signInWithOtp != null) {
@@ -323,6 +338,7 @@ class _$SignInWithOtp implements SignInWithOtp {
     required TResult Function(ResendOtp value) resendOtp,
     required TResult Function(ResendOtpRes value) resendOtpRes,
     required TResult Function(SignInWithGoogle value) signInWithGoogle,
+    required TResult Function(ResetSignInUI value) resetSignInUI,
   }) {
     return signInWithOtp(this);
   }
@@ -335,6 +351,7 @@ class _$SignInWithOtp implements SignInWithOtp {
     TResult Function(ResendOtp value)? resendOtp,
     TResult Function(ResendOtpRes value)? resendOtpRes,
     TResult Function(SignInWithGoogle value)? signInWithGoogle,
+    TResult Function(ResetSignInUI value)? resetSignInUI,
   }) {
     return signInWithOtp?.call(this);
   }
@@ -347,6 +364,7 @@ class _$SignInWithOtp implements SignInWithOtp {
     TResult Function(ResendOtp value)? resendOtp,
     TResult Function(ResendOtpRes value)? resendOtpRes,
     TResult Function(SignInWithGoogle value)? signInWithGoogle,
+    TResult Function(ResetSignInUI value)? resetSignInUI,
     required TResult orElse(),
   }) {
     if (signInWithOtp != null) {
@@ -410,6 +428,7 @@ class _$ResendOtp implements ResendOtp {
     required TResult Function() resendOtp,
     required TResult Function(String responseCode) resendOtpRes,
     required TResult Function() signInWithGoogle,
+    required TResult Function() resetSignInUI,
   }) {
     return resendOtp();
   }
@@ -422,6 +441,7 @@ class _$ResendOtp implements ResendOtp {
     TResult Function()? resendOtp,
     TResult Function(String responseCode)? resendOtpRes,
     TResult Function()? signInWithGoogle,
+    TResult Function()? resetSignInUI,
   }) {
     return resendOtp?.call();
   }
@@ -434,6 +454,7 @@ class _$ResendOtp implements ResendOtp {
     TResult Function()? resendOtp,
     TResult Function(String responseCode)? resendOtpRes,
     TResult Function()? signInWithGoogle,
+    TResult Function()? resetSignInUI,
     required TResult orElse(),
   }) {
     if (resendOtp != null) {
@@ -450,6 +471,7 @@ class _$ResendOtp implements ResendOtp {
     required TResult Function(ResendOtp value) resendOtp,
     required TResult Function(ResendOtpRes value) resendOtpRes,
     required TResult Function(SignInWithGoogle value) signInWithGoogle,
+    required TResult Function(ResetSignInUI value) resetSignInUI,
   }) {
     return resendOtp(this);
   }
@@ -462,6 +484,7 @@ class _$ResendOtp implements ResendOtp {
     TResult Function(ResendOtp value)? resendOtp,
     TResult Function(ResendOtpRes value)? resendOtpRes,
     TResult Function(SignInWithGoogle value)? signInWithGoogle,
+    TResult Function(ResetSignInUI value)? resetSignInUI,
   }) {
     return resendOtp?.call(this);
   }
@@ -474,6 +497,7 @@ class _$ResendOtp implements ResendOtp {
     TResult Function(ResendOtp value)? resendOtp,
     TResult Function(ResendOtpRes value)? resendOtpRes,
     TResult Function(SignInWithGoogle value)? signInWithGoogle,
+    TResult Function(ResetSignInUI value)? resetSignInUI,
     required TResult orElse(),
   }) {
     if (resendOtp != null) {
@@ -557,6 +581,7 @@ class _$ResendOtpRes implements ResendOtpRes {
     required TResult Function() resendOtp,
     required TResult Function(String responseCode) resendOtpRes,
     required TResult Function() signInWithGoogle,
+    required TResult Function() resetSignInUI,
   }) {
     return resendOtpRes(responseCode);
   }
@@ -569,6 +594,7 @@ class _$ResendOtpRes implements ResendOtpRes {
     TResult Function()? resendOtp,
     TResult Function(String responseCode)? resendOtpRes,
     TResult Function()? signInWithGoogle,
+    TResult Function()? resetSignInUI,
   }) {
     return resendOtpRes?.call(responseCode);
   }
@@ -581,6 +607,7 @@ class _$ResendOtpRes implements ResendOtpRes {
     TResult Function()? resendOtp,
     TResult Function(String responseCode)? resendOtpRes,
     TResult Function()? signInWithGoogle,
+    TResult Function()? resetSignInUI,
     required TResult orElse(),
   }) {
     if (resendOtpRes != null) {
@@ -597,6 +624,7 @@ class _$ResendOtpRes implements ResendOtpRes {
     required TResult Function(ResendOtp value) resendOtp,
     required TResult Function(ResendOtpRes value) resendOtpRes,
     required TResult Function(SignInWithGoogle value) signInWithGoogle,
+    required TResult Function(ResetSignInUI value) resetSignInUI,
   }) {
     return resendOtpRes(this);
   }
@@ -609,6 +637,7 @@ class _$ResendOtpRes implements ResendOtpRes {
     TResult Function(ResendOtp value)? resendOtp,
     TResult Function(ResendOtpRes value)? resendOtpRes,
     TResult Function(SignInWithGoogle value)? signInWithGoogle,
+    TResult Function(ResetSignInUI value)? resetSignInUI,
   }) {
     return resendOtpRes?.call(this);
   }
@@ -621,6 +650,7 @@ class _$ResendOtpRes implements ResendOtpRes {
     TResult Function(ResendOtp value)? resendOtp,
     TResult Function(ResendOtpRes value)? resendOtpRes,
     TResult Function(SignInWithGoogle value)? signInWithGoogle,
+    TResult Function(ResetSignInUI value)? resetSignInUI,
     required TResult orElse(),
   }) {
     if (resendOtpRes != null) {
@@ -686,6 +716,7 @@ class _$SignInWithGoogle implements SignInWithGoogle {
     required TResult Function() resendOtp,
     required TResult Function(String responseCode) resendOtpRes,
     required TResult Function() signInWithGoogle,
+    required TResult Function() resetSignInUI,
   }) {
     return signInWithGoogle();
   }
@@ -698,6 +729,7 @@ class _$SignInWithGoogle implements SignInWithGoogle {
     TResult Function()? resendOtp,
     TResult Function(String responseCode)? resendOtpRes,
     TResult Function()? signInWithGoogle,
+    TResult Function()? resetSignInUI,
   }) {
     return signInWithGoogle?.call();
   }
@@ -710,6 +742,7 @@ class _$SignInWithGoogle implements SignInWithGoogle {
     TResult Function()? resendOtp,
     TResult Function(String responseCode)? resendOtpRes,
     TResult Function()? signInWithGoogle,
+    TResult Function()? resetSignInUI,
     required TResult orElse(),
   }) {
     if (signInWithGoogle != null) {
@@ -726,6 +759,7 @@ class _$SignInWithGoogle implements SignInWithGoogle {
     required TResult Function(ResendOtp value) resendOtp,
     required TResult Function(ResendOtpRes value) resendOtpRes,
     required TResult Function(SignInWithGoogle value) signInWithGoogle,
+    required TResult Function(ResetSignInUI value) resetSignInUI,
   }) {
     return signInWithGoogle(this);
   }
@@ -738,6 +772,7 @@ class _$SignInWithGoogle implements SignInWithGoogle {
     TResult Function(ResendOtp value)? resendOtp,
     TResult Function(ResendOtpRes value)? resendOtpRes,
     TResult Function(SignInWithGoogle value)? signInWithGoogle,
+    TResult Function(ResetSignInUI value)? resetSignInUI,
   }) {
     return signInWithGoogle?.call(this);
   }
@@ -750,6 +785,7 @@ class _$SignInWithGoogle implements SignInWithGoogle {
     TResult Function(ResendOtp value)? resendOtp,
     TResult Function(ResendOtpRes value)? resendOtpRes,
     TResult Function(SignInWithGoogle value)? signInWithGoogle,
+    TResult Function(ResetSignInUI value)? resetSignInUI,
     required TResult orElse(),
   }) {
     if (signInWithGoogle != null) {
@@ -761,6 +797,135 @@ class _$SignInWithGoogle implements SignInWithGoogle {
 
 abstract class SignInWithGoogle implements SignInEvent {
   const factory SignInWithGoogle() = _$SignInWithGoogle;
+}
+
+/// @nodoc
+abstract class _$$ResetSignInUICopyWith<$Res> {
+  factory _$$ResetSignInUICopyWith(
+          _$ResetSignInUI value, $Res Function(_$ResetSignInUI) then) =
+      __$$ResetSignInUICopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ResetSignInUICopyWithImpl<$Res>
+    extends _$SignInEventCopyWithImpl<$Res>
+    implements _$$ResetSignInUICopyWith<$Res> {
+  __$$ResetSignInUICopyWithImpl(
+      _$ResetSignInUI _value, $Res Function(_$ResetSignInUI) _then)
+      : super(_value, (v) => _then(v as _$ResetSignInUI));
+
+  @override
+  _$ResetSignInUI get _value => super._value as _$ResetSignInUI;
+}
+
+/// @nodoc
+
+class _$ResetSignInUI implements ResetSignInUI {
+  const _$ResetSignInUI();
+
+  @override
+  String toString() {
+    return 'SignInEvent.resetSignInUI()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ResetSignInUI);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() startCountDown,
+    required TResult Function(String otp) signInWithOtp,
+    required TResult Function() resendOtp,
+    required TResult Function(String responseCode) resendOtpRes,
+    required TResult Function() signInWithGoogle,
+    required TResult Function() resetSignInUI,
+  }) {
+    return resetSignInUI();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? startCountDown,
+    TResult Function(String otp)? signInWithOtp,
+    TResult Function()? resendOtp,
+    TResult Function(String responseCode)? resendOtpRes,
+    TResult Function()? signInWithGoogle,
+    TResult Function()? resetSignInUI,
+  }) {
+    return resetSignInUI?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? startCountDown,
+    TResult Function(String otp)? signInWithOtp,
+    TResult Function()? resendOtp,
+    TResult Function(String responseCode)? resendOtpRes,
+    TResult Function()? signInWithGoogle,
+    TResult Function()? resetSignInUI,
+    required TResult orElse(),
+  }) {
+    if (resetSignInUI != null) {
+      return resetSignInUI();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(StartCountDown value) startCountDown,
+    required TResult Function(SignInWithOtp value) signInWithOtp,
+    required TResult Function(ResendOtp value) resendOtp,
+    required TResult Function(ResendOtpRes value) resendOtpRes,
+    required TResult Function(SignInWithGoogle value) signInWithGoogle,
+    required TResult Function(ResetSignInUI value) resetSignInUI,
+  }) {
+    return resetSignInUI(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(StartCountDown value)? startCountDown,
+    TResult Function(SignInWithOtp value)? signInWithOtp,
+    TResult Function(ResendOtp value)? resendOtp,
+    TResult Function(ResendOtpRes value)? resendOtpRes,
+    TResult Function(SignInWithGoogle value)? signInWithGoogle,
+    TResult Function(ResetSignInUI value)? resetSignInUI,
+  }) {
+    return resetSignInUI?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(StartCountDown value)? startCountDown,
+    TResult Function(SignInWithOtp value)? signInWithOtp,
+    TResult Function(ResendOtp value)? resendOtp,
+    TResult Function(ResendOtpRes value)? resendOtpRes,
+    TResult Function(SignInWithGoogle value)? signInWithGoogle,
+    TResult Function(ResetSignInUI value)? resetSignInUI,
+    required TResult orElse(),
+  }) {
+    if (resetSignInUI != null) {
+      return resetSignInUI(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ResetSignInUI implements SignInEvent {
+  const factory ResetSignInUI() = _$ResetSignInUI;
 }
 
 /// @nodoc

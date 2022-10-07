@@ -8,6 +8,7 @@ import 'package:mens_park/utils/global/global.dart';
 import 'package:mens_park/view/widgets/error/custom_error_widget.dart';
 import 'package:mens_park/view/widgets/text_field_outer_widget.dart';
 import 'package:mens_park/viewmodel/bloc/auth/sign_in/sign_in_bloc.dart';
+import 'package:mens_park/viewmodel/bloc/cart/cart_bloc.dart';
 import 'package:mens_park/viewmodel/core/service_status_enum.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'widgets/number_and_resend_row.dart';
@@ -28,8 +29,8 @@ class OtpVerificationPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: kGrey,
       body: SafeArea(
-        child: BlocConsumer<SignInBloc, SignInState>(
-          listener: (context, state) {},
+        child: BlocBuilder<SignInBloc, SignInState>(
+        
           builder: (context, state) {
             final signInStatus = state.signInStatus;
          

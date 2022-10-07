@@ -30,7 +30,7 @@ class SignInWithGoogleBtn extends StatelessWidget {
                 ),
                 const Spacer(),
                 Text(
-                  'Login With Google',
+                  'LOGIN WITH GOOGLE',
                   style: TextStyle(fontSize: kPadding * 1.8),
                 ),
                 const Spacer(),

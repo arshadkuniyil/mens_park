@@ -132,7 +132,7 @@ class SignUpWIthPhoneForm extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: kPadding * 1.5),
                     child: Text(
-                      '  Verify  ',
+                      '  VERIFY  ',
                       style: TextStyle(fontSize: kPadding * 1.6),
                     ),
                   ),

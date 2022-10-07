@@ -31,6 +31,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         case 'code-sent':
           emit(state.copyWith(
               signUpWithPhoneStatus: SignUpWithPhoneStatus.codeSent));
+              add(const SignUpResetEvent());
           break;
         case 'invalid-phone-number':
           emit(state.copyWith(

@@ -5,6 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mens_park/utils/global/global.dart';
+import 'package:mens_park/viewmodel/bloc/cart/cart_bloc.dart';
 import 'package:mens_park/viewmodel/core/service_status_enum.dart';
 import 'package:mens_park/viewmodel/service/auth_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -21,16 +22,15 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       emit(state.copyWith(signInStatus: PhoneSignInStatus.loading));
 
       final signInStatus = await authService.signInWithPhoneOtp(event.otp);
-
       if (signInStatus == PhoneSignInStatus.invalidVerificationCode) {
         snackbarKey.currentState
             ?.showSnackBar(const SnackBar(content: Text('Invalid code')));
+        emit(state.copyWith(signInStatus: PhoneSignInStatus.notStarted));
       } else if (signInStatus == PhoneSignInStatus.success) {
-        emit(state.copyWith(otpSentTime: null));
+        
         navigatorKey.currentState?.pushReplacementNamed('/home');
+        add(const ResetSignInUI());
       }
-
-      emit(state.copyWith(signInStatus: signInStatus));
     });
 
     on<SignInWithGoogle>((event, emit) async {
@@ -46,8 +46,6 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     });
 
     on<StartCountDown>((event, emit) async {
-      emit(state.copyWith(signInStatus: PhoneSignInStatus.notStarted));
-
       SharedPreferences sh = await SharedPreferences.getInstance();
       final int otpSentTime =
           sh.getInt('otpSentTime') ?? DateTime.now().millisecondsSinceEpoch;
@@ -114,6 +112,13 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
             isSmsResending: false,
           ));
       }
+    });
+
+    on<ResetSignInUI>((event, emit) {
+      emit(state.copyWith(
+        otpSentTime: null,
+        signInStatus: PhoneSignInStatus.notStarted,
+      ));
     });
   }
 }

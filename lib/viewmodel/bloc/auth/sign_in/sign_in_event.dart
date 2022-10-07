@@ -13,4 +13,5 @@ class SignInEvent with _$SignInEvent {
       ResendOtpRes;
       
   const factory SignInEvent.signInWithGoogle() = SignInWithGoogle;
+   const factory SignInEvent.resetSignInUI() = ResetSignInUI;
 }

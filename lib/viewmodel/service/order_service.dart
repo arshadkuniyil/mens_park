@@ -4,7 +4,7 @@ import 'package:mens_park/model/order_model/order_model.dart';
 
 import 'auth_service.dart';
 
-class AccountService {
+class OrderService {
   final fireStore = FirebaseFirestore.instance;
 
   placeOrder(List<CartModel> cartProductList, String address) async {

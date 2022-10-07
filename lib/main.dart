@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mens_park/utils/colors.dart';
@@ -28,10 +27,8 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
- runApp(const Main());
+  runApp(const Main());
 }
-
-
 
 class Main extends StatelessWidget {
   const Main({Key? key}) : super(key: key);
@@ -43,9 +40,10 @@ class Main extends StatelessWidget {
         BlocProvider(
             create: (context) =>
                 SplashBloc()..add(CheckUserEvent(context: context))),
-        BlocProvider(create: (context) => HomeAppBarBloc()..add(LoadCategoriesEvent())),
+        BlocProvider(
+            create: (context) => HomeAppBarBloc()..add(LoadCategoriesEvent())),
         BlocProvider(create: (context) => HomeProductBloc()),
-        BlocProvider(create: (context) => CartBloc()..add(const LoadCartEvent())),
+        BlocProvider(create: (context) => CartBloc()),
         BlocProvider(create: (context) => SignUpBloc()),
         BlocProvider(create: (context) => SignInBloc()),
         BlocProvider(create: (context) => AccountBloc()),
@@ -62,7 +60,7 @@ class Main extends StatelessWidget {
         ),
         routes: {
           '/': (context) => const SplashScreen(),
-          '/home': (context) => const HomePage(),
+          '/home': (context) =>  HomePage(),
           '/productScreen': (context) => const ProductPage(),
           '/cart': (context) => CartPage(),
           '/checkout': ((context) => CheckoutPage()),
@@ -75,4 +73,3 @@ class Main extends StatelessWidget {
     );
   }
 }
-

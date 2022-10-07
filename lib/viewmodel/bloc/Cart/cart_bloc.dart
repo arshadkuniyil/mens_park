@@ -1,3 +1,6 @@
+
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +10,7 @@ import 'package:mens_park/model/cart_model/cart_model.dart';
 import 'package:mens_park/model/product_model/product_model.dart';
 import 'package:mens_park/utils/global/global.dart';
 import 'package:mens_park/viewmodel/service/cart_service.dart';
-import 'package:mens_park/viewmodel/service/account_service.dart';
+import 'package:mens_park/viewmodel/service/order_service.dart';
 
 part 'cart_event.dart';
 part 'cart_state.dart';
@@ -19,9 +22,12 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     int cartItemCount = 0;
     int subTotal = 0;
     CartService cartService = CartService();
-    AccountService accountService = AccountService();
+    OrderService orderService = OrderService();
 
     on<LoadCartEvent>((event, emit) async {
+      log('message');
+      cartItemCount = 0;
+      subTotal = 0;
       emit(state.copyWith(isLoading: true));
       List<QueryDocumentSnapshot> cartProdcutSnapshot =
           await cartService.getCartPoducts();
@@ -31,8 +37,9 @@ class CartBloc extends Bloc<CartEvent, CartState> {
             CartModel.fromJson(doc.data() as Map<String, dynamic>);
 
         if (cartProduct.quantity != null) {
-          cartItemCount = cartItemCount + cartProduct.quantity!;
-          subTotal = subTotal + cartProduct.totalPrice!;
+          
+          cartItemCount +=   cartProduct.quantity!;
+          subTotal +=   cartProduct.totalPrice!;
         }
         return cartProduct;
       }).toList();
@@ -92,7 +99,6 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     });
 
     on<DeleteCartProductEvent>((event, emit) async {
-      
       await cartService.deleteCartProduct(event.product).then((_) {
         cartProductList.removeAt(event.index);
 
@@ -165,13 +171,13 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       final goToHome =
           navigatorKey.currentState!.pushReplacementNamed('/account');
 
-      await accountService
+      await orderService
           .placeOrder(cartProductList, event.address)
           .then((_) async {
         await cartService.clearCart().then((_) {
           goToHome;
           snackbarKey.currentState?.showSnackBar(
-              const SnackBar(content: Text('Order placed successful')));
+              const SnackBar(content: Text('The order was successful without payment [No payment gateway integrated]')));
           cartProductList = [];
           subTotal = 0;
           cartItemCount = 0;

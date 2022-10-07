@@ -27,9 +27,11 @@ class SignUpPage extends StatelessWidget {
             listener: (context, state) {
               if (state.signUpWithPhoneStatus ==
                   SignUpWithPhoneStatus.codeSent) {
-                Navigator.of(context).pushReplacementNamed(
+                    Navigator.of(context).pushReplacementNamed(
                     '/otpVerificationScreen',
                     arguments: state.mobileNumber);
+                    
+                
               }
             },
             buildWhen: (previous, current) => current != previous,
@@ -78,7 +80,13 @@ class SignUpPage extends StatelessWidget {
                 default:
                   break;
               }
-              return const SizedBox();
+               return Column(
+                children: [
+                  SignUpWIthPhoneForm(userData: userData, kPadding: kPadding),
+                  const Text('or'),
+                  SignInWithGoogleBtn(kPadding: kPadding)
+                ],
+              );
             },
           ),
         ),
