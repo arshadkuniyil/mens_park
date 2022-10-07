@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mens_park/utils/colors.dart';
+import 'package:mens_park/res/colors.dart';
 import 'package:mens_park/helpers/screen_size.dart';
 
 class PageAppBar extends StatelessWidget {

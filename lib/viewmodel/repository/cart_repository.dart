@@ -1,18 +1,21 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:injectable/injectable.dart';
 import 'package:mens_park/model/cart_model/cart_model.dart';
 import 'package:mens_park/model/product_model/product_model.dart';
+import 'package:mens_park/services/auth_services.dart';
+import 'package:mens_park/services/cart_service.dart';
 
-import 'auth_service.dart';
-
-class CartService {
+@LazySingleton(as: CartService)
+class CartRepository extends CartService{
   final fireStore = FirebaseFirestore.instance;
-
+  
+  @override
   Future<CartModel> addToCartOrIncreaseQty(
       {required ProductModel productData,
       required String size,
       required bool isFromCartPage,
-      required int quantity}) async {
+      required int quantity,
+      required AuthService authService}) async {
     CartModel productToCart = CartModel.fromJson(productData.toJson());
 
     if (!isFromCartPage) {
@@ -22,7 +25,7 @@ class CartService {
 
     final cartProduct = await fireStore
         .collection('users')
-        .doc(AuthService().getUser()!.uid)
+        .doc(authService.getUser()!.uid)
         .collection('cart')
         .where('id', isEqualTo: '${productToCart.id}')
         .get();
@@ -33,7 +36,7 @@ class CartService {
       productToCart.totalPrice = productToCart.quantity! * productToCart.price!;
       await fireStore
           .collection('users')
-          .doc(AuthService().getUser()!.uid)
+          .doc(authService.getUser()!.uid)
           .collection('cart')
           .doc('${productData.id}$size')
           .set(productToCart.toJson());
@@ -45,7 +48,7 @@ class CartService {
 
       await fireStore
           .collection('users')
-          .doc(AuthService().getUser()!.uid)
+          .doc(authService.getUser()!.uid)
           .collection('cart')
           .doc('${productToCart.id}')
           .update({
@@ -56,21 +59,24 @@ class CartService {
     return productToCart;
   }
 
-  getCartPoducts() async {
+  @override
+  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>>getCartPoducts(
+      AuthService authService) async {
     final cartProducts = await fireStore
         .collection('users')
-        .doc(AuthService().getUser()!.uid)
+        .doc(authService.getUser()!.uid)
         .collection('cart')
         .get();
     return cartProducts.docs;
   }
 
-  decreaseCartProductQty(CartModel product) async {
+  @override
+  Future<void>  decreaseCartProductQty(CartModel product,AuthService authService) async {
     product.quantity = product.quantity! - 1;
 
     await fireStore
         .collection('users')
-        .doc(AuthService().getUser()!.uid)
+        .doc(authService.getUser()!.uid)
         .collection('cart')
         .doc('${product.id}')
         .update({
@@ -79,15 +85,17 @@ class CartService {
     });
   }
 
-  deleteCartProduct(CartModel product) async {
+ @override
+  Future<void> deleteCartProduct(CartModel product,AuthService authService) async {
     await fireStore
         .collection('users')
-        .doc(AuthService().getUser()!.uid)
+        .doc(authService.getUser()!.uid)
         .collection('cart')
         .doc('${product.id}')
         .delete();
   }
 
+  @override
   Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> getProductDataById(
       String productId) async {
     final productDataSnapshot = await fireStore
@@ -97,14 +105,13 @@ class CartService {
     return productDataSnapshot.docs;
   }
 
- 
-
-  clearCart() async {
+  @override
+  Future<void>clearCart(AuthService authService) async {
     final batch = fireStore.batch();
 
     await fireStore
         .collection('users')
-        .doc(AuthService().getUser()!.uid)
+        .doc(authService.getUser()!.uid)
         .collection('cart')
         .get()
         .then((snapshots) {

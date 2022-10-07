@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mens_park/utils/colors.dart';
+import 'package:mens_park/res/colors.dart';
 import 'package:mens_park/helpers/screen_size.dart';
-import 'package:mens_park/viewmodel/bloc/home/product/home_product_bloc.dart';
+import 'package:mens_park/viewmodel/bloc/home/home_bloc.dart';
 
 import 'popular_list_view.dart';
 import 'product_card/product_card.dart';
@@ -22,10 +22,10 @@ class CategoryTab extends StatelessWidget {
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       context
-          .read<HomeProductBloc>()
-          .add(GetHomeProductsEvent(categoryName: categoryName));
+          .read<HomeBloc>()
+          .add(GetHomeProducts(categoryName: categoryName));
     });
-    return BlocBuilder<HomeProductBloc, HomeProductState>(
+    return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
         if (state.isLoading) {
           return const Center(child: CircularProgressIndicator());

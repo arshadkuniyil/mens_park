@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mens_park/helpers/custom_alert_dialog.dart';
-import 'package:mens_park/utils/constant.dart';
-import 'package:mens_park/utils/global/global.dart';
-import 'package:mens_park/viewmodel/core/service_status_enum.dart';
+import 'package:mens_park/res/constant.dart';
+import 'package:mens_park/res/global/global.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'resend_otp_widget.dart';

@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mens_park/view/widgets/cart_icon/cart_icon_button.dart';
-import 'package:mens_park/viewmodel/bloc/home/app_bar/home_app_bar_bloc.dart';
-import 'package:mens_park/viewmodel/service/auth_service.dart';
-import 'package:mens_park/utils/colors.dart';
-import 'package:mens_park/utils/constant.dart';
+import 'package:mens_park/res/colors.dart';
+import 'package:mens_park/res/constant.dart';
+import 'package:mens_park/viewmodel/bloc/home/home_bloc.dart';
 
 class CustomAppBar extends StatelessWidget {
-  CustomAppBar({
+  const CustomAppBar({
     Key? key,
     required this.screenWidth,
     required this.categoryList,
   }) : super(key: key);
 
   final double screenWidth;
-  final AuthService authService = AuthService();
+ 
   final List<String> categoryList;
 
   @override
   Widget build(BuildContext context) {
     
-    return BlocBuilder<HomeAppBarBloc, HomeAppBarState>(
+    return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
         return AppBar(
           automaticallyImplyLeading: false,

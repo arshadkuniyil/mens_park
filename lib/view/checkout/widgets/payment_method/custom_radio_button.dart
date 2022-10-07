@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mens_park/helpers/screen_size.dart';
-import 'package:mens_park/utils/colors.dart';
+import 'package:mens_park/res/colors.dart';
 
 class CustomRadioButton<T> extends StatelessWidget {
   final T value;

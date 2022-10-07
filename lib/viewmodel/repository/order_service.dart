@@ -1,13 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:injectable/injectable.dart';
 import 'package:mens_park/model/cart_model/cart_model.dart';
 import 'package:mens_park/model/order_model/order_model.dart';
+import 'package:mens_park/services/auth_services.dart';
+import 'package:mens_park/services/order_service.dart';
 
-import 'auth_service.dart';
-
-class OrderService {
+@LazySingleton(as: OrderService)
+class OrderRepository extends OrderService {
   final fireStore = FirebaseFirestore.instance;
 
-  placeOrder(List<CartModel> cartProductList, String address) async {
+  @override
+  Future<void> placeOrder(List<CartModel> cartProductList, String address,
+      AuthService authService) async {
     final batch = fireStore.batch();
 
     for (final cartProduct in cartProductList) {
@@ -18,7 +22,7 @@ class OrderService {
       batch.set(
           fireStore
               .collection('users')
-              .doc(AuthService().getUser()!.uid)
+              .doc(authService.getUser()!.uid)
               .collection('orders')
               .doc('${cartProduct.id}_${orderProduct.placedTime}'),
           orderProduct.toJson());
@@ -26,23 +30,25 @@ class OrderService {
     await batch.commit();
   }
 
-  getOrdersList() async {
+  @override
+  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> getOrdersList(
+      AuthService authService) async {
     final cartProducts = await fireStore
         .collection('users')
-        .doc(AuthService().getUser()!.uid)
+        .doc(authService.getUser()!.uid)
         .collection('orders')
         .get();
 
     return cartProducts.docs;
   }
 
-  cancelOrder(String id) async {
+  @override
+  Future<void> cancelOrder(String id, AuthService authService) async {
     await fireStore
         .collection('users')
-        .doc(AuthService().getUser()!.uid)
+        .doc(authService.getUser()!.uid)
         .collection('orders')
         .doc(id)
         .delete();
-   
   }
 }

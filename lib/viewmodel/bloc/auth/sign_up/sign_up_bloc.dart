@@ -1,16 +1,17 @@
 import 'dart:collection';
 import 'package:bloc/bloc.dart';
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
+import 'package:mens_park/services/auth_services.dart';
 import 'package:mens_park/viewmodel/core/service_status_enum.dart';
-import 'package:mens_park/viewmodel/service/auth_service.dart';
 
 part 'sign_up_event.dart';
 part 'sign_up_state.dart';
 part 'sign_up_bloc.freezed.dart';
 
+@injectable
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
-  SignUpBloc() : super(SignUpState.initial()) {
+  SignUpBloc(AuthService authService) : super(SignUpState.initial()) {
     String mobileNumber = '';
     on<SignUpWithPhoneEvent>((event, emit) async {
       mobileNumber = '91${event.userData['mobileNumber']}';
@@ -18,7 +19,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
           signUpWithPhoneStatus: SignUpWithPhoneStatus.loading,
           mobileNumber: mobileNumber));
 
-      await AuthService().signUpWithPhone(
+      await authService.signUpWithPhone(
           userData: event.userData,
           responseCallback: ({required responseCode}) {
             add(SignUpWithPhoneRes(responseCode: responseCode));

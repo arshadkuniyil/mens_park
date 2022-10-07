@@ -1,8 +1,7 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:mens_park/utils/colors.dart';
-import 'package:mens_park/utils/constant.dart';
+import 'package:mens_park/res/colors.dart';
+import 'package:mens_park/res/constant.dart';
 import 'package:mens_park/model/product_model/product_model.dart';
 import 'package:mens_park/view/widgets/show_size_alert_dialog.dart';
 import 'package:simple_animations/simple_animations.dart';

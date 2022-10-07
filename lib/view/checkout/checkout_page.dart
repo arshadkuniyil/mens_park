@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mens_park/utils/colors.dart';
-import 'package:mens_park/utils/constant.dart';
+import 'package:mens_park/res/colors.dart';
+import 'package:mens_park/res/constant.dart';
 import 'package:mens_park/helpers/screen_size.dart';
 import 'package:mens_park/view/checkout/widgets/address_text_field_widget.dart';
 import 'package:mens_park/view/widgets/page_app_bar.dart';

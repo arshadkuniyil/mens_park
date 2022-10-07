@@ -1,7 +1,7 @@
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mens_park/utils/colors.dart';
+import 'package:mens_park/res/colors.dart';
 
 class CreditCardBack extends StatelessWidget {
   const CreditCardBack({

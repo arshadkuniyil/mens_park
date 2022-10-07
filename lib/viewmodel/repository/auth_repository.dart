@@ -1,16 +1,18 @@
 import 'dart:collection';
-import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:injectable/injectable.dart';
+import 'package:mens_park/services/auth_services.dart';
 import 'package:mens_park/viewmodel/core/service_status_enum.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AuthService {
+@LazySingleton(as: AuthService)
+class AuthRepository extends AuthService{
   static final auth = FirebaseAuth.instance;
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
   static final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
+  @override
   Future<void> signUpWithPhone(
       {required HashMap userData,
       required Function({required String responseCode})
@@ -39,6 +41,7 @@ class AuthService {
     );
   }
 
+  @override
   Future<PhoneSignInStatus> signInWithPhoneOtp(String smsCode) async {
     final SharedPreferences sh = await SharedPreferences.getInstance();
     final String? verificationId = sh.getString('verificationId');
@@ -78,6 +81,7 @@ class AuthService {
     }
   }
 
+  @override
   Future<void> resendOtp(
       {required Function({required String responseCode})
           responseCallback}) async {
@@ -89,7 +93,7 @@ class AuthService {
       responseCallback(responseCode: 'sms-limit-exceed');
       return;
     }
-    log('$smsSentCount');
+ 
     auth.verifyPhoneNumber(
       forceResendingToken: resendToken,
       phoneNumber: mobileNumber,
@@ -129,6 +133,7 @@ class AuthService {
   //   }
   // }
 
+  @override
   Future<UserCredential> signInWithGoogle() async {
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
@@ -143,11 +148,13 @@ class AuthService {
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
-  getUser() {
-    return auth.currentUser;
+  @override
+  User? getUser() {
+    return   auth.currentUser;
   }
 
-  signOut() {
-    auth.signOut();
+  @override
+  Future<void> signOut() async{
+   await auth.signOut();
   }
 }

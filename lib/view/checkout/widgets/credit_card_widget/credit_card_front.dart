@@ -2,7 +2,7 @@ import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_multi_formatter/formatters/credit_card_expiration_input_formatter.dart';
-import 'package:mens_park/utils/colors.dart';
+import 'package:mens_park/res/colors.dart';
 import 'package:mens_park/helpers/formatters/credit_card_number_formatter.dart';
 
 class CreditCardFront extends StatelessWidget {

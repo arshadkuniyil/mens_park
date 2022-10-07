@@ -1,7 +1,7 @@
 import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mens_park/utils/colors.dart';
+import 'package:mens_park/res/colors.dart';
 import 'package:mens_park/helpers/screen_size.dart';
 import 'package:mens_park/view/widgets/error/custom_error_widget.dart';
 import 'package:mens_park/viewmodel/bloc/auth/sign_up/sign_up_bloc.dart';

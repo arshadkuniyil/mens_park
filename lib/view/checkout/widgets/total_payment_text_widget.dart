@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mens_park/utils/constant.dart';
+import 'package:mens_park/res/constant.dart';
 
 class TotalPaymentTextWidget extends StatelessWidget {
   const TotalPaymentTextWidget({

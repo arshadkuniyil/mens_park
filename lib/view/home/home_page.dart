@@ -1,13 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mens_park/utils/colors.dart';
-
+import 'package:mens_park/res/colors.dart';
 import 'package:mens_park/helpers/screen_size.dart';
 import 'package:mens_park/viewmodel/bloc/cart/cart_bloc.dart';
-import 'package:mens_park/viewmodel/bloc/home/app_bar/home_app_bar_bloc.dart';
-
+import 'package:mens_park/viewmodel/bloc/home/home_bloc.dart';
 import 'widgets/category_tab.dart';
 import 'widgets/custom_app_bar.dart';
 
@@ -16,7 +12,7 @@ class HomePage extends StatelessWidget {
   bool isFirstTime = true;
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) async{ 
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (isFirstTime) {
         context.read<CartBloc>().add(const LoadCartEvent());
         isFirstTime = false;
@@ -24,7 +20,10 @@ class HomePage extends StatelessWidget {
     });
     final double screenWidth = getScreenWidth(context);
 
-    return BlocBuilder<HomeAppBarBloc, HomeAppBarState>(
+    return BlocBuilder<HomeBloc, HomeState>(
+      buildWhen: (previous, current) {
+      return   previous.categoryList != current.categoryList;
+      },
       builder: (context, state) {
         int? categoriesLength;
         List<String> categoryNameList = ['   ', '   ', '   '];

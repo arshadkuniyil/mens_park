@@ -1,14 +1,12 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mens_park/utils/colors.dart';
+import 'package:mens_park/res/colors.dart';
 import 'package:mens_park/helpers/screen_size.dart';
-import 'package:mens_park/utils/global/global.dart';
+import 'package:mens_park/res/global/global.dart';
 import 'package:mens_park/view/widgets/error/custom_error_widget.dart';
 import 'package:mens_park/view/widgets/text_field_outer_widget.dart';
 import 'package:mens_park/viewmodel/bloc/auth/sign_in/sign_in_bloc.dart';
-import 'package:mens_park/viewmodel/bloc/cart/cart_bloc.dart';
 import 'package:mens_park/viewmodel/core/service_status_enum.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'widgets/number_and_resend_row.dart';
