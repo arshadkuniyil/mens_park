@@ -67,10 +67,22 @@ dev_dependencies:
   build_runner: ^2.2.1
   freezed: ^2.1.0
   injectable_generator: ^1.5.4
+  flutter_launcher_icons: ^0.10.0
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
+
+flutter_icons:
+  #  image_path: "assets/images/icon-128x128.png"
+  image_path_android: "assets/images/launcher_icon/launcher_icon.png"
+  image_path_ios: "assets/images/launcher_icon/launcher_icon.png"
+  android: true # can specify file name here e.g. "ic_launcher"
+  ios: false # can specify file name here e.g. "My-Launcher-Icon"
+  adaptive_icon_background: "assets/images/launcher_icon/launcher_background.png" # only available for Android 8.0 devices and above
+  adaptive_icon_foreground: "assets/images/launcher_icon/launcher_icon.png" # only available for Android 8.0 devices and above
+  min_sdk_android: 21 # android min sdk min:16, default 21
+   
 flutter:
 
   # The following line ensures that the Material Icons font is
@@ -96,6 +108,11 @@ flutter:
     - assets/images/premium_symbol.png
     - assets/images/comfort_symbol.png
     - assets/images/profile_symbol.png
+    - assets/images/launcher_icon/launcher_icon.png
+    - assets/images/launcher_icon/launcher_background.png
+    
+    
+  
     
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
